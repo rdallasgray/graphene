@@ -14,16 +14,12 @@
 ;; sr-speedbar is set to NOT be included in C-x o -- so we need a shortcut to switch to it.
 (global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
 
-;; Mac-like keymap settings.
+;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
           '(lambda ()
-             (define-key speedbar-key-map [S-up] 'speedbar-up-directory)
-             (define-key speedbar-key-map [right] 'speedbar-flush-expand-line)
-             (define-key speedbar-key-map [left] 'speedbar-contract-line)
-             (define-key speedbar-key-map (kbd "<kp-enter>") 'speedbar-item-rename)
-             (define-key speedbar-key-map (kbd "<s-backspace>") 'speedbar-item-delete)
-             (define-key speedbar-key-map (kbd "<s-i>") 'speedbar-item-info)
-             (define-key speedbar-key-map (kbd "<s-r>") 'speedbar-refresh)
+             (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
+             (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
+             (define-key speedbar-mode-map [left] 'speedbar-contract-line)
              ))
 
 ;; Highlight the current line
