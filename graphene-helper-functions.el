@@ -15,7 +15,7 @@
     (mapc (lambda (buf) (kill-buffer-if-file buf))
      (buffer-list)))
 
-;; Quickly create new buffers with s-n
+;; Quickly create new buffers
 (defun create-new-buffer ()
   (interactive)
   (switch-to-buffer (generate-new-buffer-name "*new*")))
