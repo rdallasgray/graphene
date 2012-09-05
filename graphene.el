@@ -15,7 +15,6 @@
     )))
 (defvar graphene-sys-defaults-file (format "graphene-%s-defaults" graphene-sys))
 
-(require 'graphene-packages)
 (require 'graphene-osx-defaults)
 (require 'graphene-helper-functions)
 (require 'graphene-editing)
