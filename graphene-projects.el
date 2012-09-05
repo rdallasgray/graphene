@@ -71,7 +71,7 @@
               (project-save)
               )))
 
-;; Save any open project and kill all file-based buffers before opening a new project.
+ ;; Save any open project and kill all file-based buffers before opening a new project.
 (add-hook 'graphene-project-before-open-hook
           (lambda ()
             (progn
