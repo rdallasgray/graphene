@@ -16,9 +16,6 @@
 ;; Add directory info to distinguish buffers.
 (setq uniquify-buffer-name-style 'forward)
 
-;; Delete files by moving them to the OS X trash
-(setq delete-by-moving-to-trash t)
-
 ;; Don't make me type out 'yes' and 'no'
 (fset 'yes-or-no-p 'y-or-n-p)
 
