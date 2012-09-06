@@ -49,3 +49,6 @@ Nowhere near. I still need to test it on systems other than OS X. I would ultima
 
 I have also not yet written standard Emacs headers for the files or made the package available on Melpa. These two issues should be remedied in the next few days.
 
+I installed Graphene, but it doesn't look like your screenshot ...
+==================================================================
+I use this version of the [Solarized theme](https://github.com/sellout/emacs-color-theme-solarized) (also available on Melpa).
