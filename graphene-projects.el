@@ -65,6 +65,7 @@
               (graphene-set-project-root
                     (project-default-directory (project-current)))
               (project-save)
+              (add-hook 'kill-emacs-hook 'project-save)
               )))
 
  ;; Save any open project and kill all file-based buffers before opening a new project.
@@ -84,6 +85,7 @@
                     (project-default-directory (project-current)))
               (message (concat "Loading project desktop from " graphene-project-root))
               (desktop-read)
+              (add-hook 'kill-emacs-hook 'project-save)
               )))
 ;; Save the project desktop.
 (add-hook 'graphene-project-after-save-hook
