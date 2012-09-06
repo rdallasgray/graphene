@@ -1,3 +1,6 @@
+(require 'graphene-helper-functions)
+(require 'smex)
+
 (global-set-key (kbd "C-x k")
                 'kill-default-buffer)
 (global-set-key (kbd "C-c n")

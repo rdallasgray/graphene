@@ -1,3 +1,11 @@
+(require 'graphene-helper-functions)
+(require 'graphene-speedbar)
+
+;; Default fonts
+(defvar graphene-default-font "Menlo-12")
+(defvar graphene-variable-pitch-font "Lucida Sans-12")
+(defvar graphene-fixed-pitch-font "Menlo-12")
+
 ;; Delete files by moving them to the OS X trash
 (setq delete-by-moving-to-trash t)
 

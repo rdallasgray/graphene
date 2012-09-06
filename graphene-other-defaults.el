@@ -1,1 +1,2 @@
-(provide 'graphene-linux-defaults)
+
+(provide 'graphene-other-defaults)
