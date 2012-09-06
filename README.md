@@ -10,6 +10,8 @@ Graphene brings together what for me are the essentials. It is certainly opinion
 
 I should warn long-term Emacs users that some of what Graphene does may not be considered 'The Emacs Way'. I respond that the *whole point* of Emacs is its configurability, and I've laboured long and hard to make my Emacs an environment in which I'm comfortable. I have where possible made every effort to fit in with the standard Emacs ways of doing things, but where I don't like them, I've offered alternatives.
 
+![Graphene screenshot](graphene.png)
+
 What does it include?
 =====================
 1. **A useful project mode**
@@ -39,7 +41,7 @@ What is Graphene's philosophy?
 ==============================
 1. That Emacs is for everyone.
 2. That there are all kinds of different programmers, and there's nothing wrong with being the kind that likes to use the mouse every so often, likes their editor to look nice, and likes to have some commonality between their text editor and the rest of the applications they use.
-3. That accepted solutions are to be preferred (in the category of accepted solutions I include Emacs built-in packages and packages available via package.el over code mined from anonymous websites).
+$3. That accepted solutions are to be preferred (in the category of accepted solutions I include Emacs built-in packages and packages available via package.el over code mined from anonymous websites).
 
 Is Graphene finished?
 =====================
