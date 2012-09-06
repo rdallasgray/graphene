@@ -12,7 +12,7 @@
 (blink-cursor-mode -1)
 
 ;; Soft-wrap lines
-(visual-line-mode 1)
+(visual-line-mode t)
 
 ;; Get graphene font defaults or use system defaults.
 (unless (boundp 'graphene-default-font)
