@@ -1,11 +1,9 @@
 ;; Defaults for the Emacs environment.
 
-;; Use Smex for recent M-x commands a la ido.
 (require 'smex)
-(smex-initialize)
 
-;; Mark word, sexp, line, ...
-(require 'expand-region)
+;; Use Smex for recent M-x commands a la ido.
+(smex-initialize)
 
 ;; No startup splash screen.
 (setq inhibit-startup-message t)
@@ -19,11 +17,11 @@
 ;; Don't make me type out 'yes' and 'no'
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Don't create backup~ files.
-(setq make-backup-files nil)
-
-;; Don't create #autosave# files
-(setq auto-save-default nil)
+;; Put backups and autosaves in temp dir.
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; Defaults for Ido.
 (setq ido-enable-flex-matching t
