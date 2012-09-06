@@ -8,6 +8,8 @@
       speedbar-use-images nil
       speedbar-indentation-width 2
       speedbar-update-flag t
+      sr-speedbar-width 40
+      sr-speedbar-width-x 40
       sr-speedbar-auto-refresh nil
       sr-speedbar-skip-other-window-p t
       sr-speedbar-right-side nil)
