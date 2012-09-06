@@ -10,7 +10,7 @@ Graphene brings together what for me are the essentials. It is certainly opi nio
 
 I should warn long-term Emacs users that some of what Graphene does may not be considered 'The Emacs Way'. I respond that the *whole point* of Emacs is its configurability, and I've laboured long and hard to make my Emacs an environment in which I'm comfortable. I have where possible made every effort to fit in with the standard Emacs ways of doing things, but where I don't like them, I've offered alternatives.
 
-![Graphene screenshot](http://http://s3-eu-west-1.amazonaws.com/graphene/graphene.png)
+![Graphene screenshot](http://s3-eu-west-1.amazonaws.com/graphene/graphene.png)
 
 What does it include?
 =====================
