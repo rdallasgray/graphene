@@ -22,20 +22,45 @@
 (unless (boundp 'graphene-fixed-pitch-font)
   (defvar graphene-fixed-pitch-font (face-font 'fixed-pitch)))
 
-;; Set graphene default fonts
-(set-frame-font graphene-default-font)
-(set-face-font 'variable-pitch graphene-variable-pitch-font)
-(set-face-font 'fixed-pitch graphene-fixed-pitch-font)
+;; Default frame geometry
+(defvar graphene-frame-geometry '(160 70 0 0))
 
-;; In GUI mode, use a bigger frame, larger line spacing, and sr-speedbar
+;; Name of the file to which to load and save geometry.
+(defvar graphene-geometry-file
+  (concat user-emacs-directory ".emacs.geometry"))
+
+;; Load geometry settings from file if it exists.
+(defun graphene-load-frame-geometry ()
+  (if (file-readable-p graphene-geometry-file)
+      (with-temp-buffer
+        (insert-file-contents graphene-geometry-file)
+        (setq graphene-frame-geometry
+              (mapcar
+               'string-to-number
+               (split-string (buffer-string) " "))))))
+
+;; Save geometry settings.
+(defun graphene-save-frame-geometry ()
+  (with-temp-file graphene-geometry-file
+    (let ((geometry-string (format "%d %d %d %d" (frame-width) (frame-height) 0 0)))
+          (message geometry-string)
+          (insert geometry-string))))
+
+;; In GUI mode, use a bigger frame, larger line spacing, and sr-speedbar.
 (if window-system
     (progn
-      (add-to-list 'default-frame-alist '(width .  170))
-      (add-to-list 'default-frame-alist '(height .  60))
+      (graphene-load-frame-geometry)
+      (let ((f-width (car graphene-frame-geometry)) (f-height (car (cdr graphene-frame-geometry))))
+        (message (format "%d %d" f-width f-height))
+        (add-to-list 'default-frame-alist (cons 'width f-width))
+        (add-to-list 'default-frame-alist (cons 'height f-height)))
       (add-to-list 'default-frame-alist '(line-spacing . 2))
+      (set-frame-font graphene-default-font)
+      (set-face-font 'variable-pitch graphene-variable-pitch-font)
+      (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
       ;; Seems to fix graphical glitches with linum
       (set-fringe-mode '(8 . 0))
-      (sr-speedbar-open))
+      (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry))
     ;; Menu bar off in text mode
   (menu-bar-mode -1))
 
