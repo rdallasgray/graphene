@@ -1,7 +1,3 @@
-(defvar graphene-default-font "Menlo-12")
-(defvar graphene-fixed-pitch-family "Menlo")
-(defvar graphene-variable-pitch-family "Lucida Sans")
-
 ;; Delete files by moving them to the OS X trash
 (setq delete-by-moving-to-trash t)
 
