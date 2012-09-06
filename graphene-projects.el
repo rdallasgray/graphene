@@ -14,7 +14,6 @@
   (make-directory graphene-projects-folder))
 
 ;; Enable project-mode.
-(require 'project-mode)
 (project-mode t)
 (setq project-proj-files-dir graphene-projects-folder)
 
