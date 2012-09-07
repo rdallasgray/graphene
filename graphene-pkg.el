@@ -5,4 +5,5 @@
     (smart-tab "20120409.940")
     (multi-web-mode "20110821.1317")
     (smex "20120831.2023")
+    (sr-speedbar "20090723.435")
     (project-mode "1.0")))
