@@ -5,7 +5,9 @@
   (face-attribute 'default :height))
 
 (defvar graphene-small-font-height
-  (floor (* .917 graphene-font-height)))
+  (if window-system
+      (floor (* .917 graphene-font-height))
+    1))
 
 (custom-theme-set-faces
  'graphene

@@ -11,6 +11,9 @@
 ;; Non-blinking cursor
 (blink-cursor-mode -1)
 
+;; No cursor in non-selected windows
+(setq cursor-in-non-selected-windows nil)
+
 ;; Soft-wrap lines
 (visual-line-mode t)
 
@@ -54,8 +57,8 @@
         (message (format "%d %d" f-width f-height))
         (add-to-list 'default-frame-alist (cons 'width f-width))
         (add-to-list 'default-frame-alist (cons 'height f-height)))
+      (add-to-list 'default-frame-alist (cons 'font graphene-default-font))
       (add-to-list 'default-frame-alist '(line-spacing . 2))
-      (set-frame-font graphene-default-font)
       (set-face-font 'variable-pitch graphene-variable-pitch-font)
       (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
       ;; Seems to fix graphical glitches with linum
