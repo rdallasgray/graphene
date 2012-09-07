@@ -1,5 +1,6 @@
-;(defvar graphene-default-font "Menlo-12")
-;(defvar graphene-fixed-pitch-family "Menlo")
-;(defvar graphene-variable-pitch-family "Lucida Sans")
+;; Default fonts
+(defvar graphene-default-font "Consolas-11")
+(defvar graphene-variable-pitch-font "Segoe UI-11")
+(defvar graphene-fixed-pitch-font "Consolas-11")
 
-(provide 'graphene-linux-defaults)
+(provide 'graphene-windows-defaults)
