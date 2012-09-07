@@ -6,7 +6,7 @@ I don't pretend to be an Emacs expert -- I've only been using it for a year or s
 
 At the same time, neither base-level Emacs nor any of the defaults packages I've tried ([Prelude](https://github.com/bbatsov/prelude), [emacs-starter-kit](https://github.com/technomancy/emacs-starter-kit), etc.) have made Emacs work (and look) the way I want it to.
 
-Graphene brings together what for me are the essentials. It is certainly opi nionated, but still more liberal than I've found other similiar packages to be.
+Graphene brings together what for me are the essentials. It is certainly opinionated, but still more liberal than I've found other similiar packages to be.
 
 I should warn long-term Emacs users that some of what Graphene does may not be considered 'The Emacs Way'. I respond that the *whole point* of Emacs is its configurability, and I've laboured long and hard to make my Emacs an environment in which I'm comfortable. I have where possible made every effort to fit in with the standard Emacs ways of doing things, but where I don't like them, I've offered alternatives.
 
