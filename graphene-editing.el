@@ -1,4 +1,37 @@
-;; Defaults for text editing.
+;;; graphene-editing.el --- Graphene editing defaults
+;;
+;; Copyright (c) 2012 Robert Dallas Gray
+;;
+;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
+;; URL: https://github.com/rdallasgray/graphene
+;; Version: 0.1
+;; Keywords: defaults
+
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
+;; The editing defaults target the text editing environment, with particular relevance to prog modes. 
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code:
 
 (require 'smart-tab)
 (require 'auto-complete)
@@ -6,45 +39,45 @@
 (require 'autopair)
 (require 'multi-web-mode)
 
-;; Use flymake, autocomplete, linum in prog modes
+;; Use flymake, autocomplete, paredit, linum in prog modes
+;; ESC to get out of autocomplete menu
 (ac-config-default)
+(define-key ac-completing-map (kbd "ESC") 'ac-stop)
 (add-hook 'prog-mode-hook
           (lambda ()
             (progn
+              (auto-complete-mode t)
               (flymake-mode t)
-              (auto-complete)
-              (linum-mode 1)
-              (setq linum-format " %4d ")
-              )))
+              (autopair-mode t)
+              (linum-mode t)
+              (setq linum-format " %4d "))))
 
-;; Autopair gives closer-to-textmate functionality than the built-in electric modes.
-(autopair-global-mode)
+;; Delete marked text on typing (delete-selection-mode not compatible with autopair)
+(cua-selection-mode t)
+
+;; Soft-wrap lines
+(global-visual-line-mode t)
 
 ;; Nicer scrolling with mouse wheel/trackpad.
-(defun scroll-up-amount (amt) "Scroll up by the given amount."  (scroll-up-command amt))
-(defun scroll-down-amount (amt) "Scroll down by the given amount." (scroll-down-command amt))
-(global-set-key [wheel-down] (lambda () (interactive) (scroll-up-amount 1)))
-(global-set-key [wheel-up] (lambda () (interactive) (scroll-down-amount 1)))
-(global-set-key [double-wheel-down] (lambda () (interactive) (scroll-up-amount 2)))
-(global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-amount 2)))
-(global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-amount 4)))
-(global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-amount 4)))
-
-;; Autorevert all buffers.
-(global-auto-revert-mode t)
-
-;; cua-mode -- only for rectangles, and to have something like delete-selection-mode that's compatible with autopair.
-(cua-selection-mode t)
+(global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
+(global-set-key [wheel-up] (lambda () (interactive) (scroll-down-command 1)))
+(global-set-key [double-wheel-down] (lambda () (interactive) (scroll-up-command 2)))
+(global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-command 2)))
+(global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-command 4)))
+(global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-command 4)))
 
 ;; Always autoindent new lines.
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Use tab for autocomplete.
-(global-smart-tab-mode 1)
+(global-smart-tab-mode t)
 
 ;; Show matching parens immediately.
-(show-paren-mode 1)
+(show-paren-mode t)
 (setq show-paren-delay 0)
+
+;; Non-blinking cursor
+(blink-cursor-mode -1)
 
 ;; Don't use tabs for indent; replace tabs with two spaces.
 (setq-default tab-width 2)

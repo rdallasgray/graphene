@@ -1,13 +1,46 @@
-;; Helper functions necessary for graphene to work.
+;;; graphene-helper-functions.el --- Graphene helper functions
+;;
+;; Copyright (c) 2012 Robert Dallas Gray
+;;
+;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
+;; URL: https://github.com/rdallasgray/graphene
+;; Version: 0.1
+;; Keywords: defaults
 
-;; Just kill the default buffer
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
+;; These helper functions enable simple functionality used throughout the rest of the package.
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code: 
+
 (defun kill-default-buffer ()
+  "Kill the currently active buffer -- set to C-x k so that users are not asked which buffer they want to kill."
   (interactive)
   (let (kill-buffer-query-functions) (kill-buffer)))
 
-;; Kill all file-based buffers
 (defun kill-buffer-if-file (buf)
-  (if (buffer-file-name buf)
+  "Kill a buffer only if it is file-based."
+  (when (buffer-file-name buf)
       (kill-buffer)))
 (defun kill-all-buffers ()
     "Kill all file-based buffers."
@@ -15,28 +48,19 @@
     (mapc (lambda (buf) (kill-buffer-if-file buf))
      (buffer-list)))
 
-;; Quickly create new buffers
 (defun create-new-buffer ()
+  "Create a new buffer named *new*[num]."
   (interactive)
   (switch-to-buffer (generate-new-buffer-name "*new*")))
 
-;; Create a new instance of emacs
-(if window-system
-    (if (boundp 'path-to-emacs)
-      (progn
-        (defun new-emacs-instance ()
-          (interactive)
-          (call-process path-to-emacs nil 0 nil))
-        )))
-
-;; Add closing semicolon from anywhere in line
 (defun insert-semicolon-at-end-of-line ()
+  "Add a closing semicolon from anywhere in the line."
   (interactive)
   (end-of-line)
   (insert ";"))
 
-;; Add and goto newline from anywhere in line (after cua because of C-RET)
 (defun newline-anywhere ()
+  "Add a newline from anywhere in the line."
   (interactive)
   (end-of-line)
   (newline))

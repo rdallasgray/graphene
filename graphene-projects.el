@@ -1,96 +1,80 @@
-;; Uses project-mode by Benjamin Cluff https://github.com/psyllo/emacsenations.
-;; Adds hooks to allow actions on switching projects.
-;; Opening a project saves any open project, kills all file-based buffers,
-;; loads the project's desktop, and sets the speedbar directory to the project's root.
-;; Saving a project also saves its desktop.
+;;; graphene-projects.el --- Graphene defaults for project management
+;;
+;; Copyright (c) 2012 Robert Dallas Gray
+;;
+;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
+;; URL: https://github.com/rdallasgray/graphene
+;; Version: 0.1
+;; Keywords: defaults
+
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
+;; This file defines default settings and functionality for project management.
+;; It uses Project-persist (https://github.com/rdallasgray/project-persist) as a base
+;; for its functionality, adding just the capability to load and save desktops along with project settings,
+;; and to open the speedbar at the correct directory location.
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Code: 
 
 (require 'graphene-helper-functions)
-(require 'project-mode)
 (require 'graphene-speedbar)
+(require 'project-persist)
+(require 'sr-speedbar)
 
-(defvar graphene-projects-folder (concat user-emacs-directory "projects/"))
+(project-persist-mode t)
 
-(unless (file-exists-p graphene-projects-folder)
-  (make-directory graphene-projects-folder))
-
-;; Enable project-mode.
-(project-mode t)
-(setq project-proj-files-dir graphene-projects-folder)
-
-;; Define hooks.
-(defvar graphene-project-before-open-hook)
-(defvar graphene-project-after-open-hook)
-(defvar graphene-project-after-save-hook)
-
-;; Define a variable to expose the project's root directory.
-(defvar graphene-project-root)
-
-;; Set graphene-project-root, set default-directory, update speedbar
 (defun graphene-set-project-root (dir)
-  (setq graphene-project-root dir)
-  (message (concat "Set graphene-project-root to " graphene-project-root))
+  "Change the default directory and update speedbar if used."
   (setq default-directory dir)
-  (message "Updating speedbar")
-  (sr-speedbar-open)
-  (speedbar-update-contents)
-  )
+  (when graphene-use-sr-speedbar
+    (sr-speedbar-open)
+    (speedbar-update-contents)))
 
-;; Create hooks in project-mode.
-(defadvice project-new (after graphene-project-run-after-new-hook () activate)
-  "Run graphene-project-after-new-hook after project-new."
-  (progn (message "Running graphene-project-after-new-hook")
-         (run-hooks 'graphene-project-after-new-hook))
-  )
-(defadvice project-load (before graphene-project-run-before-open-hook () activate)
-  "Run graphene-project-before-open-hook before project-load."
-  (progn (message "Running graphene-project-before-open-hook")
-         (run-hooks 'graphene-project-before-open-hook))
-  )
-(defadvice project-load-and-select (after graphene-project-run-after-open-hook () activate)
-  "Run graphene-project-after-open-hook after project select."
-  (progn (message "Running graphene-project-after-open-hook")
-         (run-hooks 'graphene-project-after-open-hook))
-  )
-(defadvice project-save (after graphene-project-run-after-save-hook () activate)
-  "Run graphene-project-after-save-hook after project-save."
-  (progn (message "Running graphene-project-after-save-hook")
-         (run-hooks 'graphene-project-after-save-hook))
-  )
+(defun graphene-load-project-desktop ()
+  "Load the project's desktop if available."
+  (ignore-errors
+    (setq default-directory project-persist-current-project-settings-dir)
+    (desktop-read))
+  (setq default-directory project-persist-current-project-root-dir))
 
-;; Save any open project and kill all file-based buffers before opening a new project.
-(add-hook 'graphene-project-after-new-hook
-          (lambda ()
-            (progn
-              (graphene-set-project-root
-                    (project-default-directory (project-current)))
-              (project-save)
-              (add-hook 'kill-emacs-hook 'project-save)
-              )))
+ ;; Kill all file-based buffers before opening a project.
+(add-hook 'project-persist-before-load-hook
+          'kill-all-buffers)
 
- ;; Save any open project and kill all file-based buffers before opening a new project.
-(add-hook 'graphene-project-before-open-hook
-          (lambda ()
-            (progn
-              (if (boundp 'graphene-project-root)
-                  (project-save))
-              (message "Saved project")
-              (kill-all-buffers)
-              )))
+ ;; Kill all file-based buffers after closing a project.
+(add-hook 'project-persist-after-close-hook
+          'kill-all-buffers)
+
 ;; Set the project root directory, load the project desktop and update speedbar.
-(add-hook 'graphene-project-after-open-hook
+(add-hook 'project-persist-after-load-hook
           (lambda ()
-            (progn
-              (graphene-set-project-root
-                    (project-default-directory (project-current)))
-              (message (concat "Loading project desktop from " graphene-project-root))
-              (desktop-read)
-              (add-hook 'kill-emacs-hook 'project-save)
-              )))
+            (graphene-load-project-desktop)
+            (graphene-set-project-root project-persist-current-project-root-dir)))
+
 ;; Save the project desktop.
-(add-hook 'graphene-project-after-save-hook
+(add-hook 'project-persist-after-save-hook
           (lambda ()
-            (progn
-              (message (format "Saving project desktop in %s" graphene-project-root))
-              (desktop-save graphene-project-root)
-              )))
+            (message (format "Saving project desktop in %s" project-persist-current-project-settings-dir))
+            (desktop-save project-persist-current-project-settings-dir)))
+
 (provide 'graphene-projects)
