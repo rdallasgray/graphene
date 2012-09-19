@@ -103,8 +103,9 @@
           (lambda () (load-theme 'graphene t)))
 
 (defadvice load-theme
-  (after load-graphene-theme ())
+  (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
   "Load the graphene theme extensions after loading a theme."
-  (lambda () (load-theme 'graphene t)) activate)
+  (when (not (equal theme 'graphene))
+    (load-theme 'graphene t)))
 
 (provide 'graphene-look)
