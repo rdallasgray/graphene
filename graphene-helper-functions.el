@@ -41,7 +41,12 @@
 (defun kill-buffer-if-file (buf)
   "Kill a buffer only if it is file-based."
   (when (buffer-file-name buf)
-      (kill-buffer)))
+    (when (buffer-modified-p buf)
+        (when (y-or-n-p (format "Buffer %s is modified - save it?" (buffer-name buf)))
+            (save-some-buffers nil buf)))
+    (set-buffer-modified-p nil)
+    (kill-buffer buf)))
+
 (defun kill-all-buffers ()
     "Kill all file-based buffers."
     (interactive)
