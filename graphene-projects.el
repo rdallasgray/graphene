@@ -40,6 +40,7 @@
 (require 'graphene-speedbar)
 (require 'project-persist)
 (require 'sr-speedbar)
+(require 'projectile)
 
 (project-persist-mode t)
 
@@ -61,15 +62,18 @@
 (add-hook 'project-persist-before-load-hook
           'kill-all-buffers)
 
- ;; Kill all file-based buffers after closing a project.
+ ;; Kill all file-based buffers and tunr off projectile-mode after closing a project.
 (add-hook 'project-persist-after-close-hook
-          'kill-all-buffers)
+          (lambda ()
+            (kill-all-buffers)
+            (projectile-global-mode -1)))
 
-;; Set the project root directory, load the project desktop and update speedbar.
+;; Set the project root directory, load the project desktop, start projectile-mode and update speedbar.
 (add-hook 'project-persist-after-load-hook
           (lambda ()
             (graphene-load-project-desktop)
-            (graphene-set-project-root project-persist-current-project-root-dir)))
+            (graphene-set-project-root project-persist-current-project-root-dir)
+            (projectile-global-mode 1)))
 
 ;; Save the project desktop.
 (add-hook 'project-persist-after-save-hook
