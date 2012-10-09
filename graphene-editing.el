@@ -43,14 +43,25 @@
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
+(setq ac-delay 0.5
+      ac-auto-show-menu 1.5
+      ac-quick-help-delay 2.5
+      ac-candidate-limit 30)
+(setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+
 (add-hook 'prog-mode-hook
           (lambda ()
             (progn
               (auto-complete-mode t)
-              (flymake-mode t)
               (autopair-mode t)
               (linum-mode t)
-              (setq linum-format " %4d "))))
+              (setq linum-format " %4d ")
+              (local-set-key (kbd "RET") 'newline-and-indent))))
+
+;; Fix newline-and-indent in ruby-mode
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
 
 ;; Delete marked text on typing (delete-selection-mode not compatible with autopair)
 (cua-selection-mode t)
@@ -65,9 +76,6 @@
 (global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-command 2)))
 (global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-command 4)))
 (global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-command 4)))
-
-;; Always autoindent new lines.
-(define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Use tab for autocomplete.
 (global-smart-tab-mode t)
