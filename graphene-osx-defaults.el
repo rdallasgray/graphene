@@ -37,15 +37,19 @@
 (require 'graphene-speedbar)
 (require 'exec-path-from-shell)
 
+;; Standard fonts
 (defvar graphene-default-font "Menlo-12")
 (defvar graphene-variable-pitch-font "Lucida Sans-12")
 (defvar graphene-fixed-pitch-font "Menlo-12")
 
+;; Move deleted files to trash
 (setq delete-by-moving-to-trash t)
+
+;; Set default path from shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-
+;; Mac-like key defaults
 (global-set-key (kbd "s-n") 'create-new-buffer)
 (global-set-key (kbd "s-N") 'new-emacs-instance)
 (global-set-key (kbd "s-{") 'previous-buffer)
