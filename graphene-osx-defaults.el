@@ -54,6 +54,8 @@
 (global-set-key (kbd "s-N") 'new-emacs-instance)
 (global-set-key (kbd "s-{") 'previous-buffer)
 (global-set-key (kbd "s-}") 'next-buffer)
+(global-set-key (kbd "s-<right>") 'end-of-line)
+(global-set-key (kbd "s-<left>") 'beginning-of-line)
 
 (define-key speedbar-mode-map (kbd "<kp-enter>") 'speedbar-item-rename)
 (define-key speedbar-mode-map (kbd "<s-backspace>") 'speedbar-item-delete)
