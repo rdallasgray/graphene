@@ -106,7 +106,7 @@
 (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
-                  (ruby-mode "<\\%=\\|<\\% " "\\%>")))
+                  (ruby-mode "<\\%=\\|<\\% " "\\-%>\\|\\%>")))
 (setq mweb-filename-extensions '("html" "phtml" "rhtml" "html.erb"))
 (multi-web-global-mode 1)
 
