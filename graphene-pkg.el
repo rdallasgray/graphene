@@ -1,4 +1,4 @@
-(define-package "graphene" "20120919.2056"
+(define-package "graphene" ""
   "Newbie-friendly defaults [source: github]"
   '((smart-tab "20120409")
     (auto-complete "20120909")
