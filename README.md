@@ -37,11 +37,32 @@ Primarily, people who have been Textmate or Sublime Text users, and who want to 
 
 Graphene intentionally doesn't do too much -- it just sets up some defaults which should make Emacs a little more familiar to start with, and provides some functionality to let new users find their way around more easily.
 
+How do I install it?
+====================
+Short answer: Graphene is available on [Melpa](http://melpa.milkbox.net).
+
+Long answer: your default initialisation file is in (old-school) `~/.emacs` or (new-school) `~/.emacs.d/init.el`. First, you need to set up the Emacs package system and tell it about Melpa, so add these lines to your initialisation file:
+```
+;; Require Emacs' package functionality
+(require 'package)
+;; Add the Melpa repository to the list of package sources
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; Initialise the package system.
+(package-initialize)
+```
+Then either select those lines and do `M-x eval-region`, or restart Emacs. After that, do `M-x package-list-packages`, search for 'graphene' (either manually or using `C-s`), mark it for installation by pressing 'i', and install it by pressing 'x'.
+
+It will take a while to install itself and its various dependencies, will probably raise a few compilation issues. You can most probably safely ignore these. Once it's done, add this to your initialisation file:
+```
+(require 'graphene)
+```
+Restart Emacs, and away you go.
+
 Is there a Graphene 'philosophy'?
 =================================
 Graphene is intended to be simple and liberal (it doesn't do too much, and it doesn't prevent you from working in any particular way). Its liberalism may be interpreted by some as 'anti-Emacs', but I would respectfully respond that the *whole point* of Emacs is its configurability. I hope very much that Graphene helps others to discover the wonder of Emacs.
 
-A second important point is that wherever possible Graphene includes projects under active development in preference to ones which appear dead, and will *only* included code available via Emacs' package system (Graphene uses Elpa, Melpa and Marmalade by default).
+A second important point is that wherever possible Graphene includes projects under active development in preference to ones which appear dead, and will *only* include code available via Emacs' package system.
 
 I installed Graphene, but it doesn't look like your screenshot ...
 ==================================================================
