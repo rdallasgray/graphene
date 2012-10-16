@@ -41,6 +41,8 @@
                 'kill-default-buffer)
 (global-set-key (kbd "C-c n")
                 'create-new-buffer)
+(global-set-key (kbd "C-c N")
+                'new-emacs-instance)
 (global-set-key (kbd "C-;")
                 'insert-semicolon-at-end-of-line)
 (global-set-key (kbd "M-RET")
