@@ -13,10 +13,10 @@ Graphene brings together what for me are the essentials. It is a little opiniona
 What does it include?
 =====================
 1. **A useful project mode**  
-   There are several project-management packages available for Emacs. All that I really want from such a package, though, is to be able to easily load and switch among different projects without losing my place. For this reason, Graphene uses [project-persist](https://github.com/rdallasgray/project-persist), around which it puts in place hooks to load and save the Emacs desktop in tandem with project settings. Because this approach is so lightweight, it will not interfere with other project-management capabilities (you may wish to add ([Projectile's](https://github.com/bbatsov/projectile) excellent search-in-project functionality, for instance).
+   There are several project-management packages available for Emacs. All that I really want from such a package, though, is to be able to easily load and switch among different projects without losing my place. For this reason, Graphene uses [project-persist](https://github.com/rdallasgray/project-persist), around which it puts in place hooks to load and save the Emacs desktop in tandem with project settings. Because this approach is so lightweight, it does not interfere with other project-management capabilities, and in fact Graphene takes advantage of this by using [Projectile's](https://github.com/bbatsov/projectile) excellent search-in-project functionality, for instance.
    
 2. **An attractive and functional 'project drawer'**  
-   I missed this from Textmate. It helps me, when looking at a large project, to get a quick visual sense of where things are, and to find things when I don't immediately know where to look for them. Also (ducks), I sometimes like to take a break from the keyboard and click around with the mouse. It gives my back and my hands a break from the typing position. Graphene uses [Sr-Speedbar](https://github.com/emacsmirror/sr-speedbar) to create a Speedbar inside the working frame, with some tweaks to the Speedbar look to make it more ... acceptable.
+   I missed this from Textmate. It helps me, when looking at a large project, to get a quick visual sense of where things are, and to find things when I don't immediately know where to look for them. Also (*ducks*), I sometimes like to take a break from the keyboard and click around with the mouse. It gives my back and my hands a break from the typing position. Graphene uses [Sr-Speedbar](https://github.com/emacsmirror/sr-speedbar) to create a Speedbar inside the working frame, with some tweaks to the Speedbar look to make it more ... acceptable.
    
 3. **An immediately usable and discoverable Emacs environment**  
    At first Emacs can appear a little opaque; it is in fact a very discoverable environment, and Graphene tries to turn this up to maximum, by using [Ido](http://emacswiki.org/emacs/InteractivelyDoThings) everywhere, the Ido-like [Smex](http://www.emacswiki.org/Smex) for running extended commands, and [Auto Complete](http://emacswiki.org/emacs/AutoComplete) for in-editor completion. These allow gradual discovery of Emacs' functionality, and gradual building of speed and fluidity.
@@ -57,6 +57,23 @@ It will take a while to install itself and its various dependencies, and will pr
 (require 'graphene)
 ```
 Restart Emacs, and away you go.
+
+I'm lost.
+========
+To open the project drawer:  
+`M-x sr-speedbar-open`
+
+To create a project:  
+`M-x project-persist-create` or `C-c P n`
+
+To open a project:  
+`M-x project-persist-find` or `C-c P f`
+
+What's all this M-x, C-c, aargh?
+================================
+You probably need to run the Emacs Tutorial: `C-h t`
+
+(That's hold down the CTRL key, press 'h', release those, then press 't'.
 
 Is there a Graphene 'philosophy'?
 =================================
