@@ -1,4 +1,4 @@
-;;; graphene.el --- Graphene bootstrap
+;;; graphene.el --- Newbie-friendly defaults
 ;;
 ;; Copyright (c) 2012 Robert Dallas Gray
 ;;
@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
+;; Graphene is a collection of default settings and functionality to make Emacs a little friendlier.
 
 ;;; License:
 
