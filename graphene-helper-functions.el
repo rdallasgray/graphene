@@ -70,4 +70,11 @@
   (end-of-line)
   (newline))
 
+;; Create a new instance of emacs
+(when window-system
+  (defun new-emacs-instance ()
+    (interactive)
+    (let ((path-to-emacs (locate-file invocation-name (list invocation-directory) exec-suffixes)))
+      (call-process path-to-emacs nil 0 nil))))
+
 (provide 'graphene-helper-functions)
