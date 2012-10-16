@@ -62,7 +62,7 @@
 (add-hook 'project-persist-before-load-hook
           'kill-all-buffers)
 
- ;; Kill all file-based buffers and tunr off projectile-mode after closing a project.
+ ;; Kill all file-based buffers and turn off projectile-mode after closing a project.
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
