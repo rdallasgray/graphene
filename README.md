@@ -41,7 +41,7 @@ How do I install it?
 ====================
 Short answer: Graphene is available on [Melpa](http://melpa.milkbox.net).
 
-Long answer: your default initialisation file is in (old-school) `~/.emacs` or (new-school) `~/.emacs.d/init.el`. First, you need to set up the Emacs package system and tell it about Melpa, so add these lines to your initialisation file:
+Long answer: your default initialisation file is in (old-school) `~/.emacs` or (new-school) `~/.emacs.d/init.el`. First, you need to set up the Emacs package system and tell it about Melpa, so create one of those files if it doesn't already exist, and add these lines to the file:
 ```
 ;; Require Emacs' package functionality
 (require 'package)
@@ -52,7 +52,7 @@ Long answer: your default initialisation file is in (old-school) `~/.emacs` or (
 ```
 Then either select those lines and do `M-x eval-region`, or restart Emacs. After that, do `M-x package-list-packages`, search for 'graphene' (either manually or using `C-s`), mark it for installation by pressing 'i', and install it by pressing 'x'.
 
-It will take a while to install itself and its various dependencies, will probably raise a few compilation issues. You can most probably safely ignore these. Once it's done, add this to your initialisation file:
+It will take a while to install itself and its various dependencies, and will probably raise a few compilation issues. You can most probably safely ignore these. Once it's done, add this to your initialisation file:
 ```
 (require 'graphene)
 ```
