@@ -107,7 +107,7 @@
                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
                   (ruby-mode "<\\%=\\|<\\% " "\\%>")))
-(setq mweb-filename-extensions '("html" "phtml" "rhtml"))
+(setq mweb-filename-extensions '("html" "phtml" "rhtml" "html.erb"))
 (multi-web-global-mode 1)
 
 (provide 'graphene-editing)
