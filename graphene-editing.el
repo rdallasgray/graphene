@@ -100,11 +100,15 @@
 
 ;; Use multi-web-mode for editing code embedded in HTML.
 (setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
-                  (ruby-mode "<\\%=\\|<\\% " "\\-%>\\|\\%>")))
-(setq mweb-filename-extensions '("html" "phtml" "rhtml" "html.erb"))
+(let ((mweb-possible-tags
+      '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+        (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+        (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
+        (ruby-mode "<\\%=\\|<\\% " "\\-%>\\|\\%>"))))
+  (dolist (cell mweb-possible-tags)
+    (when (fboundp (car cell))
+      (push cell mweb-tags))))
+(setq mweb-filename-extensions '("html" "phtml" "erb"))
 (multi-web-global-mode 1)
 
 (provide 'graphene-editing)
