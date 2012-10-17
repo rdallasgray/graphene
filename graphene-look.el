@@ -34,6 +34,7 @@
 ;;; Code: 
 
 (require 'graphene-speedbar)
+(require 'graphene-theme)
 
 ;; Less flickery display
 (setq redisplay-dont-pause t)
@@ -88,8 +89,8 @@
           (add-to-list 'default-frame-alist (cons 'height f-height))
           (add-to-list 'default-frame-alist (cons 'top f-top))
           (add-to-list 'default-frame-alist (cons 'left f-left))))
-      (add-to-list 'default-frame-alist (cons 'font graphene-default-font))
       (add-to-list 'default-frame-alist '(line-spacing . 2))
+      (set-face-font 'default graphene-default-font)
       (set-face-font 'variable-pitch graphene-variable-pitch-font)
       (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
       ;; Seems to fix some of the graphical glitches with linum
