@@ -73,7 +73,7 @@ What's all this M-x, C-c, aargh?
 ================================
 You probably need to run the Emacs Tutorial: `C-h t`
 
-(That's hold down the CTRL key, press 'h', release those, then press 't'.
+(That's hold down the CTRL key, press 'h', release those, then press 't'.)
 
 Is there a Graphene 'philosophy'?
 =================================
