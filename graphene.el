@@ -32,10 +32,6 @@
 
 ;;; Code:
 
-;; Add the theme directory to custom-theme-load-path
-(let ((root (file-name-directory (if load-file-name load-file-name buffer-file-name))))
-  (add-to-list 'custom-theme-load-path (concat root "theme/")))
-
 ;; Set up the system-based defaults
 (let ((graphene-sys
   (cond ((eq system-type 'darwin) "osx")
@@ -45,19 +41,36 @@
   (defvar graphene-sys-defaults (intern (format "graphene-%s-defaults" graphene-sys))
     "Symbol for the specific system-based defaults file."))
 
+
 ;; Define custom settings
 (defgroup graphene nil
   "Graphene custom settings.")
 
-(defcustom graphene-use-sr-speedbar t
-  "Whether graphene should use sr-speedbar."
+(defcustom graphene-speedbar-auto t
+  "Whether graphene should open sr-speedbar when a project is loaded."
   :type 'boolean
   :group 'graphene)
 
-(defcustom graphene-speedbar-always t
-  "Whether graphene should open sr-speedbar at launch."
+(defcustom graphene-linum-auto t
+  "Whether graphene should enable linum-mode with prog-modes."
   :type 'boolean
   :group 'graphene)
+
+(defcustom graphene-autopair-auto t
+  "Whether graphene should enable autopair-mode with prog-modes."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-autocomplete-auto t
+  "Whether graphene should enable autocomplete-mode with prog-modes."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-parens-auto t
+  "Whether graphene should enable show-paren-mode."
+  :type 'boolean
+  :group 'graphene)
+
 
 ;; Require necessary files
 (require 'graphene-helper-functions)

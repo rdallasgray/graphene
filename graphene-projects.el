@@ -47,7 +47,7 @@
 (defun graphene-set-project-root (dir)
   "Change the default directory and update speedbar if used."
   (setq default-directory dir)
-  (when graphene-use-sr-speedbar
+  (when graphene-speedbar-auto
     (sr-speedbar-open)
     (speedbar-update-contents)))
 

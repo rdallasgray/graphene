@@ -39,7 +39,7 @@
 (require 'autopair)
 (require 'multi-web-mode)
 
-;; Use flymake, autocomplete, paredit, linum in prog modes
+;; Use autocomplete, autopair, linum in prog modes
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
@@ -47,15 +47,18 @@
       ac-auto-show-menu 1.2
       ac-quick-help-delay 2.5
       ac-candidate-limit 30)
-(setq-default ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+(setq-default ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet ac-source-abbrev ac-source-dictionary))
 
 (add-hook 'prog-mode-hook
           (lambda ()
             (progn
-              (auto-complete-mode t)
-              (autopair-mode t)
-              (linum-mode t)
-              (setq linum-format " %4d ")
+              (when 'graphene-autocomplete-auto
+                (auto-complete-mode t))
+              (when 'graphene-autopair-auto
+                (autopair-mode t))
+              (when 'graphene-linum-auto
+                (linum-mode t)
+                (setq linum-format " %4d "))
               (local-set-key (kbd "RET") 'newline-and-indent))))
 
 ;; Fix newline-and-indent in ruby-mode
@@ -81,15 +84,9 @@
 (global-smart-tab-mode t)
 
 ;; Show matching parens immediately.
-(show-paren-mode t)
-(setq show-paren-delay 0)
-
-;; Non-blinking cursor
-(blink-cursor-mode -1)
-
-;; Don't use tabs for indent; replace tabs with two spaces.
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
+(when 'graphene-parens-auto
+  (show-paren-mode t)
+  (setq show-paren-delay 0))
 
 ;; Character encodings default to utf-8.
 (prefer-coding-system 'utf-8)
