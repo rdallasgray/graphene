@@ -39,33 +39,6 @@
 (require 'autopair)
 (require 'multi-web-mode)
 
-;; Use autocomplete, autopair, linum in prog modes
-;; ESC to get out of autocomplete menu
-(ac-config-default)
-(define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-delay 0.2
-      ac-auto-show-menu 1.2
-      ac-quick-help-delay 2.5
-      ac-candidate-limit 30)
-(setq-default ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet ac-source-abbrev ac-source-dictionary))
-
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (progn
-              (when 'graphene-autocomplete-auto
-                (auto-complete-mode t))
-              (when 'graphene-autopair-auto
-                (autopair-mode t))
-              (when 'graphene-linum-auto
-                (linum-mode t)
-                (setq linum-format " %4d "))
-              (local-set-key (kbd "RET") 'newline-and-indent))))
-
-;; Fix newline-and-indent in ruby-mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
-
 ;; Delete marked text on typing (delete-selection-mode not compatible with autopair)
 (cua-selection-mode t)
 
@@ -79,14 +52,6 @@
 (global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-command 2)))
 (global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-command 4)))
 (global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-command 4)))
-
-;; Use tab for autocomplete.
-(global-smart-tab-mode t)
-
-;; Show matching parens immediately.
-(when 'graphene-parens-auto
-  (show-paren-mode t)
-  (setq show-paren-delay 0))
 
 ;; Character encodings default to utf-8.
 (prefer-coding-system 'utf-8)
@@ -110,5 +75,43 @@
       (push cell mweb-tags))))
 (setq mweb-filename-extensions '("html" "phtml" "erb"))
 (multi-web-global-mode 1)
+
+;; Autocomplete defaults
+;; ESC to get out of autocomplete menu
+(ac-config-default)
+(define-key ac-completing-map (kbd "ESC") 'ac-stop)
+(setq ac-delay 0.2
+      ac-auto-show-menu 1.2
+      ac-quick-help-delay 2.5
+      ac-candidate-limit 30)
+(setq-default ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet ac-source-abbrev ac-source-dictionary))
+;; Use tab for autocomplete.
+(global-smart-tab-mode t)
+
+;; Show matching parens immediately.
+(when 'graphene-parens-auto
+  (show-paren-mode t)
+  (setq show-paren-delay 0))
+
+(add-hook 'graphene-prog-mode-hook
+          (lambda ()
+            (when 'graphene-linum-auto
+              (linum-mode t)
+              (setq linum-format " %4d "))
+            (when 'graphene-autocomplete-auto
+              (auto-complete-mode t))
+            (when 'graphene-autopair-auto
+              (autopair-mode t))
+            (local-set-key (kbd "RET") 'newline-and-indent)))
+
+;; Fix newline-and-indent in ruby-mode
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+
+(add-hook 'after-init-hook 
+          (lambda() 
+            (dolist (hook graphene-prog-mode-hooks)
+              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
 (provide 'graphene-editing)

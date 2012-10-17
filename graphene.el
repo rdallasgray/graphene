@@ -71,6 +71,13 @@
   :type 'boolean
   :group 'graphene)
 
+(defcustom graphene-prog-mode-hooks '(prog-mode-hook)
+  "List of hooks to be treated as prog-mode."
+  :type 'sexp
+  :group 'graphene)
+
+(defvar graphene-prog-mode-hook nil
+  "A hook to be run on entering a de facto prog mode.")
 
 ;; Require necessary files
 (require 'graphene-helper-functions)
