@@ -91,6 +91,12 @@ Or (bearing in mind that `graphene-prog-mode-hooks` contains `prog-mode-hook` by
 ```
 (setq graphene-prog-mode-hooks (append '(css-mode-hook sgml-mode-hook) graphene-prog-mode-hooks)
 ```
+By default, the `graphene-prog-mode-hook` enables `linum-mode`, `autopair-mode` and `autocomplete-mode`, and rebinds the return key to `newline-and-indent`. All but the latter can be disabled using the customize settings.
+
+You can add your own functions to run on entering a de facto prog mode by adding hook functions to `graphene-prog-mode-hook`:
+```
+(add-hook 'graphene-prog-mode-hook 'my-hook-function)
+```
 
 Is there a Graphene 'philosophy'?
 =================================
