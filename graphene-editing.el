@@ -93,6 +93,8 @@
   (show-paren-mode t)
   (setq show-paren-delay 0))
 
+;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
+;; autocomplete, plus setting binding newline key to newline-and-indent
 (add-hook 'graphene-prog-mode-hook
           (lambda ()
             (when 'graphene-linum-auto
@@ -109,6 +111,7 @@
           (lambda ()
             (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
 
+;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook 
           (lambda() 
             (dolist (hook graphene-prog-mode-hooks)
