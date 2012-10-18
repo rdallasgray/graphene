@@ -88,6 +88,9 @@
 ;; Use tab for autocomplete.
 (global-smart-tab-mode t)
 
+;; Linum format to avoid graphics glitches in fringe
+(setq linum-format " %4d ")
+
 ;; Show matching parens immediately.
 (when 'graphene-parens-auto
   (show-paren-mode t)
@@ -97,12 +100,11 @@
 ;; autocomplete, plus setting binding newline key to newline-and-indent
 (add-hook 'graphene-prog-mode-hook
           (lambda ()
-            (when 'graphene-linum-auto
-              (linum-mode t)
-              (setq linum-format " %4d "))
-            (when 'graphene-autocomplete-auto
+            (when graphene-linum-auto
+              (linum-mode t))
+            (when graphene-autocomplete-auto
               (auto-complete-mode t))
-            (when 'graphene-autopair-auto
+            (when graphene-autopair-auto
               (autopair-mode t))
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
