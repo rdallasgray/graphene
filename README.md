@@ -75,11 +75,32 @@ You probably need to run the Emacs Tutorial: `C-h t`
 
 (That's hold down the CTRL key, press 'h', release those, then press 't'.)
 
+Stop patronising me.
+====================
+OK. You can customise some basic defaults by doing `M-x customize-group` and selecting `graphene`. At present you can determine whether Graphene does certain things automatically, like opening the Speedbar when you open a project, and applying certain modes when you enter a programming mode.
+
+The latter of these is quite interesting: Emacs' list of 'prog modes' excludes some modes, like css-mode and sgml-mode, which you may actually wish to treat as prog modes for certain purposes. Graphene allows you to do this by adding mode hooks to the list `graphene-prog-mode-hooks`, like so:
+```
+(push 'css-mode-hook graphene-prog-mode-hooks)
+```
+Or:
+```
+(setq graphene-prog-mode-hooks '(prog-mode-hook sgml-mode-hook))
+```
+Or (bearing in mind that `graphene-prog-mode-hooks` contains `prog-mode-hook` by default):
+```
+(setq graphene-prog-mode-hooks (append '(css-mode-hook sgml-mode-hook) graphene-prog-mode-hooks)
+```
+
 Is there a Graphene 'philosophy'?
 =================================
 Graphene is intended to be simple and liberal (it doesn't do too much, and it doesn't prevent you from working in any particular way). Its liberalism may be interpreted by some as 'anti-Emacs', but I would respectfully respond that the *whole point* of Emacs is its configurability. I hope very much that Graphene helps others to discover the wonder of Emacs.
 
 A second important point is that wherever possible Graphene includes projects under active development in preference to ones which appear dead, and will *only* include code available via Emacs' package system.
+
+What's to come?
+===============
+More customisability, more documentation, possibly a dedicated menu to allow easy access to custom settings and functionality.
 
 I installed Graphene, but it doesn't look like your screenshot ...
 ==================================================================
