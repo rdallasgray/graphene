@@ -33,10 +33,8 @@
 
 ;;; Code:
 
-(require 'smart-tab)
 (require 'auto-complete)
 (require 'auto-complete-config)
-(require 'ac-dabbrev)
 (require 'autopair)
 (require 'multi-web-mode)
 
@@ -84,15 +82,12 @@
 (setq ac-delay 0.1
       ac-auto-show-menu 0.8
       ac-quick-help-delay 2.5)
-(setq-default ac-sources '(ac-source-dabbrev
-                           ac-source-words-in-buffer
+(setq-default ac-sources '(ac-source-words-in-buffer
                            ac-source-words-in-same-mode-buffers
                            ac-source-semantic
                            ac-source-yasnippet
                            ac-source-dictionary
                            ac-source-filename))
-;; Use tab for autocomplete.
-(global-smart-tab-mode t)
 
 ;; Linum format to avoid graphics glitches in fringe
 (setq linum-format " %4d ")
