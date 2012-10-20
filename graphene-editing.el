@@ -36,6 +36,7 @@
 (require 'smart-tab)
 (require 'auto-complete)
 (require 'auto-complete-config)
+(require 'ac-dabbrev)
 (require 'autopair)
 (require 'multi-web-mode)
 
@@ -80,11 +81,16 @@
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-delay 0.2
-      ac-auto-show-menu 1.2
-      ac-quick-help-delay 2.5
-      ac-candidate-limit 30)
-(setq-default ac-sources '(ac-source-words-in-same-mode-buffers ac-source-yasnippet ac-source-abbrev ac-source-dictionary))
+(setq ac-delay 0.1
+      ac-auto-show-menu 0.8
+      ac-quick-help-delay 2.5)
+(setq-default ac-sources '(ac-source-dabbrev
+                           ac-source-words-in-buffer
+                           ac-source-words-in-same-mode-buffers
+                           ac-source-semantic
+                           ac-source-yasnippet
+                           ac-source-dictionary
+                           ac-source-filename))
 ;; Use tab for autocomplete.
 (global-smart-tab-mode t)
 
