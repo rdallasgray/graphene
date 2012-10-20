@@ -123,6 +123,14 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit region))))
+ `(ac-dabbrev-menu-face
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit popup-face))))
+ `(ac-dabbrev-selection-face
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit ac-selection-face))))
  `(flymake-warnline
    ((t (:background unspecified
                     :foreground unspecified
