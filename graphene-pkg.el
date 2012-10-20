@@ -2,6 +2,7 @@
   "Newbie-friendly defaults [source: github]"
   '((smart-tab "20120409")
     (auto-complete "20120909")
+    (ac-dabbrev "20091116")
     (autopair "20120818")
     (multi-web-mode "20110821")
     (smex "20120831")
