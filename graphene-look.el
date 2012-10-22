@@ -45,17 +45,6 @@
 ;; Toolbar off
 (tool-bar-mode -1)
 
-;; Get graphene font defaults or use system defaults.
-(unless (boundp 'graphene-default-font)
-  (defvar graphene-default-font (face-font 'default)
-    "The universal default font."))
-(unless (boundp 'graphene-variable-pitch-font)
-  (defvar graphene-variable-pitch-font (face-font 'variable-pitch)
-    "The default font for variable-pitch."))
-(unless (boundp 'graphene-fixed-pitch-font)
-  (defvar graphene-fixed-pitch-font (face-font 'fixed-pitch)
-    "The default font for fixed-pitch."))
-
 (defvar graphene-geometry-file
   (concat user-emacs-directory ".graphene-geometry")
   "The file where frame geometry settings are saved.")
@@ -77,31 +66,49 @@
   "Get the current geometry of the active frame, subtracting the width of the Speedbar if necessary."
   (list (frame-width) (frame-height) (frame-parameter nil 'top) (frame-parameter nil 'left)))
 
-;; In GUI mode, restore frame geometry, use larger line spacing, set default fonts
-(if window-system
-    (progn
-      (let ((geom (graphene-load-frame-geometry)))
-        (let ((f-width (car geom))
-              (f-height (cadr geom))
-              (f-top (caddr geom))
-              (f-left (cadddr geom)))
-          (add-to-list 'default-frame-alist (cons 'width f-width))
-          (add-to-list 'default-frame-alist (cons 'height f-height))
-          (add-to-list 'default-frame-alist (cons 'top f-top))
-          (add-to-list 'default-frame-alist (cons 'left f-left))))
-      (add-to-list 'default-frame-alist '(line-spacing . 2))
-      (set-face-font 'default graphene-default-font)
-      (set-face-font 'variable-pitch graphene-variable-pitch-font)
-      (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
-      ;; Seems to fix some of the graphical glitches with linum
-      (set-fringe-mode '(8 . 0))
-      (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry))
-  ;; Menu bar off in text mode
-  (menu-bar-mode -1))
+(defun graphene-set-geometry ()
+  "Set the default frame geometry using the values loaded from graphene-geometry-file."
+  (let ((geom (graphene-load-frame-geometry)))
+    (let ((f-width (car geom))
+          (f-height (cadr geom))
+          (f-top (caddr geom))
+          (f-left (cadddr geom)))
+      (add-to-list 'default-frame-alist (cons 'width f-width))
+      (add-to-list 'default-frame-alist (cons 'height f-height))
+      (add-to-list 'default-frame-alist (cons 'top f-top))
+      (add-to-list 'default-frame-alist (cons 'left f-left)))))
 
-;; Load theme extensions
-(add-hook 'after-init-hook
-          (lambda () (load-theme 'graphene t)))
+(defun graphene-set-fonts ()
+  "Set up default fonts."
+  (unless (boundp 'graphene-default-font)
+    (setq graphene-default-font (face-font 'default)))
+  (unless (boundp 'graphene-variable-pitch-font)
+    (setq graphene-variable-pitch-font (face-font 'variable-pitch)))
+  (unless (boundp 'graphene-fixed-pitch-font)
+    (setq graphene-fixed-pitch-font (face-font 'fixed-pitch))))
+
+(defun graphene-look-startup ()
+  "Load defaults for the overall Graphene look -- to be called after loading the init file so as to pick up custom settings."
+  (if window-system
+      (progn
+        (graphene-set-geometry)
+        (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry)
+        ;; Nicer line spacing
+        (add-to-list 'default-frame-alist '(line-spacing . 2))
+        (graphene-set-fonts)
+        ;; Set default frame font
+        (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
+        ;; Set variable and fixed pitch faces
+        (set-face-font 'variable-pitch graphene-variable-pitch-font)
+        (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
+        ;; Seems to fix some of the graphical glitches with linum
+        (set-fringe-mode '(8 . 0))
+        ;; Load theme extensions
+        (load-theme 'graphene t))
+    ;; Menu bar off in text mode
+    (menu-bar-mode -1)))
+
+(add-hook 'after-init-hook 'graphene-look-startup)
 
 (defadvice load-theme
   (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
