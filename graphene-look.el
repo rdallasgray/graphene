@@ -87,7 +87,7 @@
   (unless (boundp 'graphene-fixed-pitch-font)
     (setq graphene-fixed-pitch-font (face-font 'fixed-pitch))))
 
-(defun graphene-look-startup ()
+(defun graphene-look-startup-after-init ()
   "Load defaults for the overall Graphene look -- to be called after loading the init file so as to pick up custom settings."
   (if window-system
       (progn
@@ -102,13 +102,20 @@
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
         ;; Seems to fix some of the graphical glitches with linum
-        (set-fringe-mode '(8 . 0))
-        ;; Load theme extensions
-        (load-theme 'graphene t))
+        (set-fringe-mode '(8 . 0))))
     ;; Menu bar off in text mode
-    (menu-bar-mode -1)))
+    (menu-bar-mode -1))
 
-(add-hook 'after-init-hook 'graphene-look-startup)
+(defun graphene-look-startup-after-frame (frame)
+  "Load defaults for the overall Graphene look -- to be called after making the frame so to size fonts correctly etc."
+  ;; Load theme extensions
+  (load-theme 'graphene t))
+
+(add-hook 'after-init-hook 'graphene-look-startup-after-init)
+(add-hook 'after-make-frame-functions
+          (lambda ()
+            (graphene-look-startup-after-frame)))
+
 
 (defadvice load-theme
   (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
