@@ -33,16 +33,6 @@
 
 (deftheme graphene "The Graphene theme -- some simple additions to any theme to improve the look of speedbar, linum, etc.")
 
-(defvar graphene-font-height
-  (face-attribute 'default :height)
-  "Default font height.")
-
-(defvar graphene-small-font-height
-  (if window-system
-      (floor (* .917 graphene-font-height))
-    1)
-  "Relative size for 'small' fonts.")
-
 (custom-theme-set-faces
  'graphene
  `(speedbar-directory-face

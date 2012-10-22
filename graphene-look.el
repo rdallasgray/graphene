@@ -34,7 +34,6 @@
 ;;; Code: 
 
 (require 'graphene-speedbar)
-(require 'graphene-theme)
 
 ;; Less flickery display
 (setq redisplay-dont-pause t)
@@ -98,24 +97,26 @@
         (graphene-set-fonts)
         ;; Set default frame font
         (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
-        ;; Set variable and fixed pitch faces
+        ;; Set default, variable and fixed pitch faces
+        (set-face-font 'default graphene-default-font)
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
         ;; Seems to fix some of the graphical glitches with linum
-        (set-fringe-mode '(8 . 0))))
-    ;; Menu bar off in text mode
-    (menu-bar-mode -1))
-
-(defun graphene-look-startup-after-frame (frame)
-  "Load defaults for the overall Graphene look -- to be called after making the frame so to size fonts correctly etc."
-  ;; Load theme extensions
-  (load-theme 'graphene t))
+        (set-fringe-mode '(8 . 0))
+	;; Set relative font heights
+	(defvar graphene-font-height
+	  (face-attribute 'default :height)
+	  "Default font height.")
+	(defvar graphene-small-font-height
+	  (floor (* .917 graphene-font-height))
+	  "Relative size for 'small' fonts.")
+	;; Load theme extensions -- has to be required here in order to pick up relative font sizes
+	(require 'graphene-theme)
+	(load-theme 'graphene t)))
+  ;; Menu bar off in text mode
+  (menu-bar-mode -1))
 
 (add-hook 'after-init-hook 'graphene-look-startup-after-init)
-(add-hook 'after-make-frame-functions
-          (lambda ()
-            (graphene-look-startup-after-frame)))
-
 
 (defadvice load-theme
   (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
