@@ -33,8 +33,8 @@
 
 ;;; Code: 
 
-(defvar graphene-default-font "Consolas-11")
-(defvar graphene-variable-pitch-font "Segoe UI-11")
-(defvar graphene-fixed-pitch-font "Consolas-11")
+(setq graphene-default-font "Consolas-11")
+(setq graphene-variable-pitch-font "Segoe UI-11")
+(setq graphene-fixed-pitch-font "Consolas-11")
 
 (provide 'graphene-windows-defaults)

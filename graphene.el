@@ -76,6 +76,26 @@
   :type 'sexp
   :group 'graphene)
 
+(defcustom graphene-default-font nil
+  "The universal default font."
+  :type 'string
+  :group 'graphene)
+
+(defcustom graphene-variable-pitch-font nil
+  "The font to use in the variable-pitch face."
+  :type 'string
+  :group 'graphene)
+
+(defcustom graphene-fixed-pitch-font nil
+  "The font to use in the fixed-pitch face."
+  :type 'string
+  :group 'graphene)
+
+(defcustom graphene-default-font nil
+  "The universal default font."
+  :type 'string
+  :group 'graphene)
+
 (defvar graphene-prog-mode-hook nil
   "A hook to be run on entering a de facto prog mode.")
 
