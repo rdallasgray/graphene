@@ -80,7 +80,7 @@
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
 (setq ac-delay 0.1
-      ac-auto-show-menu 0.8
+      ac-auto-show-menu 1.6
       ac-quick-help-delay 2.5)
 (setq-default ac-sources '(ac-source-words-in-buffer
                            ac-source-words-in-same-mode-buffers
