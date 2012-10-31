@@ -112,16 +112,15 @@
 	  "Relative size for 'small' fonts.")
 	;; Load theme extensions -- has to be required here in order to pick up relative font sizes
 	(require 'graphene-theme)
-	(load-theme 'graphene t)))
+	(load-theme 'graphene t)
+  (defadvice load-theme
+    (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
+    "Load the graphene theme extensions after loading a theme."
+    (when (not (equal theme 'graphene))
+      (load-theme 'graphene t)))))
   ;; Menu bar off in text mode
   (menu-bar-mode -1))
 
 (add-hook 'after-init-hook 'graphene-look-startup-after-init)
-
-(defadvice load-theme
-  (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
-  "Load the graphene theme extensions after loading a theme."
-  (when (not (equal theme 'graphene))
-    (load-theme 'graphene t)))
 
 (provide 'graphene-look)
