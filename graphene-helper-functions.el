@@ -61,14 +61,15 @@
 (defun insert-semicolon-at-end-of-line ()
   "Add a closing semicolon from anywhere in the line."
   (interactive)
-  (end-of-line)
-  (insert ";"))
+  (save-excursion
+    (end-of-line)
+    (insert ";")))
 
 (defun newline-anywhere ()
   "Add a newline from anywhere in the line."
   (interactive)
   (end-of-line)
-  (newline))
+  (newline-and-indent))
 
 ;; Create a new instance of emacs
 (when window-system
