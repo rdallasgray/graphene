@@ -81,10 +81,12 @@
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
 (setq ac-delay 0.1
       ac-auto-show-menu 1.6
-      ac-quick-help-delay 2.5)
+      ac-quick-help-delay 2.5
+      ac-ignore-case nil
+      ac-limit 20)
+
 (setq-default ac-sources '(ac-source-words-in-buffer
                            ac-source-words-in-same-mode-buffers
-                           ac-source-semantic
                            ac-source-yasnippet
                            ac-source-dictionary
                            ac-source-filename))
