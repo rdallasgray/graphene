@@ -33,6 +33,12 @@
 
 ;;; Code: 
 
+(require 'exec-path-from-shell)
+
+;; Set default path from shell
+(when (window-system)
+  (exec-path-from-shell-initialize))
+
 (setq graphene-default-font "DejaVu Sans Mono-10")
 (setq graphene-variable-pitch-font "DejaVu Sans-10")
 (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10")
