@@ -58,4 +58,27 @@
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
+;; Always use the last selected window for loading files from speedbar.
+(defvar last-selected-window (selected-window))
+(defadvice select-window (after remember-selected-window activate)
+  "Remember the last selected window."
+  (unless (eq (selected-window) sr-speedbar-window)
+    (setq last-selected-window (selected-window))))
+
+(defun sr-speedbar-before-visiting-file-hook ()
+  "Function that hooks `speedbar-before-visiting-file-hook'."
+  (select-window last-selected-window))
+
+(defun sr-speedbar-before-visiting-tag-hook ()
+  "Function that hooks `speedbar-before-visiting-tag-hook'."
+  (select-window last-selected-window))
+
+(defun sr-speedbar-visiting-file-hook ()
+  "Function that hooks `speedbar-visiting-file-hook'."
+  (select-window last-selected-window))
+
+(defun sr-speedbar-visiting-tag-hook ()
+  "Function that hooks `speedbar-visiting-tag-hook'."
+  (select-window last-selected-window))
+
 (provide 'graphene-speedbar)
