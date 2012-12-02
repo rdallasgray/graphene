@@ -35,11 +35,11 @@
 
 (require 'auto-complete)
 (require 'auto-complete-config)
-(require 'autopair)
+(require 'smartparens)
 (require 'multi-web-mode)
 
-;; Delete marked text on typing (delete-selection-mode not compatible with autopair)
-(cua-selection-mode t)
+;; Delete marked text on typing 
+(delete-selection-mode t)
 
 ;; Soft-wrap lines
 (global-visual-line-mode t)
@@ -108,7 +108,7 @@
             (when graphene-autocomplete-auto
               (auto-complete-mode t))
             (when graphene-autopair-auto
-              (autopair-mode t))
+              (smartparens-mode t))
             (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; Fix newline-and-indent in ruby-mode
