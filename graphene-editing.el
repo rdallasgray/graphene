@@ -62,6 +62,9 @@
 ;; apply syntax highlighting to all buffers
 (global-font-lock-mode t)
 
+;; less annoying smartparens
+(sp-add-ban-insert-pair-in-string "'")
+
 ;; Use multi-web-mode for editing code embedded in HTML.
 (setq mweb-default-major-mode 'html-mode)
 (let ((mweb-possible-tags
