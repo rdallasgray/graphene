@@ -24,8 +24,8 @@ What does it include?
 4. **Sundry other timesavers, helpers and UI improvements**  
    Graphene will also:
    - Save the size and position of your window (frame) on quit, and restore it on restart;
-   - Allow you to create a new buffer with a standard UI shortcut (cmd-n on macs, C-x n on other platforms);
-   - Pair brackets, braces, etc. (using [Autopair](https://github.com/capitaomorte/autopair));
+   - Allow you to create a new buffer with a standard UI shortcut (cmd-n on macs, C-c n on other platforms);
+   - Pair brackets, braces, etc. (using [Smartparens](https://github.com/Fuco1/smartparens));
    - Set nicer default fonts, appropriate to the platform you're working on;
    - Tone down and rationalise some common theme settings, without interfering too much with the overall theme's look.
    

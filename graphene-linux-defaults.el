@@ -40,7 +40,7 @@
   (exec-path-from-shell-initialize))
 
 (setq graphene-default-font "DejaVu Sans Mono-10")
-(setq graphene-variable-pitch-font "DejaVu Sans-10")
+(setq graphene-variable-pitch-font "Liberation Sans-10")
 (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10")
 
 (provide 'graphene-linux-defaults)
