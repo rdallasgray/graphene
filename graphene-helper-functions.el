@@ -71,6 +71,27 @@
   (end-of-line)
   (newline-and-indent))
 
+(defun increase-window-height ()
+  "Make the window taller by one line. Useful when bound to a repeatable key combination."
+  (interactive)
+  (enlarge-window 1))
+
+(defun decrease-window-height ()
+  "Make the window shorter by one line. Useful when bound to a repeatable key combination."
+  (interactive)
+  (enlarge-window -1))
+
+
+(defun decrease-window-width ()
+  "Make the window narrower by one line. Useful when bound to a repeatable key combination."
+  (interactive)
+  (enlarge-window -1 t))
+
+(defun increase-window-width ()
+  "Make the window shorter by one line. Useful when bound to a repeatable key combination."
+  (interactive)
+  (enlarge-window 1 t))
+
 ;; Create a new instance of emacs
 (when window-system
   (defun new-emacs-instance ()
