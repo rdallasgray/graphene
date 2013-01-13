@@ -71,24 +71,6 @@
   (end-of-line)
   (newline-and-indent))
 
-(defun shift-region-indent (direction)
-  "Shift the region by one tab stop."
-  (let ((mark (mark)))
-    (save-excursion
-      (indent-rigidly (region-beginning) (region-end) (* direction tab-width))
-      (push-mark mark t t)
-      (setq deactivate-mark nil))))
-
-(defun shift-indent-right ()
-  "Shift the region one tab stop right."
-  (interactive)
-  (shift-region-indent 1))
-
-(defun shift-indent-left ()
-  "Shift the region one tab stop left."
-  (interactive)
-  (shift-region-indent -1))
-
 ;; Create a new instance of emacs
 (when window-system
   (defun new-emacs-instance ()
