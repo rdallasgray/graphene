@@ -62,12 +62,7 @@
 ;; apply syntax highlighting to all buffers
 (global-font-lock-mode t)
 
-;; less annoying smartparens
-(sp-add-ban-insert-pair-in-string "'")
-(sp-add-local-ban-insert-pair "'" 'emacs-lisp-mode)
-(sp-add-local-ban-insert-pair "'" 'inferior-emacs-lisp-mode)
-(sp-add-local-ban-insert-pair-in-code "`" 'emacs-lisp-mode)
-(sp-add-local-ban-insert-pair-in-code "`" 'inferior-emacs-lisp-mode)
+;; no overlay in smartparens
 (setq sp-highlight-pair-overlay nil)
 
 ;; Use multi-web-mode for editing code embedded in HTML.
