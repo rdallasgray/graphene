@@ -53,5 +53,13 @@
                 'smex-major-mode-commands)
 (global-set-key (kbd "C-c s")
                 'sr-speedbar-select-window)
+(global-set-key (kbd "C-,")
+                'decrease-window-width)
+(global-set-key (kbd "C-.")
+                'increase-window-width)
+(global-set-key (kbd "C-<")
+                'decrease-window-height)
+(global-set-key (kbd "C->")
+                'increase-window-height)
 
 (provide 'graphene-keys)
