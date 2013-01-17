@@ -83,7 +83,7 @@
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
 (setq ac-delay 0.1
-      ac-auto-show-menu 1.6
+      ac-auto-show-menu 0.2
       ac-quick-help-delay 2.5
       ac-ignore-case nil
       ac-limit 20)
