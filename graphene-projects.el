@@ -55,8 +55,8 @@
   "Load the project's desktop if available."
   (ignore-errors
     (setq default-directory project-persist-current-project-settings-dir)
-    (desktop-read))
-  (setq default-directory project-persist-current-project-root-dir))
+    (message (format "Loading project desktop from %s" default-directory))
+    (desktop-read project-persist-current-project-settings-dir)))
 
  ;; Kill all file-based buffers before opening a project.
 (add-hook 'project-persist-before-load-hook
