@@ -101,6 +101,8 @@
         (set-face-font 'default graphene-default-font)
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
+        ;; No border
+        (add-to-list 'default-frame-alist '(internal-border-width . 0))
         ;; Seems to fix some of the graphical glitches with linum
         (set-fringe-mode '(8 . 0))
 	;; Set relative font heights
