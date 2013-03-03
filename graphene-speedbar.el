@@ -39,9 +39,9 @@
 (setq speedbar-hide-button-brackets-flag t
       speedbar-show-unknown-files t
       speedbar-smart-directory-expand-flag t
+      speedbar-directory-button-trim-method 'trim
       speedbar-use-images nil
       speedbar-indentation-width 2
-      speedbar-update-flag t
       sr-speedbar-width 40
       sr-speedbar-width-x 40
       sr-speedbar-auto-refresh nil
@@ -57,6 +57,39 @@
 
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
+
+;; Auto-refresh
+;(add-hook 'speedbar-timer-hook 'speedbar-refresh)
+
+;; Pin and unpin the speedbar
+(defadvice speedbar-update-directory-contents
+  (around graphene-speedbar-pin-directory activate disable)
+  "Pin the speedbar to the directory set in graphene-speedbar-pinned-directory."
+  (let ((default-directory graphene-speedbar-pinned-directory))
+    ad-do-it))
+
+(defadvice speedbar-directory-buttons-follow
+  (around graphene-speedbar-prevent-follow activate disable)
+  "Prevent speedbar changing directory on button clicks.")
+
+(defun graphene-pin-speedbar (directory)
+  "Prevent the speedbar from changing the displayed root directory."
+  (setq graphene-speedbar-pinned-directory directory)
+  (ad-enable-advice 'speedbar-update-directory-contents
+                    'around 'graphene-speedbar-pin-directory)
+  (ad-enable-advice 'speedbar-directory-buttons-follow
+                    'around 'graphene-speedbar-prevent-follow)
+  (ad-activate 'speedbar-update-directory-contents)
+  (ad-activate 'speedbar-directory-buttons-follow))
+
+(defun graphene-unpin-speedbar ()
+  "Allow the speedbar to change the displayed root directory."
+  (ad-disable-advice 'speedbar-update-directory-contents
+                     'around 'graphene-speedbar-pin-directory)
+  (ad-disable-advice 'speedbar-directory-buttons-follow
+                     'around 'graphene-speedbar-prevent-follow)
+  (ad-activate 'speedbar-update-directory-contents)
+  (ad-activate 'speedbar-directory-buttons-follow))
 
 ;; Always use the last selected window for loading files from speedbar.
 (defvar last-selected-window (selected-window))

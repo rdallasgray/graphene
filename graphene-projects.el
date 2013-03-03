@@ -49,7 +49,9 @@
   (setq default-directory dir)
   (when graphene-speedbar-auto
     (sr-speedbar-open)
-    (speedbar-update-contents)))
+    (speedbar-update-contents)
+    (when graphene-project-pin-speedbar
+      (graphene-pin-speedbar dir))))
 
 (defun graphene-load-project-desktop ()
   "Load the project's desktop if available."
@@ -66,7 +68,8 @@
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
-            (projectile-global-mode -1)))
+            (projectile-global-mode -1)
+            (graphene-unpin-speedbar)))
 
 ;; Set the project root directory, load the project desktop, start projectile-mode and update speedbar.
 (add-hook 'project-persist-after-load-hook
