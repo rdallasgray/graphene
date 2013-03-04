@@ -70,7 +70,8 @@
 
 (defadvice speedbar-dir-follow
   (around graphene-speedbar-prevent-follow activate disable)
-  "Prevent speedbar changing directory on button clicks.")
+  "Prevent speedbar changing directory on button clicks."
+  (speedbar-toggle-line-expansion))
 
 (defadvice speedbar-directory-buttons-follow
   (around graphene-speedbar-prevent-root-follow activate disable)
