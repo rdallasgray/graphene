@@ -68,28 +68,38 @@
   (let ((default-directory graphene-speedbar-pinned-directory))
     ad-do-it))
 
-(defadvice speedbar-directory-buttons-follow
+(defadvice speedbar-dir-follow
   (around graphene-speedbar-prevent-follow activate disable)
   "Prevent speedbar changing directory on button clicks.")
+
+(defadvice speedbar-directory-buttons-follow
+  (around graphene-speedbar-prevent-root-follow activate disable)
+  "Prevent speedbar changing root directory on button clicks.")
 
 (defun graphene-pin-speedbar (directory)
   "Prevent the speedbar from changing the displayed root directory."
   (setq graphene-speedbar-pinned-directory directory)
   (ad-enable-advice 'speedbar-update-directory-contents
                     'around 'graphene-speedbar-pin-directory)
-  (ad-enable-advice 'speedbar-directory-buttons-follow
+  (ad-enable-advice 'speedbar-dir-follow
                     'around 'graphene-speedbar-prevent-follow)
+  (ad-enable-advice 'speedbar-directory-buttons-follow
+                    'around 'graphene-speedbar-prevent-root-follow)
   (ad-activate 'speedbar-update-directory-contents)
-  (ad-activate 'speedbar-directory-buttons-follow))
+  (ad-activate 'speedbar-directory-buttons-follow)
+  (ad-activate 'speedbar-dir-follow))
 
 (defun graphene-unpin-speedbar ()
   "Allow the speedbar to change the displayed root directory."
   (ad-disable-advice 'speedbar-update-directory-contents
                      'around 'graphene-speedbar-pin-directory)
-  (ad-disable-advice 'speedbar-directory-buttons-follow
+  (ad-disable-advice 'speedbar-dir-follow
                      'around 'graphene-speedbar-prevent-follow)
+  (ad-disable-advice 'speedbar-directory-buttons-follow
+                     'around 'graphene-speedbar-prevent-root-follow)
   (ad-activate 'speedbar-update-directory-contents)
-  (ad-activate 'speedbar-directory-buttons-follow))
+  (ad-activate 'speedbar-directory-buttons-follow)
+  (ad-activate 'speedbar-dir-follow))
 
 ;; Always use the last selected window for loading files from speedbar.
 (defvar last-selected-window (selected-window))
