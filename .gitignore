@@ -2,3 +2,5 @@
 TAGS
 .DS_Store
 .emacs*
+/.#*
+/flycheck-*
