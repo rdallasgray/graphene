@@ -51,6 +51,11 @@
   :type 'boolean
   :group 'graphene)
 
+(defcustom graphene-project-pin-speedbar t
+  "Pin the speedbar directory when opening a project."
+  :type 'boolean
+  :group 'graphene)
+
 (defcustom graphene-linum-auto t
   "Whether graphene should enable linum-mode with prog-modes."
   :type 'boolean
