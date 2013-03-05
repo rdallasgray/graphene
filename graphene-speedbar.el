@@ -48,6 +48,11 @@
       sr-speedbar-skip-other-window-p t
       sr-speedbar-right-side nil)
 
+;; Refresh the speedbar when relevant hooks are run.
+(mapc (lambda (hook)
+        (add-hook hook 'speedbar-refresh))
+      graphene-speedbar-refresh-hooks)
+
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
           '(lambda ()

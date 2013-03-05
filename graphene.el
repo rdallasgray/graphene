@@ -81,6 +81,11 @@
   :type 'sexp
   :group 'graphene)
 
+(defcustom graphene-speedbar-refresh-hooks '(after-save-hook)
+  "List of hooks which on being run will cause speedbar to refresh."
+  :type 'sexp
+  :group 'graphene)
+
 (defcustom graphene-default-font nil
   "The universal default font."
   :type 'string
