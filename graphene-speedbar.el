@@ -58,9 +58,6 @@
 ;; Highlight the current line
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
-;; Auto-refresh
-;(add-hook 'speedbar-timer-hook 'speedbar-refresh)
-
 ;; Pin and unpin the speedbar
 (defadvice speedbar-update-directory-contents
   (around graphene-speedbar-pin-directory activate disable)
@@ -77,30 +74,26 @@
   (around graphene-speedbar-prevent-root-follow activate disable)
   "Prevent speedbar changing root directory on button clicks.")
 
+ (defvar graphene-speedbar-pin-advice
+   '((speedbar-update-directory-contents around graphene-speedbar-pin-directory)
+     (speedbar-dir-follow around graphene-speedbar-prevent-follow)
+     (speedbar-directory-buttons-follow around graphene-speedbar-prevent-root-follow))
+   "Advice to be enabled and disabled on graphene-[un]-pin-speedbar.")
+
+(defun graphene-speedbar-pin-advice-activate ()
+  "Activate the advice applied to speedbar functions in order to pin it to a directory."
+  (mapc 'ad-activate (mapcar 'car graphene-speedbar-pin-advice)))
+
 (defun graphene-pin-speedbar (directory)
   "Prevent the speedbar from changing the displayed root directory."
   (setq graphene-speedbar-pinned-directory directory)
-  (ad-enable-advice 'speedbar-update-directory-contents
-                    'around 'graphene-speedbar-pin-directory)
-  (ad-enable-advice 'speedbar-dir-follow
-                    'around 'graphene-speedbar-prevent-follow)
-  (ad-enable-advice 'speedbar-directory-buttons-follow
-                    'around 'graphene-speedbar-prevent-root-follow)
-  (ad-activate 'speedbar-update-directory-contents)
-  (ad-activate 'speedbar-directory-buttons-follow)
-  (ad-activate 'speedbar-dir-follow))
+  (mapc (lambda (ls) (apply 'ad-enable-advice ls)) graphene-speedbar-pin-advice)
+  (graphene-speedbar-pin-advice-activate))
 
 (defun graphene-unpin-speedbar ()
   "Allow the speedbar to change the displayed root directory."
-  (ad-disable-advice 'speedbar-update-directory-contents
-                     'around 'graphene-speedbar-pin-directory)
-  (ad-disable-advice 'speedbar-dir-follow
-                     'around 'graphene-speedbar-prevent-follow)
-  (ad-disable-advice 'speedbar-directory-buttons-follow
-                     'around 'graphene-speedbar-prevent-root-follow)
-  (ad-activate 'speedbar-update-directory-contents)
-  (ad-activate 'speedbar-directory-buttons-follow)
-  (ad-activate 'speedbar-dir-follow))
+  (mapc (lambda (ls) (apply 'ad-disable-advice ls)) graphene-speedbar-pin-advice)
+  (graphene-speedbar-pin-advice-activate))
 
 ;; Always use the last selected window for loading files from speedbar.
 (defvar last-selected-window (selected-window))

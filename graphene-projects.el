@@ -60,9 +60,11 @@
     (message (format "Loading project desktop from %s" default-directory))
     (desktop-read project-persist-current-project-settings-dir)))
 
- ;; Kill all file-based buffers before opening a project.
+ ;; Kill all file-based buffers and unpin the speedbar before opening a project.
 (add-hook 'project-persist-before-load-hook
-          'kill-all-buffers)
+          (lambda ()
+            (graphene-unpin-speedbar)
+            (kill-all-buffers)))
 
  ;; Kill all file-based buffers and turn off projectile-mode after closing a project.
 (add-hook 'project-persist-after-close-hook
