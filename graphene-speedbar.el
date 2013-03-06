@@ -49,9 +49,16 @@
       sr-speedbar-right-side nil)
 
 ;; Refresh the speedbar when relevant hooks are run.
-(mapc (lambda (hook)
-        (add-hook hook 'speedbar-refresh))
-      graphene-speedbar-refresh-hooks)
+(defvar graphene-speedbar-refresh-hooks-added nil
+  "Whether hooks have been added to refresh speedbar.")
+
+(add-hook 'speedbar-mode-hook
+          (when (not graphene-speedbar-refresh-hooks-added)
+            (lambda ()
+              (mapc (lambda (hook)
+                      (add-hook hook 'speedbar-refresh))
+                    graphene-speedbar-refresh-hooks)
+              (setq graphene-speedbar-refresh-hooks t))))
 
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
