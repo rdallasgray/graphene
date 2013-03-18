@@ -74,6 +74,11 @@
                 :foreground unspecified
                 :inherit fringe
                 :slant normal))))
+ `(visible-mark-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inverse-video unspecified
+                    :inherit 'linum))))
  `(fringe
    ((t (:background unspecified))))
  `(vertical-border
