@@ -78,7 +78,7 @@
    ((t (:foreground unspecified
                     :background unspecified
                     :inverse-video unspecified
-                    :inherit 'linum))))
+                    :inherit 'hl-line))))
  `(fringe
    ((t (:background unspecified))))
  `(vertical-border
