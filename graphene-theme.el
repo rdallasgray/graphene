@@ -72,7 +72,7 @@
  `(linum
    ((t (:height ,graphene-small-font-height
                 :foreground unspecified
-                :inherit fringe
+                :inherit 'shadow
                 :slant normal))))
  `(visible-mark-face
    ((t (:foreground unspecified
