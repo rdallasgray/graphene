@@ -33,7 +33,6 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code: 
-
 (require 'sr-speedbar)
 
 (setq speedbar-hide-button-brackets-flag t
@@ -42,6 +41,8 @@
       speedbar-directory-button-trim-method 'trim
       speedbar-use-images nil
       speedbar-indentation-width 2
+      speedbar-use-imenu-flag t
+      speedbar-file-unshown-regexp "flycheck-.*"
       sr-speedbar-width 40
       sr-speedbar-width-x 40
       sr-speedbar-auto-refresh nil
