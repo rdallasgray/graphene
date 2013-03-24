@@ -89,9 +89,9 @@
       ac-ignore-case nil
       ac-limit 20)
 
-(setq-default ac-sources '(ac-source-words-in-buffer
+(setq-default ac-sources '(ac-source-imenu
+                           ac-source-words-in-buffer
                            ac-source-words-in-same-mode-buffers
-                           ac-source-yasnippet
                            ac-source-dictionary
                            ac-source-filename))
 
