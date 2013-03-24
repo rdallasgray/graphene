@@ -35,7 +35,6 @@
 (defvar graphene-font-height
   (face-attribute 'default :height)
   "Default font height.")
-(let ((sys )))
 (defvar graphene-small-font-height
   (floor (* .917 graphene-font-height))
   "Relative size for 'small' fonts.")
