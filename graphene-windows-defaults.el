@@ -32,9 +32,11 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code: 
-
-(setq graphene-default-font "Consolas-11")
-(setq graphene-variable-pitch-font "Segoe UI-11")
-(setq graphene-fixed-pitch-font "Consolas-11")
+(unless graphene-default-font
+  (setq graphene-default-font "Consolas-10"))
+(unless graphene-variable-pitch-font
+  (setq graphene-variable-pitch-font "Segoe UI-10"))
+(unless graphene-fixed-pitch-font
+  (setq graphene-fixed-pitch-font "Consolas-10"))
 
 (provide 'graphene-windows-defaults)

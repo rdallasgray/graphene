@@ -39,8 +39,11 @@
 (when (window-system)
   (exec-path-from-shell-initialize))
 
-(setq graphene-default-font "DejaVu Sans Mono-10")
-(setq graphene-variable-pitch-font "Liberation Sans-10")
-(setq graphene-fixed-pitch-font "DejaVu Sans Mono-10")
+(unless graphene-default-font
+  (setq graphene-default-font "DejaVu Sans Mono-10"))
+(unless graphene-variable-pitch-font
+  (setq graphene-variable-pitch-font "Liberation Sans-10"))
+(unless graphene-fixed-pitch-font
+  (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10"))
 
 (provide 'graphene-linux-defaults)

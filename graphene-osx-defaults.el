@@ -38,9 +38,12 @@
 (require 'exec-path-from-shell)
 
 ;; Standard fonts
-(setq graphene-default-font "Menlo-12")
-(setq graphene-variable-pitch-font "Lucida Sans-12")
-(setq graphene-fixed-pitch-font "Menlo-12")
+(unless graphene-default-font
+  (setq graphene-default-font "Menlo-12"))
+(unless graphene-fixed-pitch-font
+  (setq graphene-variable-pitch-font "Lucida Sans-12"))
+(unless graphene-variable-pitch-font
+  (setq graphene-fixed-pitch-font "Menlo-12"))
 
 ;; Move deleted files to trash
 (setq delete-by-moving-to-trash t)

@@ -31,6 +31,15 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
+;; Set relative font heights
+(defvar graphene-font-height
+  (face-attribute 'default :height)
+  "Default font height.")
+(let ((sys )))
+(defvar graphene-small-font-height
+  (floor (* .917 graphene-font-height))
+  "Relative size for 'small' fonts.")
+
 (deftheme graphene "The Graphene theme -- some simple additions to any theme to improve the look of speedbar, linum, etc.")
 
 (custom-theme-set-faces

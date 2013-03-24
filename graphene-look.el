@@ -79,11 +79,11 @@
 
 (defun graphene-set-fonts ()
   "Set up default fonts."
-  (unless (boundp 'graphene-default-font)
+  (unless graphene-default-font
     (setq graphene-default-font (face-font 'default)))
-  (unless (boundp 'graphene-variable-pitch-font)
+  (unless graphene-variable-pitch-font
     (setq graphene-variable-pitch-font (face-font 'variable-pitch)))
-  (unless (boundp 'graphene-fixed-pitch-font)
+  (unless graphene-fixed-pitch-font
     (setq graphene-fixed-pitch-font (face-font 'fixed-pitch))))
 
 (defun graphene-look-startup-after-init ()
@@ -105,13 +105,6 @@
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
         ;; Seems to fix some of the graphical glitches with linum
         (set-fringe-mode '(8 . 0))
-	;; Set relative font heights
-	(defvar graphene-font-height
-	  (face-attribute 'default :height)
-	  "Default font height.")
-	(defvar graphene-small-font-height
-	  (floor (* .917 graphene-font-height))
-	  "Relative size for 'small' fonts.")
 	;; Load theme extensions -- has to be required here in order to pick up relative font sizes
 	(require 'graphene-theme)
 	(load-theme 'graphene t)
