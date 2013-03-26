@@ -109,10 +109,14 @@
   (graphene-speedbar-pin-advice-activate))
 
 ;; Always use the last selected window for loading files from speedbar.
-(defvar last-selected-window (selected-window))
+(defvar last-selected-window
+  (if (not (eq (selected-window) sr-speedbar-window))
+      (selected-window)
+    (other-window)))
+
 (defadvice select-window (after remember-selected-window activate)
   "Remember the last selected window."
-  (unless (eq (selected-window) sr-speedbar-window)
+  (unless (or (eq (selected-window) sr-speedbar-window) (not (window-live-p (selected-window))))
     (setq last-selected-window (selected-window))))
 
 (defun sr-speedbar-before-visiting-file-hook ()
