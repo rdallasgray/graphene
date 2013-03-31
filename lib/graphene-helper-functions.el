@@ -1,10 +1,10 @@
 ;;; graphene-helper-functions.el --- Graphene helper functions
 ;;
-;; Copyright (c) 2012 Robert Dallas Gray
+;; Copyright (c) 2013 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1
+;; Version: 0.1.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.

@@ -1,10 +1,10 @@
-;;; graphene-windows-defaults.el --- Graphene defaults for Windows systems
+;;; graphene-linux-defaults.el --- Graphene defaults for Linux systems
 ;;
-;; Copyright (c) 2012 Robert Dallas Gray
+;; Copyright (c) @YEAR Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1
+;; Version: @VERSION
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -12,7 +12,7 @@
 ;;; Commentary:
 
 ;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
-;; This file defines extra defaults for Windows-based systems.
+;; This file defines extra defaults for Linux-based systems.
 
 ;;; License:
 
@@ -32,11 +32,18 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code: 
-(unless graphene-default-font
-  (setq graphene-default-font "Consolas-10"))
-(unless graphene-variable-pitch-font
-  (setq graphene-variable-pitch-font "Segoe UI-10"))
-(unless graphene-fixed-pitch-font
-  (setq graphene-fixed-pitch-font "Consolas-10"))
 
-(provide 'graphene-windows-defaults)
+(require 'exec-path-from-shell)
+
+;; Set default path from shell
+(when (window-system)
+  (exec-path-from-shell-initialize))
+
+(unless graphene-default-font
+  (setq graphene-default-font "DejaVu Sans Mono-10"))
+(unless graphene-variable-pitch-font
+  (setq graphene-variable-pitch-font "Liberation Sans-10"))
+(unless graphene-fixed-pitch-font
+  (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10"))
+
+(provide 'graphene-linux-defaults)

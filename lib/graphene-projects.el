@@ -1,10 +1,10 @@
 ;;; graphene-projects.el --- Graphene defaults for project management
 ;;
-;; Copyright (c) 2012 Robert Dallas Gray
+;; Copyright (c) 2013 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1
+;; Version: 0.1.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -40,7 +40,6 @@
 (require 'graphene-speedbar)
 (require 'project-persist)
 (require 'sr-speedbar)
-(require 'projectile)
 
 (project-persist-mode t)
 
@@ -66,19 +65,17 @@
             (graphene-unpin-speedbar)
             (kill-all-buffers)))
 
- ;; Kill all file-based buffers and turn off projectile-mode after closing a project.
+ ;; Kill all file-based buffers and unpin the speedbar after closing a project.
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
-            (projectile-global-mode -1)
             (graphene-unpin-speedbar)))
 
-;; Set the project root directory, load the project desktop, start projectile-mode and update speedbar.
+;; Set the project root directory, load the project desktop and update speedbar.
 (add-hook 'project-persist-after-load-hook
           (lambda ()
             (graphene-load-project-desktop)
-            (graphene-set-project-root project-persist-current-project-root-dir)
-            (projectile-global-mode 1)))
+            (graphene-set-project-root project-persist-current-project-root-dir)))
 
 ;; Save the project desktop.
 (add-hook 'project-persist-after-save-hook

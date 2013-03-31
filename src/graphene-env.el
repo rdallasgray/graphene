@@ -1,10 +1,10 @@
 ;;; graphene-env.el --- Graphene environment defaults
 ;;
-;; Copyright (c) 2012 Robert Dallas Gray
+;; Copyright (c) @YEAR Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1
+;; Version: @VERSION
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
