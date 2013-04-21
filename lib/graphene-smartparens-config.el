@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.10
+;; Version: 0.1.11
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -41,6 +41,7 @@
 (defun gp/sp/create-newline-and-enter-sexp ()
   "Open a new brace or bracket expression, with relevant newlines and indent. "
   (newline)
+  (indent-according-to-mode)
   (previous-line)
   (indent-according-to-mode))
 

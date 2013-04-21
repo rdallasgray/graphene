@@ -41,6 +41,7 @@
 (defun gp/sp/create-newline-and-enter-sexp ()
   "Open a new brace or bracket expression, with relevant newlines and indent. "
   (newline)
+  (indent-according-to-mode)
   (previous-line)
   (indent-according-to-mode))
 
