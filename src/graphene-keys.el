@@ -37,7 +37,7 @@
 
 (global-set-key (kbd "C-M-<backspace>")
                 'backward-kill-sexp)
-(global-set-key (kbd "C-x k")
+(define-key global-map [remap kill-buffer]
                 'kill-default-buffer)
 (global-set-key (kbd "C-x C-k")
                 'kill-buffer-and-window)
