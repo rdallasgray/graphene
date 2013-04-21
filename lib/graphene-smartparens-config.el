@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.16
+;; Version: 0.1.17
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -46,7 +46,7 @@
   (indent-according-to-mode))
 
 (defun gp/sp/await-newline-post-command ()
-  (if (> gp/sp/post-command-count 1)
+  (if (> gp/sp/post-command-count 0)
       (progn
         (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
         (setq gp/sp/post-command-count 0))

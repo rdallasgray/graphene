@@ -46,7 +46,7 @@
   (indent-according-to-mode))
 
 (defun gp/sp/await-newline-post-command ()
-  (if (> gp/sp/post-command-count 1)
+  (if (> gp/sp/post-command-count 0)
       (progn
         (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
         (setq gp/sp/post-command-count 0))
