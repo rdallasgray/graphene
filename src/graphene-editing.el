@@ -37,6 +37,7 @@
 (require 'auto-complete-config)
 (require 'smartparens)
 (require 'smartparens-config)
+(require 'graphene-smartparens-config)
 (require 'multi-web-mode)
 
 ;; Delete marked text on typing 
