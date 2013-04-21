@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.0
+;; Version: 0.1.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -37,7 +37,7 @@
 
 (global-set-key (kbd "C-M-<backspace>")
                 'backward-kill-sexp)
-(global-set-key (kbd "C-x k")
+(define-key global-map [remap kill-buffer]
                 'kill-default-buffer)
 (global-set-key (kbd "C-x C-k")
                 'kill-buffer-and-window)
@@ -63,13 +63,5 @@
                 'smex-major-mode-commands)
 (global-set-key (kbd "C-c s")
                 'sr-speedbar-select-window)
-(global-set-key (kbd "C-,")
-                'decrease-window-width)
-(global-set-key (kbd "C-.")
-                'increase-window-width)
-(global-set-key (kbd "C-<")
-                'decrease-window-height)
-(global-set-key (kbd "C->")
-                'increase-window-height)
 
 (provide 'graphene-keys)
