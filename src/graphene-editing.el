@@ -113,12 +113,12 @@
               (auto-complete-mode t))
             (when graphene-autopair-auto
               (smartparens-mode t))
-            (define-key local-map [remap newline] 'newline-and-indent)))
+            (define-key (current-local-map) [remap newline] 'newline-and-indent)))
 
 ;; Fix newline-and-indent in ruby-mode
 (add-hook 'ruby-mode-hook
           (lambda ()
-            (define-key local-map [remap newline] 'reindent-then-newline-and-indent)))
+            (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook 
