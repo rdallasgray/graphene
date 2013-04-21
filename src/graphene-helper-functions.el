@@ -53,6 +53,13 @@
     (mapc (lambda (buf) (kill-buffer-if-file buf))
      (buffer-list)))
 
+(defun kill-buffer-and-window ()
+  "Close the current window and kill the buffer it's visiting."
+  (interactive)
+  (progn
+    (kill-buffer)
+    (delete-window)))
+
 (defun create-new-buffer ()
   "Create a new buffer named *new*[num]."
   (interactive)

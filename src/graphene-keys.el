@@ -39,6 +39,8 @@
                 'backward-kill-sexp)
 (global-set-key (kbd "C-x k")
                 'kill-default-buffer)
+(global-set-key (kbd "C-x C-k")
+                'kill-buffer-and-window)
 (global-set-key (kbd "C-c n")
                 'create-new-buffer)
 (global-set-key (kbd "C-c N")
