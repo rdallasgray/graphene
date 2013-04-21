@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.7
+;; Version: 0.1.9
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -37,6 +37,7 @@
 (require 'auto-complete-config)
 (require 'smartparens)
 (require 'smartparens-config)
+(require 'graphene-smartparens-config)
 (require 'multi-web-mode)
 
 ;; Delete marked text on typing 
