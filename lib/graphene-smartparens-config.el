@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.14
+;; Version: 0.1.15
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -53,8 +53,7 @@
     (progn
       (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
       (when (or (eq this-command 'newline) (eq this-command 'newline-and-indent))
-        (gp/sp/create-newline-and-enter-sexp)
-        (setq gp/sp/post-command-count 0)))))
+        (gp/sp/create-newline-and-enter-sexp)))))
 
 (defun gp/sp/await-newline (id action context)
   (when (eq action 'insert)

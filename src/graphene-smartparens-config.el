@@ -53,8 +53,7 @@
     (progn
       (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
       (when (or (eq this-command 'newline) (eq this-command 'newline-and-indent))
-        (gp/sp/create-newline-and-enter-sexp)
-        (setq gp/sp/post-command-count 0)))))
+        (gp/sp/create-newline-and-enter-sexp)))))
 
 (defun gp/sp/await-newline (id action context)
   (when (eq action 'insert)
