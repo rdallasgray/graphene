@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.3
+;; Version: 0.1.5
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -113,12 +113,12 @@
               (auto-complete-mode t))
             (when graphene-autopair-auto
               (smartparens-mode t))
-            (local-set-key (kbd "RET") 'newline-and-indent)))
+            (define-key local-map [remap newline] 'newline-and-indent)))
 
 ;; Fix newline-and-indent in ruby-mode
 (add-hook 'ruby-mode-hook
           (lambda ()
-            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+            (define-key local-map [remap newline] 'reindent-then-newline-and-indent)))
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook 
