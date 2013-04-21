@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.9
+;; Version: 0.1.10
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -37,7 +37,7 @@
 
 (global-set-key (kbd "C-M-<backspace>")
                 'backward-kill-sexp)
-(define-key global-map [remap kill-buffer]
+(global-set-key (kbd "C-x k")
                 'kill-default-buffer)
 (global-set-key (kbd "C-x C-k")
                 'kill-buffer-and-window)
