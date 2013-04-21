@@ -46,13 +46,12 @@
   (indent-according-to-mode))
 
 (defun gp/sp/await-newline-post-command ()
-  (message "awaiting newline")
   (when (> gp/sp/post-command-count 1)
     (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
     (setq gp/sp/post-command-count 0))
+  (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
   (when (or (eq this-command 'newline) (eq this-command 'newline-and-indent))
-    (gp/sp/create-newline-and-enter-sexp))
-  (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1)))
+    (gp/sp/create-newline-and-enter-sexp)))
 
 (defun gp/sp/await-newline (id action context)
   (when (eq action 'insert)
