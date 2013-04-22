@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.20
+;; Version: 0.1.22
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -87,6 +87,10 @@
                     :background unspecified
                     :inverse-video unspecified
                     :inherit 'hl-line))))
+ `(hl-sexp-face
+   ((t (:bold nil
+              :background unspecified
+              :inherit 'hl-line))))
  `(fringe
    ((t (:background unspecified))))
  `(vertical-border
