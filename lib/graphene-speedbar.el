@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.22
+;; Version: 0.1.24
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -50,6 +50,7 @@
       sr-speedbar-right-side nil)
 
 ;; Refresh the speedbar when relevant hooks are run.
+(defvar graphene-speedbar-refresh-hooks)
 (defvar graphene-speedbar-refresh-hooks-added nil
   "Whether hooks have been added to refresh speedbar.")
 
@@ -59,7 +60,7 @@
               (mapc (lambda (hook)
                       (add-hook hook 'speedbar-refresh))
                     graphene-speedbar-refresh-hooks)
-              (setq graphene-speedbar-refresh-hooks t))))
+              (setq graphene-speedbar-refresh-hooks-added t))))
 
 ;; More familiar keymap settings.
 (add-hook 'speedbar-reconfigure-keymaps-hook
@@ -72,6 +73,8 @@
 (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
 ;; Pin and unpin the speedbar
+(defvar graphene-speedbar-pinned-directory)
+
 (defadvice speedbar-update-directory-contents
   (around graphene-speedbar-pin-directory activate disable)
   "Pin the speedbar to the directory set in graphene-speedbar-pinned-directory."
@@ -112,7 +115,7 @@
 (defvar last-selected-window
   (if (not (eq (selected-window) sr-speedbar-window))
       (selected-window)
-    (other-window)))
+    (other-window 1)))
 
 (defadvice select-window (after remember-selected-window activate)
   "Remember the last selected window."
