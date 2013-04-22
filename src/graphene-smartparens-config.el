@@ -45,18 +45,20 @@
   (previous-line)
   (indent-according-to-mode))
 
-(defun gp/sp/await-newline-post-command ()
-  (if (> gp/sp/post-command-count 1)
-      (progn
+(defun gp/sp/release-newline-post-command ()
+  "Remove the hook and reset the post-command count."
         (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
         (setq gp/sp/post-command-count 0))
+
+(defun gp/sp/await-newline-post-command ()
+  "If command is newline, indent and enter sexp."
+  (if (> gp/sp/post-command-count 1)
+      (gp/sp/release-newline-post-command)
     (progn
       (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
       (when (or (eq this-command 'newline) (eq this-command 'newline-and-indent))
-        (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
-        (setq gp/sp/post-command-count 0)
+        (gp/sp/release-newline-post-command)
         (gp/sp/create-newline-and-enter-sexp)))))
-;; It's not right.
 
 (defun gp/sp/await-newline (id action context)
   (when (eq action 'insert)
