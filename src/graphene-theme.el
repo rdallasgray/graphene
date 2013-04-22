@@ -87,6 +87,10 @@
                     :background unspecified
                     :inverse-video unspecified
                     :inherit 'hl-line))))
+ `(hl-sexp-face
+   ((t (:bold nil
+              :background unspecified
+              :inherit 'hl-line))))
  `(fringe
    ((t (:background unspecified))))
  `(vertical-border
