@@ -56,15 +56,52 @@
       (gp/sp/release-newline-post-command)
     (progn
       (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
-      (when (or (eq this-command 'newline) (eq this-command 'newline-and-indent))
+      (when (string-match "newline" (format "%s" this-command))
         (gp/sp/release-newline-post-command)
         (gp/sp/create-newline-and-enter-sexp)))))
 
 (defun gp/sp/await-newline (id action context)
+  "Post command, await a newline and indent."
   (when (eq action 'insert)
     (add-hook 'post-command-hook 'gp/sp/await-newline-post-command)))
 
-(sp-pair "{" nil :post-handlers '(:add gp/sp/await-newline))
-(sp-pair "[" nil :post-handlers '(:add gp/sp/await-newline))
+(defun gp/sp/newline-indent-and-return (id action context)
+  "Post command, put trailing pair on newline and return to point."
+  (when (eq action 'insert)
+    (save-excursion
+      (newline)
+      (indent-according-to-mode))))
+
+(sp-pair "{" nil :post-handlers
+         '(:add gp/sp/await-newline))
+(sp-pair "[" nil :post-handlers
+         '(:add gp/sp/await-newline))
+
+;; These'll need tweaking
+(sp-local-pair 'ruby-mode "def" "end"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "do" "end"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "if" "end"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "unless" "end"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "|" "|"
+               :unless '(sp-point-after-word-p sp-in-string-p))
+
+;; Don't need c-comments in strings -- they frustrate filename globs
+(sp-pair "/*" nil :unless '(sp-in-string-p))
+
+;; Probably don't need quotes to pair following words
+(sp-pair "\"" nil :unless '(sp-point-after-word-p))
+(sp-pair "'" nil :unless '(sp-point-after-word-p))
 
 (provide 'graphene-smartparens-config)
