@@ -49,6 +49,8 @@
                 'insert-semicolon-at-end-of-line)
 (global-set-key (kbd "M-RET")
                 'newline-anywhere)
+(global-set-key (kbd "C-M-;")
+                'comment-current-line-dwim)
 (global-set-key (kbd "C->")
                 'increase-window-height)
 (global-set-key (kbd "C-<")
