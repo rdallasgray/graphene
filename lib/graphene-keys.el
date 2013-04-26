@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.24
+;; Version: 1.0.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -49,6 +49,8 @@
                 'insert-semicolon-at-end-of-line)
 (global-set-key (kbd "M-RET")
                 'newline-anywhere)
+(global-set-key (kbd "C-M-;")
+                'comment-current-line-dwim)
 (global-set-key (kbd "C->")
                 'increase-window-height)
 (global-set-key (kbd "C-<")

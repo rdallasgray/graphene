@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.24
+;; Version: 1.0.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -72,6 +72,14 @@
     (end-of-line)
     (insert ";")))
 
+(defun comment-current-line-dwim ()
+  "Comment or uncomment the current line."
+  (interactive)
+  (save-excursion
+    (push-mark (beginning-of-line) t t)
+    (end-of-line)
+    (comment-dwim nil)))
+
 (defun newline-anywhere ()
   "Add a newline from anywhere in the line."
   (interactive)
@@ -102,7 +110,9 @@
 (when window-system
   (defun new-emacs-instance ()
     (interactive)
-    (let ((path-to-emacs (locate-file invocation-name (list invocation-directory) exec-suffixes)))
+    (let ((path-to-emacs
+           (locate-file invocation-name
+                        (list invocation-directory) exec-suffixes)))
       (call-process path-to-emacs nil 0 nil))))
 
 (provide 'graphene-helper-functions)
