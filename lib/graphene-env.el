@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 1.0.0
+;; Version: 0.1.30
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -53,6 +53,9 @@
 
 ;; Autorevert all buffers.
 (global-auto-revert-mode t)
+
+;; Don't resize the minibuffer
+(setq resize-mini-windows nil)
 
 ;; Put backups and autosaves in temp dir.
 (setq backup-directory-alist

@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 1.0.0
+;; Version: 0.1.30
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -147,7 +147,11 @@
 ;; ``` (setq graphene-prog-mode-hooks '(prog-mode-hook sgml-mode-hook)) ``` 
 ;; Or (bearing in mind that `graphene-prog-mode-hooks` contains `prog-mode-hook` by default): 
 ;; ``` (setq graphene-prog-mode-hooks 
-;;       (append '(css-mode-hook sgml-mode-hook) graphene-prog-mode-hooks) ``` 
+;;       (append '(css-mode-hook sgml-mode-hook) graphene-prog-mode-hooks) ```
+;; 
+;; The default value for `graphene-prog-mode-hooks` is:
+;; ```'(csharp-mode-hook coffee-mode-hook css-mode-hook sgml-mode-hook html-mode-hook)```
+;; 
 ;; By default, the `graphene-prog-mode-hook` enables `linum-mode`, `smartparens-mode` 
 ;; and `autocomplete-mode`, and rebinds the return key to `newline-and-indent`. 
 ;; All but the latter can be disabled using the customize settings.
@@ -240,7 +244,13 @@
   :type 'boolean
   :group 'graphene)
 
-(defcustom graphene-prog-mode-hooks '(prog-mode-hook)
+(defcustom graphene-prog-mode-hooks
+  '(prog-mode-hook
+    csharp-mode-hook
+    coffee-mode-hook
+    css-mode-hook
+    sgml-mode-hook
+    html-mode-hook)
   "List of hooks to be treated as prog-mode."
   :type 'sexp
   :group 'graphene)
