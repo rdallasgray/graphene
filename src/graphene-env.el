@@ -54,6 +54,9 @@
 ;; Autorevert all buffers.
 (global-auto-revert-mode t)
 
+;; Don't resize the minibuffer
+(setq resize-mini-windows nil)
+
 ;; Put backups and autosaves in temp dir.
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))

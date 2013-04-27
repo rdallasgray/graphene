@@ -76,7 +76,13 @@
   :type 'boolean
   :group 'graphene)
 
-(defcustom graphene-prog-mode-hooks '(prog-mode-hook)
+(defcustom graphene-prog-mode-hooks
+  '(prog-mode-hook
+    csharp-mode-hook
+    coffee-mode-hook
+    css-mode-hook
+    sgml-mode-hook
+    html-mode-hook)
   "List of hooks to be treated as prog-mode."
   :type 'sexp
   :group 'graphene)
