@@ -79,23 +79,31 @@
 
 ;; These'll need tweaking
 (sp-local-pair 'ruby-mode "def" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+               :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "do" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+               :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "if" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+               :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "unless" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+               :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "|" "|"
-               :unless '(sp-point-after-word-p sp-in-string-p))
+               :unless '(sp-in-string-p))
+
+;; Markdown
+(sp-local-pair 'markdown-mode "*" "*"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert wrap))
+(sp-local-pair 'markdown-mode "*" "*"
+               :unless '(sp-point-after-word-p sp-in-string-p)
+               :actions '(insert wrap))
 
 ;; Don't need c-comments in strings -- they frustrate filename globs
 (sp-pair "/*" nil :unless '(sp-in-string-p))
