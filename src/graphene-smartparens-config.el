@@ -90,6 +90,10 @@
                :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "begin" "end"
+               :unless '(sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "unless" "end"
                :unless '(sp-in-string-p)
                :actions '(insert)
