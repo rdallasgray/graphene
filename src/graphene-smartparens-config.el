@@ -58,32 +58,33 @@
          '(:add ((lambda (id action context) (gp/sp/create-newline-and-enter-sexp)) "RET")))
 
 ;; Ruby-specific pairs and handlers
-(sp-local-pair 'ruby-mode "class " "end"
-               :unless '(sp-in-string-p gp/sp/words-before-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "def " "end"
-               :unless '(sp-in-string-p gp/sp/words-before-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "do " "end"
-               :unless '(sp-in-string-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "if " "end"
-               :unless '(sp-in-string-p gp/sp/words-before-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "begin" "end"
-               :unless '(sp-in-string-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "unless " "end"
-               :unless '(sp-in-string-p gp/sp/words-before-p)
-               :actions '(insert)
-               :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "|" "|"
-               :unless '(sp-in-string-p))
+(when graphene-autopair-ruby
+  (sp-local-pair 'ruby-mode "class " "end"
+                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "def " "end"
+                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "do " "end"
+                 :unless '(sp-in-string-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "if " "end"
+                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "begin" "end"
+                 :unless '(sp-in-string-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "unless " "end"
+                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+  (sp-local-pair 'ruby-mode "|" "|"
+                 :unless '(sp-in-string-p)))
 
 ;; Markdown
 (sp-local-pair 'markdown-mode "*" "*"

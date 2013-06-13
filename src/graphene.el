@@ -62,7 +62,12 @@
   :group 'graphene)
 
 (defcustom graphene-autopair-auto t
-  "Whether graphene should enable autopair-mode with prog-modes."
+  "Whether graphene should enable smartparens with prog-modes."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-autopair-ruby t
+  "Whether graphene should enable special smartparens Ruby pairs."
   :type 'boolean
   :group 'graphene)
 
