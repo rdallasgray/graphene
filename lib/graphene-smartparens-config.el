@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.30
+;; Version: 0.1.33
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -34,36 +34,12 @@
 ;;; Code:
 
 ;; Newline and indent inside {} and []
-
-(defvar gp/sp/post-command-count 0
-  "Number of commands called after a pair has been opened.")
-
-(defun gp/sp/create-newline-and-enter-sexp ()
+(defun gp/sp/create-newline-and-enter-sexp (id action context)
   "Open a new brace or bracket expression, with relevant newlines and indent. "
   (newline)
   (indent-according-to-mode)
   (previous-line)
   (indent-according-to-mode))
-
-(defun gp/sp/release-newline-post-command ()
-  "Remove the hook and reset the post-command count."
-        (remove-hook 'post-command-hook 'gp/sp/await-newline-post-command)
-        (setq gp/sp/post-command-count 0))
-
-(defun gp/sp/await-newline-post-command ()
-  "If command is newline, indent and enter sexp."
-  (if (> gp/sp/post-command-count 1)
-      (gp/sp/release-newline-post-command)
-    (progn
-      (setq gp/sp/post-command-count (+ gp/sp/post-command-count 1))
-      (when (string-match "newline" (format "%s" this-command))
-        (gp/sp/release-newline-post-command)
-        (gp/sp/create-newline-and-enter-sexp)))))
-
-(defun gp/sp/await-newline (id action context)
-  "Post command, await a newline and indent."
-  (when (eq action 'insert)
-    (add-hook 'post-command-hook 'gp/sp/await-newline-post-command)))
 
 (defun gp/sp/newline-indent-and-return (id action context)
   "Post command, put trailing pair on newline and return to point."
@@ -72,35 +48,52 @@
       (newline)
       (indent-according-to-mode))))
 
-(sp-pair "{" nil :post-handlers
-         '(:add gp/sp/await-newline))
-(sp-pair "[" nil :post-handlers
-         '(:add gp/sp/await-newline))
+(defun gp/sp/words-before-p ()
+  "Are there words before point?"
+  (looking-back "[^\s]"))
 
-;; These'll need tweaking
-(sp-local-pair 'ruby-mode "def" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+(sp-pair "{" nil :post-handlers
+         '(:add ((lambda (id action context) (gp/sp/create-newline-and-enter-sexp)) "RET")))
+(sp-pair "[" nil :post-handlers
+         '(:add ((lambda (id action context) (gp/sp/create-newline-and-enter-sexp)) "RET")))
+
+;; Ruby-specific pairs and handlers
+(sp-local-pair 'ruby-mode "class " "end"
+               :unless '(sp-in-string-p gp/sp/words-before-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "do" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+(sp-local-pair 'ruby-mode "def " "end"
+               :unless '(sp-in-string-p gp/sp/words-before-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "if" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+(sp-local-pair 'ruby-mode "do " "end"
+               :unless '(sp-in-string-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
-(sp-local-pair 'ruby-mode "unless" "end"
-               :unless '(sp-point-after-word-p sp-in-string-p)
+(sp-local-pair 'ruby-mode "if " "end"
+               :unless '(sp-in-string-p gp/sp/words-before-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "begin" "end"
+               :unless '(sp-in-string-p)
+               :actions '(insert)
+               :post-handlers '(:add gp/sp/newline-indent-and-return))
+(sp-local-pair 'ruby-mode "unless " "end"
+               :unless '(sp-in-string-p gp/sp/words-before-p)
                :actions '(insert)
                :post-handlers '(:add gp/sp/newline-indent-and-return))
 (sp-local-pair 'ruby-mode "|" "|"
-               :unless '(sp-point-after-word-p sp-in-string-p))
+               :unless '(sp-in-string-p))
+
+;; Markdown
+(sp-local-pair 'markdown-mode "*" "*"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
 
 ;; Don't need c-comments in strings -- they frustrate filename globs
 (sp-pair "/*" nil :unless '(sp-in-string-p))
 
-;; Probably don't need quotes to pair following words
+;; Don't need quotes to pair following words
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
 
