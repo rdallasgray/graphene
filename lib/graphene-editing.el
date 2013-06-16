@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.0
+;; Version: 0.2.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -12,7 +12,7 @@
 ;;; Commentary:
 
 ;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
-;; The editing defaults target the text editing environment, with particular relevance to prog modes. 
+;; The editing defaults target the text editing environment, with particular relevance to prog modes.
 
 ;;; License:
 
@@ -40,7 +40,7 @@
 (require 'graphene-smartparens-config)
 (require 'multi-web-mode)
 
-;; Delete marked text on typing 
+;; Delete marked text on typing
 (delete-selection-mode t)
 
 ;; Soft-wrap lines
@@ -84,9 +84,9 @@
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-delay 0.2
-      ac-auto-show-menu 0.4
-      ac-quick-help-delay 1.6
+(setq ac-delay 0.4
+      ac-auto-show-menu 0.8
+      ac-quick-help-delay 2.0
       ac-ignore-case nil
       ac-limit 10)
 
@@ -122,8 +122,8 @@
             (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))
 
 ;; Attach de facto prog mode hooks after loading init file
-(add-hook 'after-init-hook 
-          (lambda() 
+(add-hook 'after-init-hook
+          (lambda()
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
