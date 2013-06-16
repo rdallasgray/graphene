@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.1.35
+;; Version: 0.2.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -33,56 +33,54 @@
 
 ;;; Code:
 
-;; Newline and indent inside {} and []
-(defun gp/sp/create-newline-and-enter-sexp (id action context)
-  "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (newline)
-  (indent-according-to-mode)
-  (previous-line)
-  (indent-according-to-mode))
+(defun gp/sp/pair-on-newline (id action context)
+  "Put trailing pair on newline and return to point."
+  (save-excursion
+    (newline)
+    (indent-according-to-mode)))
 
-(defun gp/sp/newline-indent-and-return (id action context)
-  "Post command, put trailing pair on newline and return to point."
-  (when (eq action 'insert)
-    (save-excursion
-      (newline)
-      (indent-according-to-mode))))
+(defun gp/sp/pair-on-newline-and-indent (id action context)
+  "Open a new brace or bracket expression, with relevant newlines and indent. "
+  (gp/sp/pair-on-newline id action context)
+  (indent-according-to-mode))
 
 (defun gp/sp/words-before-p ()
   "Are there words before point?"
   (looking-back "[^\s]"))
 
 (sp-pair "{" nil :post-handlers
-         '(:add ((lambda (id action context) (gp/sp/create-newline-and-enter-sexp)) "RET")))
+         '(:add ((lambda (id action context)
+                   (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
 (sp-pair "[" nil :post-handlers
-         '(:add ((lambda (id action context) (gp/sp/create-newline-and-enter-sexp)) "RET")))
+         '(:add ((lambda (id action context)
+                   (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
 
 ;; Ruby-specific pairs and handlers
 (when graphene-autopair-ruby
   (sp-local-pair 'ruby-mode "class " "end"
                  :unless '(sp-in-string-p gp/sp/words-before-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "def " "end"
                  :unless '(sp-in-string-p gp/sp/words-before-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "do " "end"
                  :unless '(sp-in-string-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "if " "end"
                  :unless '(sp-in-string-p gp/sp/words-before-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "begin" "end"
                  :unless '(sp-in-string-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "unless " "end"
                  :unless '(sp-in-string-p gp/sp/words-before-p)
                  :actions '(insert)
-                 :post-handlers '(:add gp/sp/newline-indent-and-return))
+                 :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "|" "|"
                  :unless '(sp-in-string-p)))
 
