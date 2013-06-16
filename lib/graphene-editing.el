@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.3
+;; Version: 0.2.4
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -84,8 +84,8 @@
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-delay 0.4
-      ac-auto-show-menu 0.8
+(setq ac-delay 0.2
+      ac-auto-show-menu 0.4
       ac-quick-help-delay 2.0
       ac-ignore-case nil
       ac-limit 10)

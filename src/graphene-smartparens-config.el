@@ -6,7 +6,7 @@
 ;; URL: https://github.com/rdallasgray/graphene
 ;; Version: @VERSION
 ;; Keywords: defaults
-
+;;
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
@@ -44,9 +44,14 @@
   (gp/sp/pair-on-newline id action context)
   (indent-according-to-mode))
 
-(defun gp/sp/words-before-p ()
+(defun gp/sp/words-before-p (id action context)
   "Are there words before point?"
   (looking-back "[^\s]"))
+
+(defun gp/sp/in-ruby-block-p (id action context)
+  "Are we in a Ruby block?"
+  (or (looking-back "do ")
+      (looking-back "{\s?")))
 
 (sp-pair "{" nil :post-handlers
          '(:add ((lambda (id action context)
@@ -58,6 +63,10 @@
 ;; Ruby-specific pairs and handlers
 (when graphene-autopair-ruby
   (sp-local-pair 'ruby-mode "class " "end"
+                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :actions '(insert)
+                 :post-handlers '(:add gp/sp/pair-on-newline))
+  (sp-local-pair 'ruby-mode "module " "end"
                  :unless '(sp-in-string-p gp/sp/words-before-p)
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
@@ -82,6 +91,7 @@
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "|" "|"
+                 :when '(gp/sp/in-ruby-block-p)
                  :unless '(sp-in-string-p)))
 
 ;; Markdown

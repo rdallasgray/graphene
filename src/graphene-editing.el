@@ -84,8 +84,8 @@
 ;; ESC to get out of autocomplete menu
 (ac-config-default)
 (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-delay 0.4
-      ac-auto-show-menu 0.8
+(setq ac-delay 0.2
+      ac-auto-show-menu 0.4
       ac-quick-help-delay 2.0
       ac-ignore-case nil
       ac-limit 10)
