@@ -46,7 +46,7 @@
 
 (defun gp/sp/words-before-p (id action context)
   "Are there words before point?"
-  (looking-back "[^\s]"))
+  (looking-back "[^\s]\s*"))
 
 (defun gp/sp/in-ruby-block-p (id action context)
   "Are we in a Ruby block?"
