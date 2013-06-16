@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.5
+;; Version: 0.2.6
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -46,7 +46,7 @@
 
 (defun gp/sp/words-before-p (id action context)
   "Are there words before point?"
-  (looking-back "[^\s]\s*"))
+  (looking-back "[^\s]+\s*" (current-column)))
 
 (defun gp/sp/in-ruby-block-p (id action context)
   "Are we in a Ruby block?"
