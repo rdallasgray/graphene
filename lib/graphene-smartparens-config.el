@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.7
+;; Version: 0.2.8
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -53,8 +53,8 @@
 
 (defun gp/sp/in-ruby-block-p (id action context)
   "Are we in a Ruby block?"
-  (or (looking-back "do ")
-      (looking-back "{ ?")))
+  (or (looking-back "do \\|")
+      (looking-back "{ ?\\|")))
 
 (sp-pair "{" nil :post-handlers
          '(:add ((lambda (id action context)

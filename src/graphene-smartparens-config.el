@@ -53,8 +53,8 @@
 
 (defun gp/sp/in-ruby-block-p (id action context)
   "Are we in a Ruby block?"
-  (or (looking-back "do ")
-      (looking-back "{ ?")))
+  (or (looking-back "do \\|")
+      (looking-back "{ ?\\|")))
 
 (sp-pair "{" nil :post-handlers
          '(:add ((lambda (id action context)
