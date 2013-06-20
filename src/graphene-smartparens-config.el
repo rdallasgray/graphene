@@ -94,7 +94,8 @@
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "unless " "end"
-                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :when '(gp/sp/only-whitespace-before-p)
+                 :unless '(sp-in-string-p)
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "|" "|"
