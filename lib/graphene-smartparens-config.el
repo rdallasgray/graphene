@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.8
+;; Version: 0.2.10
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -94,7 +94,8 @@
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "unless " "end"
-                 :unless '(sp-in-string-p gp/sp/words-before-p)
+                 :when '(gp/sp/only-whitespace-before-p)
+                 :unless '(sp-in-string-p)
                  :actions '(insert)
                  :post-handlers '(:add gp/sp/pair-on-newline))
   (sp-local-pair 'ruby-mode "|" "|"
