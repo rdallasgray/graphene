@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.10
+;; Version: 0.2.17
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -44,18 +44,6 @@
   (gp/sp/pair-on-newline id action context)
   (indent-according-to-mode))
 
-(defun gp/sp/only-whitespace-before-p (id action context)
-  "Are there words before the opening member of the pair?"
-  (let ((regex (format " *%s$" (regexp-quote id))))
-    (save-excursion
-      (beginning-of-line)
-      (looking-at regex))))
-
-(defun gp/sp/in-ruby-block-p (id action context)
-  "Are we in a Ruby block?"
-  (or (looking-back "do \\|")
-      (looking-back "{ ?\\|")))
-
 (sp-pair "{" nil :post-handlers
          '(:add ((lambda (id action context)
                    (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
@@ -65,43 +53,7 @@
 
 ;; Ruby-specific pairs and handlers
 (when graphene-autopair-ruby
-  (sp-local-pair 'ruby-mode "class " "end"
-                 :when '(gp/sp/only-whitespace-before-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "module " "end"
-                 :when '(gp/sp/only-whitespace-before-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "def " "end"
-                 :when '(gp/sp/only-whitespace-before-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "do " "end"
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "if " "end"
-                 :when '(gp/sp/only-whitespace-before-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "begin" "end"
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "unless " "end"
-                 :when '(gp/sp/only-whitespace-before-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)
-                 :post-handlers '(:add gp/sp/pair-on-newline))
-  (sp-local-pair 'ruby-mode "|" "|"
-                 :when '(gp/sp/in-ruby-block-p)
-                 :unless '(sp-in-string-p)
-                 :actions '(insert)))
+  (require 'smartparens-ruby))
 
 ;; Markdown
 (sp-local-pair 'markdown-mode "*" "*"
