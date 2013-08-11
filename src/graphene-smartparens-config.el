@@ -67,7 +67,7 @@
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
 ;; Except in HTML
-(sp-local-pair 'html-mode nil :unless '(:rem sp-point-after-word-p))
+(sp-local-pair 'html-mode "\"" nil :unless '(:rem sp-point-after-word-p))
 ;; CoffeeScript PyStrings
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
 (provide 'graphene-smartparens-config)

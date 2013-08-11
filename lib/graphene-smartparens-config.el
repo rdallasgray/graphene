@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.2
+;; Version: 0.3.3
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -67,7 +67,7 @@
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
 ;; Except in HTML
-(sp-local-pair 'html-mode nil :unless '(:rem sp-point-after-word-p))
+(sp-local-pair 'html-mode "\"" nil :unless '(:rem sp-point-after-word-p))
 ;; CoffeeScript PyStrings
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
 (provide 'graphene-smartparens-config)
