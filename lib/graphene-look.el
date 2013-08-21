@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.4
+;; Version: 0.3.5
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -31,7 +31,7 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'graphene-speedbar)
 
@@ -105,16 +105,18 @@
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
         ;; Seems to fix some of the graphical glitches with linum
         (set-fringe-mode '(8 . 0))
-	;; Load theme extensions -- has to be required here in order to pick up relative font sizes
-	(require 'graphene-theme)
-	(load-theme 'graphene t)
-  (defadvice load-theme
-    (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
-    "Load the graphene theme extensions after loading a theme."
-    (when (not (equal theme 'graphene))
-      (load-theme 'graphene t)))))
-  ;; Menu bar off in text mode
-  (menu-bar-mode -1))
+        ;; Load theme extensions -- has to be required here in order to pick up relative font sizes
+        (require 'graphene-theme)
+        (load-theme 'graphene t)
+        (defadvice load-theme
+          (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
+          "Load the graphene theme extensions after loading a theme."
+          (when (not (equal theme 'graphene))
+            (load-theme 'graphene t))))
+    (when (not (eq system-type 'darwin))
+      (menu-bar-mode -1))
+    ;; Menu bar always off in text mode
+    (menu-bar-mode -1)))
 
 (add-hook 'after-init-hook 'graphene-look-startup-after-init)
 
