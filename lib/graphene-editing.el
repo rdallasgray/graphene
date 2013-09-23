@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.11
+;; Version: 0.3.13
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -47,7 +47,7 @@
 (global-visual-line-mode t)
 
 ;; Nicer scrolling with mouse wheel/trackpad.
-(unless mac-mouse-wheel-smooth-scroll
+(unless (and (boundp 'mac-mouse-wheel-smooth-scroll) mac-mouse-wheel-smooth-scroll)
   (global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
   (global-set-key [wheel-up] (lambda () (interactive) (scroll-down-command 1)))
   (global-set-key [double-wheel-down] (lambda () (interactive) (scroll-up-command 2)))
