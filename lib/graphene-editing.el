@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.2.28
+;; Version: 0.3.11
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -47,12 +47,13 @@
 (global-visual-line-mode t)
 
 ;; Nicer scrolling with mouse wheel/trackpad.
-(global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
-(global-set-key [wheel-up] (lambda () (interactive) (scroll-down-command 1)))
-(global-set-key [double-wheel-down] (lambda () (interactive) (scroll-up-command 2)))
-(global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-command 2)))
-(global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-command 4)))
-(global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-command 4)))
+(unless mac-mouse-wheel-smooth-scroll
+  (global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
+  (global-set-key [wheel-up] (lambda () (interactive) (scroll-down-command 1)))
+  (global-set-key [double-wheel-down] (lambda () (interactive) (scroll-up-command 2)))
+  (global-set-key [double-wheel-up] (lambda () (interactive) (scroll-down-command 2)))
+  (global-set-key [triple-wheel-down] (lambda () (interactive) (scroll-up-command 4)))
+  (global-set-key [triple-wheel-up] (lambda () (interactive) (scroll-down-command 4))))
 
 ;; Character encodings default to utf-8.
 (prefer-coding-system 'utf-8)
