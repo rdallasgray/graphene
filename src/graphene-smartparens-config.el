@@ -61,7 +61,7 @@
                :actions '(insert wrap))
 
 ;; Don't need c-comments in strings -- they frustrate filename globs
-(sp-pair "/*" nil :unless '(sp-in-string-p))
+;; (sp-pair "/*" nil :unless '(sp-in-string-p)) ;; This is breaking smartparens. Removed until we find out why.
 
 ;; Don't need quotes to pair following words
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
