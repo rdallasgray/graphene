@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.13
+;; Version: 0.2.34
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -61,7 +61,7 @@
                :actions '(insert wrap))
 
 ;; Don't need c-comments in strings -- they frustrate filename globs
-(sp-pair "/*" nil :unless '(sp-in-string-p))
+;; (sp-pair "/*" nil :unless '(sp-in-string-p)) ;; This is breaking smartparens. Removed until we find out why.
 
 ;; Don't need quotes to pair following words
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
