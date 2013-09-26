@@ -1,3 +1,3 @@
 [submodule "el.mk"]
 	path = el.mk
-	url = git@github.com:rdallasgray/el.mk.git
+	url = https://github.com/rdallasgray/el.mk.git

@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-@COMMENTARY
+;@COMMENTARY
 
 ;;; License:
 
