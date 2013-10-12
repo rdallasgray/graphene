@@ -69,10 +69,10 @@
 (setq sp-highlight-pair-overlay nil)
 
 ;; Use web-mode for editing code embedded in HTML.
-(push '("php" . "\\.phtml\\") web-mode-engine-file-regexps)
-(let ((engine-regexps web-mode-engine-file-regexps))
-  (dolist (engine-regexp engine-regexps)
-    (add-to-list 'auto-mode-alist `(cdr(,engine-regexp) . web-mode))))
+(push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
+(dolist (engine-regexp web-mode-engine-file-regexps)
+  (when (cdr engine-regexp)
+    (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
 
 ;; Autocomplete defaults
 ;; ESC to get out of autocomplete menu
