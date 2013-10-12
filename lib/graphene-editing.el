@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.18
+;; Version: 0.3.19
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -69,7 +69,10 @@
 (setq sp-highlight-pair-overlay nil)
 
 ;; Use web-mode for editing code embedded in HTML.
-
+(push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
+(dolist (engine-regexp web-mode-engine-file-regexps)
+  (when (cdr engine-regexp)
+    (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
 
 ;; Autocomplete defaults
 ;; ESC to get out of autocomplete menu
