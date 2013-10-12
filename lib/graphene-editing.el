@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.19
+;; Version: 0.3.20
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -118,7 +118,7 @@
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook
-          (lambda()
+          (lambda ()
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 

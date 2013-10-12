@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.19
+;; Version: 0.3.20
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -32,8 +32,10 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
-(require 'sr-speedbar)
+;;; Code:
+;; (require 'sr-speedbar)
+
+(eval-after-load 'sr-speedbar '(progn
 
 (setq speedbar-hide-button-brackets-flag t
       speedbar-show-unknown-files t
@@ -136,6 +138,6 @@
 
 (defun sr-speedbar-visiting-tag-hook ()
   "Function that hooks `speedbar-visiting-tag-hook'."
-  (select-window last-selected-window))
+  (select-window last-selected-window))))
 
 (provide 'graphene-speedbar)

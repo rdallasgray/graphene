@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.19
+;; Version: 0.3.20
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -34,12 +34,11 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'graphene-helper-functions)
 (require 'graphene-speedbar)
 (require 'project-persist)
-(require 'sr-speedbar)
 
 (project-persist-mode t)
 
@@ -47,6 +46,7 @@
   "Change the default directory and update speedbar if used."
   (setq default-directory dir)
   (when graphene-speedbar-auto
+    (require 'sr-speedbar)
     (sr-speedbar-open)
     (speedbar-update-contents)
     (when graphene-project-pin-speedbar
@@ -59,17 +59,22 @@
     (message (format "Loading project desktop from %s" default-directory))
     (desktop-read project-persist-current-project-settings-dir)))
 
+(defun graphene-maybe-unpin-speedbar ()
+  "Try to unpin the speedbar if using it."
+  (when graphene-speedbar-auto
+    (ignore-errors (graphene-unpin-speedbar))))
+
  ;; Kill all file-based buffers and unpin the speedbar before opening a project.
 (add-hook 'project-persist-before-load-hook
           (lambda ()
-            (graphene-unpin-speedbar)
+            (graphene-maybe-unpin-speedbar)
             (kill-all-buffers)))
 
  ;; Kill all file-based buffers and unpin the speedbar after closing a project.
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
-            (graphene-unpin-speedbar)))
+            (graphene-maybe-unpin-speedbar)))
 
 ;; Set the project root directory, load the project desktop and update speedbar.
 (add-hook 'project-persist-after-load-hook
@@ -100,6 +105,5 @@ Also returns nil if pid is nil."
   (when (not (emacs-process-p ad-return-value))
     (setq ad-return-value nil)))
 ;;; desktop-override-stale-locks.el ends here
-
 
 (provide 'graphene-projects)

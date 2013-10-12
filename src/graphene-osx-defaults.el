@@ -34,8 +34,6 @@
 ;;; Code:
 
 (require 'graphene-helper-functions)
-(require 'graphene-speedbar)
-(require 'exec-path-from-shell)
 
 ;; Standard fonts
 (unless graphene-default-font
@@ -50,6 +48,7 @@
 
 ;; Set default path from shell
 (when (memq window-system '(mac ns))
+  (require 'exec-path-from-shell)
   (exec-path-from-shell-initialize))
 
 ;; Mac-like key defaults
@@ -60,9 +59,11 @@
 (global-set-key (kbd "s-<right>") 'end-of-line)
 (global-set-key (kbd "s-<left>") 'beginning-of-line)
 
-(define-key speedbar-mode-map (kbd "<kp-enter>") 'speedbar-item-rename)
-(define-key speedbar-mode-map (kbd "<s-backspace>") 'speedbar-item-delete)
-(define-key speedbar-mode-map (kbd "<s-i>") 'speedbar-item-info)
-(define-key speedbar-mode-map (kbd "<s-r>") 'speedbar-refresh)
+(eval-after-load 'sr-speedbar
+  '(progn
+     (define-key speedbar-mode-map (kbd "<kp-enter>") 'speedbar-item-rename)
+     (define-key speedbar-mode-map (kbd "<s-backspace>") 'speedbar-item-delete)
+     (define-key speedbar-mode-map (kbd "<s-i>") 'speedbar-item-info)
+     (define-key speedbar-mode-map (kbd "<s-r>") 'speedbar-refresh)))
 
 (provide 'graphene-osx-defaults)

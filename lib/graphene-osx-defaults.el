@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.19
+;; Version: 0.3.20
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -60,9 +60,10 @@
 (global-set-key (kbd "s-<right>") 'end-of-line)
 (global-set-key (kbd "s-<left>") 'beginning-of-line)
 
+(eval-after-load 'sr-speedbar '(lambda ()
 (define-key speedbar-mode-map (kbd "<kp-enter>") 'speedbar-item-rename)
 (define-key speedbar-mode-map (kbd "<s-backspace>") 'speedbar-item-delete)
 (define-key speedbar-mode-map (kbd "<s-i>") 'speedbar-item-info)
-(define-key speedbar-mode-map (kbd "<s-r>") 'speedbar-refresh)
+(define-key speedbar-mode-map (kbd "<s-r>") 'speedbar-refresh)))
 
 (provide 'graphene-osx-defaults)

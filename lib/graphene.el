@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.19
+;; Version: 0.3.20
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -212,7 +212,8 @@
 
 ;; Define custom settings
 (defgroup graphene nil
-  "Graphene custom settings.")
+  "Graphene custom settings."
+  :group 'environment)
 
 (defcustom graphene-speedbar-auto t
   "Whether graphene should open sr-speedbar when a project is loaded."
