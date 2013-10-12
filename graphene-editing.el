@@ -38,7 +38,7 @@
 (require 'smartparens)
 (require 'smartparens-config)
 (require 'graphene-smartparens-config)
-(require 'multi-web-mode)
+(require 'web-mode)
 
 ;; Delete marked text on typing
 (delete-selection-mode t)
@@ -68,18 +68,11 @@
 ;; no overlay in smartparens
 (setq sp-highlight-pair-overlay nil)
 
-;; Use multi-web-mode for editing code embedded in HTML.
-(setq mweb-default-major-mode 'html-mode)
-(let ((mweb-possible-tags
-      '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-        (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-        (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")
-        (ruby-mode "<\\%=\\|<\\% " "\\-%>\\|\\%>"))))
-  (dolist (cell mweb-possible-tags)
-    (when (fboundp (car cell))
-      (push cell mweb-tags))))
-(setq mweb-filename-extensions '("html" "phtml" "erb"))
-(multi-web-global-mode 1)
+;; Use web-mode for editing code embedded in HTML.
+(push '("php" . "\\.phtml\\") web-mode-engine-file-regexps)
+(let ((engine-regexps web-mode-engine-file-regexps))
+  (dolist (engine-regexp engine-regexps)
+    (add-to-list 'auto-mode-alist `(cdr(,engine-regexp) . web-mode))))
 
 ;; Autocomplete defaults
 ;; ESC to get out of autocomplete menu
