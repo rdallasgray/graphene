@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.21
+;; Version: 0.3.22
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -59,7 +59,11 @@
 (global-font-lock-mode t)
 
 ;; no overlay in smartparens
-(setq sp-highlight-pair-overlay nil)
+(eval-after-load 'smartparens
+  '(progn
+     (require 'smartparens-config)
+     (require 'graphene-smartparens-config)
+     (setq sp-highlight-pair-overlay nil)))
 
 ;; Use web-mode for editing code embedded in HTML.
 (require 'web-mode)
@@ -72,6 +76,7 @@
 ;; ESC to get out of autocomplete menu
 (eval-after-load 'auto-complete
   '(progn
+     (require 'auto-complete-config)
      (ac-config-default)
      (define-key ac-completing-map (kbd "ESC") 'ac-stop)
      (setq ac-auto-show-menu 0.2
@@ -103,12 +108,9 @@
               (linum-mode t))
             (when graphene-autocomplete-auto
               (require 'auto-complete)
-              (require 'auto-complete-config)
               (auto-complete-mode t))
             (when graphene-autopair-auto
               (require 'smartparens)
-              (require 'smartparens-config)
-              (require 'graphene-smartparens-config)
               (smartparens-mode t))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
 
