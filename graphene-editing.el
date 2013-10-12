@@ -33,13 +33,6 @@
 
 ;;; Code:
 
-(require 'auto-complete)
-(require 'auto-complete-config)
-(require 'smartparens)
-(require 'smartparens-config)
-(require 'graphene-smartparens-config)
-(require 'web-mode)
-
 ;; Delete marked text on typing
 (delete-selection-mode t)
 
@@ -69,6 +62,7 @@
 (setq sp-highlight-pair-overlay nil)
 
 ;; Use web-mode for editing code embedded in HTML.
+(require 'web-mode)
 (push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
 (dolist (engine-regexp web-mode-engine-file-regexps)
   (when (cdr engine-regexp)
@@ -76,20 +70,22 @@
 
 ;; Autocomplete defaults
 ;; ESC to get out of autocomplete menu
-(ac-config-default)
-(define-key ac-completing-map (kbd "ESC") 'ac-stop)
-(setq ac-auto-show-menu 0.2
-      ac-auto-start 3
-      ac-quick-help-delay 2.0
-      ac-ignore-case nil
-      ac-candidate-menu-min 2
-      ac-use-quick-help nil
-      ac-limit 10)
+(eval-after-load 'auto-complete
+  '(progn
+     (ac-config-default)
+     (define-key ac-completing-map (kbd "ESC") 'ac-stop)
+     (setq ac-auto-show-menu 0.2
+           ac-auto-start 3
+           ac-quick-help-delay 2.0
+           ac-ignore-case nil
+           ac-candidate-menu-min 2
+           ac-use-quick-help nil
+           ac-limit 10)
 
-(setq-default ac-sources '(ac-source-words-in-buffer
-                           ac-source-words-in-same-mode-buffers
-                           ac-source-dictionary
-                           ac-source-filename))
+     (setq-default ac-sources '(ac-source-words-in-buffer
+                                ac-source-words-in-same-mode-buffers
+                                ac-source-dictionary
+                                ac-source-filename))))
 
 ;; Linum format to avoid graphics glitches in fringe
 (setq linum-format " %4d ")
@@ -106,8 +102,13 @@
             (when graphene-linum-auto
               (linum-mode t))
             (when graphene-autocomplete-auto
+              (require 'auto-complete)
+              (require 'auto-complete-config)
               (auto-complete-mode t))
             (when graphene-autopair-auto
+              (require 'smartparens)
+              (require 'smartparens-config)
+              (require 'graphene-smartparens-config)
               (smartparens-mode t))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
 
@@ -118,7 +119,7 @@
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook
-          (lambda()
+          (lambda ()
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
