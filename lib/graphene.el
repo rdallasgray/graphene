@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.17
+;; Version: 0.3.18
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -236,6 +236,11 @@
 
 (defcustom graphene-autopair-ruby t
   "Whether graphene should enable special smartparens Ruby pairs."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-autopair-web t
+  "Whether graphene should enable special smartparens HTML pairs in web-mode."
   :type 'boolean
   :group 'graphene)
 

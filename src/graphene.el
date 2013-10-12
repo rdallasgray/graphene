@@ -71,6 +71,11 @@
   :type 'boolean
   :group 'graphene)
 
+(defcustom graphene-autopair-web t
+  "Whether graphene should enable special smartparens HTML pairs in web-mode."
+  :type 'boolean
+  :group 'graphene)
+
 (defcustom graphene-autocomplete-auto t
   "Whether graphene should enable autocomplete-mode with prog-modes."
   :type 'boolean
