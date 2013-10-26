@@ -100,19 +100,48 @@
 (add-hook 'graphene-prog-mode-hook
           (lambda ()
             (when graphene-linum-auto
-              (linum-mode t))
+              (graphene-linum))
             (when graphene-autocomplete-auto
-              (require 'auto-complete)
-              (auto-complete-mode t))
+              (graphene-autocomplete))
             (when graphene-autopair-auto
-              (require 'smartparens)
-              (smartparens-mode t)
-              (when 'graphene-parens-auto
-                (show-paren-mode nil)
-                (show-smartparens-mode t)
-                (setq sp-show-pair-delay 0
-                      sp-show-pair-from-inside t)))
+              (graphene-autopair))
+            (when 'graphene-parens-auto
+                (graphene-parens))
+            (when 'graphene-errors-auto
+              (graphene-errors))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
+
+(defun graphene-linum ()
+  (linum-mode t))
+
+(defun graphene-autocomplete ()
+  (require 'auto-complete)
+  (auto-complete-mode t))
+
+(defun graphene-autopair ()
+  (require 'smartparens)
+  (smartparens-mode t))
+
+(defun graphene-parens ()
+  (require 'smartparens)
+  (show-paren-mode nil)
+  (show-smartparens-mode t)
+  (setq sp-show-pair-delay 0
+        sp-show-pair-from-inside t))
+
+(defun graphene-errors ()
+  (require 'flycheck)
+  (flycheck-mode))
+
+(eval-after-load 'flycheck
+  '(progn
+     (defun gp/flycheck-display-errors-function (errors)
+       (mapc (lambda (err)
+               (message "FlyC: %s" (flycheck-error-message err)) (sit-for 1))
+             errors))
+     (setq flycheck-highlighting-mode nil
+           flycheck-display-errors-function 'gp/flycheck-display-errors-function)))
+
 
 ;; Fix newline-and-indent in ruby-mode
 (add-hook 'ruby-mode-hook
