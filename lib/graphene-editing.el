@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.22
+;; Version: 0.3.23
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -96,9 +96,6 @@
 (setq linum-format " %4d ")
 
 ;; Show matching parens immediately.
-(when 'graphene-parens-auto
-  (show-paren-mode t)
-  (setq show-paren-delay 0))
 
 ;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
 ;; autocomplete, plus setting binding newline key to newline-and-indent
@@ -111,7 +108,11 @@
               (auto-complete-mode t))
             (when graphene-autopair-auto
               (require 'smartparens)
-              (smartparens-mode t))
+              (smartparens-mode t)
+              (when 'graphene-parens-auto
+                (show-paren-mode nil)
+                (show-smartparens-mode t)
+                (setq sp-show-pair-delay 0)))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
 
 ;; Fix newline-and-indent in ruby-mode

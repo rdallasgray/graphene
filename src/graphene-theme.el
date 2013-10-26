@@ -166,6 +166,14 @@
  `(web-mode-block-face
    ((t (:foreground unspecified
                     :inherit highlight))))
+ `(sp-show-pair-match-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-match))))
+ `(sp-show-pair-mismatch-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-mismatch))))
  `(whitespace-space
    ((t (:foreground unspecified
                     :background unspecified

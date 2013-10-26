@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.3.22
+;; Version: 0.3.23
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -166,6 +166,14 @@
  `(web-mode-block-face
    ((t (:foreground unspecified
                     :inherit highlight))))
+ `(sp-show-pair-match-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-match))))
+ `(sp-show-pair-mismatch-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-mismatch))))
  `(whitespace-space
    ((t (:foreground unspecified
                     :background unspecified
