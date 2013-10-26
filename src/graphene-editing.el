@@ -95,8 +95,6 @@
 ;; Linum format to avoid graphics glitches in fringe
 (setq linum-format " %4d ")
 
-;; Show matching parens immediately.
-
 ;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
 ;; autocomplete, plus setting binding newline key to newline-and-indent
 (add-hook 'graphene-prog-mode-hook
@@ -112,7 +110,8 @@
               (when 'graphene-parens-auto
                 (show-paren-mode nil)
                 (show-smartparens-mode t)
-                (setq sp-show-pair-delay 0)))
+                (setq sp-show-pair-delay 0
+                      sp-show-pair-from-inside t)))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
 
 ;; Fix newline-and-indent in ruby-mode
