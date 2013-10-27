@@ -58,32 +58,37 @@
   :group 'graphene)
 
 (defcustom graphene-linum-auto t
-  "Whether graphene should enable linum-mode with prog-modes."
+  "Whether graphene should enable line numbers with prog-modes."
   :type 'boolean
   :group 'graphene)
 
 (defcustom graphene-autopair-auto t
-  "Whether graphene should enable smartparens with prog-modes."
+  "Whether graphene should enable pair matching with prog-modes."
   :type 'boolean
   :group 'graphene)
 
 (defcustom graphene-autopair-ruby t
-  "Whether graphene should enable special smartparens Ruby pairs."
+  "Whether graphene should enable special Ruby pairs."
   :type 'boolean
   :group 'graphene)
 
 (defcustom graphene-autopair-web t
-  "Whether graphene should enable special smartparens HTML pairs in web-mode."
+  "Whether graphene should enable special HTML pairs in web-mode."
   :type 'boolean
   :group 'graphene)
 
 (defcustom graphene-autocomplete-auto t
-  "Whether graphene should enable autocomplete-mode with prog-modes."
+  "Whether graphene should enable autocomplete with prog-modes."
   :type 'boolean
   :group 'graphene)
 
 (defcustom graphene-parens-auto t
-  "Whether graphene should enable show-paren-mode."
+  "Whether graphene should show matching pairs with prog-modes."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-errors-auto t
+  "Whether graphene should highlight errors with prog-modes."
   :type 'boolean
   :group 'graphene)
 
@@ -115,11 +120,6 @@
 
 (defcustom graphene-fixed-pitch-font nil
   "The font to use in the fixed-pitch face."
-  :type 'string
-  :group 'graphene)
-
-(defcustom graphene-default-font nil
-  "The universal default font."
   :type 'string
   :group 'graphene)
 
