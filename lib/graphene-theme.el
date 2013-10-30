@@ -12,7 +12,7 @@
 ;;; Commentary:
 
 ;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
-;; The theme works with any other active theme to provide a pleasing default look. 
+;; The theme works with any other active theme to provide a pleasing default look.
 
 ;;; License:
 
@@ -141,7 +141,43 @@
  `(flymake-warnline
    ((t (:background unspecified
                     :foreground unspecified
-                    :inherit font-lock-preprocessor-face)))))
+                    :inherit font-lock-preprocessor-face))))
+ `(web-mode-symbol-face
+   ((t (:foreground unspecified
+                    :inherit font-lock-constant-face))))
+ `(web-mode-builtin-face
+   ((t (:foreground unspecified
+                    :inherit default))))
+ `(web-mode-doctype-face
+   ((t (:foreground unspecified
+                    :inherit font-lock-comment-face))))
+ `(web-mode-html-tag-face
+   ((t (:foreground unspecified
+                    :inherit font-lock-function-name-face))))
+ `(web-mode-html-attr-name-face
+   ((t (:foreground unspecified
+                    :inherit font-lock-variable-name-face))))
+ `(web-mode-html-param-name-face
+   ((t (:foreground unspecified
+                    :inherit font-lock-constant-face))))
+ `(web-mode-whitespace-face
+   ((t (:foreground unspecified
+                    :inherit whitespace-space))))
+ `(web-mode-block-face
+   ((t (:foreground unspecified
+                    :inherit highlight))))
+ `(sp-show-pair-match-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-match))))
+ `(sp-show-pair-mismatch-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit show-paren-mismatch))))
+ `(whitespace-space
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit highlight)))))
 
 
 ;;;###autoload
