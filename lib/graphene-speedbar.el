@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.0
+;; Version: 0.4.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
