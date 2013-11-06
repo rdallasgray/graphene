@@ -51,14 +51,6 @@
          '(:add ((lambda (id action context)
                    (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
 
-;; Ruby-specific pairs and handlers
-(when graphene-autopair-ruby
-  (require 'smartparens-ruby))
-
-;; HTML-specific pairs in web-mode
-(when graphene-autopair-web
-  (require 'smartparens-html))
-
 ;; Markdown
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)
@@ -72,4 +64,5 @@
   (sp-local-pair "\"" nil :unless '(:rem sp-point-after-word-p)))
 ;; CoffeeScript PyStrings
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
+
 (provide 'graphene-smartparens-config)
