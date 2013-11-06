@@ -187,17 +187,17 @@
  `(vr/group-0
    ((t (:background unspecified
                     :foreground unspecified
-                    :inherit font-lock-function-name-face
+                    :inherit font-lock-keyword-face
                     :inverse-video t))))
  `(vr/group-1
    ((t (:background unspecified
                     :foreground unspecified
-                    :inherit font-lock-constant-face
+                    :inherit font-lock-function-name-face
                     :inverse-video t))))
  `(vr/group-2
    ((t (:background unspecified
                     :foreground unspecified
-                    :inherit font-lock-keyword-face
+                    :inherit font-lock-constant-face
                     :inverse-video t))))
  `(whitespace-space
    ((t (:foreground unspecified
