@@ -35,6 +35,12 @@
 
 (require 'graphene-speedbar)
 
+;; Zero line-spacing for minibuffer; fixes Emacs frame sizing bug when line-spacing
+;; is non-zero, which impacts e.g. grizzl.
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (set (make-local-variable 'line-spacing) 0)))
+
 ;; Less flickery display
 (setq redisplay-dont-pause t)
 
@@ -92,20 +98,14 @@
       (progn
         (graphene-set-geometry)
         (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry)
-        ;; Nicer line spacing
-        (add-to-list 'default-frame-alist '(line-spacing . 2))
+        (setq-default line-spacing 2)
         (graphene-set-fonts)
-        ;; Set default frame font
         (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
-        ;; Set default, variable and fixed pitch faces
         (set-face-font 'default graphene-default-font)
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
-        ;; No border
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
-        ;; Seems to fix some of the graphical glitches with linum
         (set-fringe-mode '(8 . 0))
-        ;; Load theme extensions -- has to be required here in order to pick up relative font sizes
         (require 'graphene-theme)
         (load-theme 'graphene t)
         (defadvice load-theme
