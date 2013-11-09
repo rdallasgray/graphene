@@ -123,11 +123,8 @@
   (smartparens-mode t))
 
 (defun graphene-parens ()
-  (require 'smartparens)
-  (show-paren-mode nil)
   (show-smartparens-mode t)
-  (setq sp-show-pair-delay 0
-        sp-show-pair-from-inside t))
+  (setq sp-show-pair-delay 0))
 
 (defun graphene-errors ()
   (require 'flycheck)
