@@ -33,7 +33,6 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-;; (require 'sr-speedbar)
 
 (eval-after-load 'sr-speedbar
   '(progn
@@ -57,12 +56,15 @@
        "Whether hooks have been added to refresh speedbar.")
 
      (add-hook 'speedbar-mode-hook
-               (when (not graphene-speedbar-refresh-hooks-added)
-                 (lambda ()
-                   (mapc (lambda (hook)
-                           (add-hook hook 'speedbar-refresh))
-                         graphene-speedbar-refresh-hooks)
-                   (setq graphene-speedbar-refresh-hooks-added t))))
+               '(lambda ()
+                  (hl-line-mode 1)
+                  (visual-line-mode -1)
+                  (when (not graphene-speedbar-refresh-hooks-added)
+                    (lambda ()
+                      (mapc (lambda (hook)
+                              (add-hook hook 'speedbar-refresh))
+                            graphene-speedbar-refresh-hooks)
+                      (setq graphene-speedbar-refresh-hooks-added t)))))
 
      ;; More familiar keymap settings.
      (add-hook 'speedbar-reconfigure-keymaps-hook
@@ -70,9 +72,6 @@
                   (define-key speedbar-mode-map [S-up] 'speedbar-up-directory)
                   (define-key speedbar-mode-map [right] 'speedbar-flush-expand-line)
                   (define-key speedbar-mode-map [left] 'speedbar-contract-line)))
-
-     ;; Highlight the current line
-     (add-hook 'speedbar-mode-hook '(lambda () (hl-line-mode 1)))
 
      ;; Pin and unpin the speedbar
      (defvar graphene-speedbar-pinned-directory)
@@ -121,7 +120,8 @@
 
      (defadvice select-window (after remember-selected-window activate)
        "Remember the last selected window."
-       (unless (or (eq (selected-window) sr-speedbar-window) (not (window-live-p (selected-window))))
+       (unless (or (eq (selected-window) sr-speedbar-window)
+                   (not (window-live-p (selected-window))))
          (setq last-selected-window (selected-window))))
 
      (defun sr-speedbar-before-visiting-file-hook ()

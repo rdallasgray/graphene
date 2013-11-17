@@ -39,6 +39,9 @@
 ;; Soft-wrap lines
 (global-visual-line-mode t)
 
+;; Linum format to avoid graphics glitches in fringe
+(setq linum-format " %4d ")
+
 ;; Nicer scrolling with mouse wheel/trackpad.
 (unless (and (boundp 'mac-mouse-wheel-smooth-scroll) mac-mouse-wheel-smooth-scroll)
   (global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
@@ -58,22 +61,18 @@
 ;; apply syntax highlighting to all buffers
 (global-font-lock-mode t)
 
-;; no overlay in smartparens
 (eval-after-load 'smartparens
   '(progn
      (require 'smartparens-config)
      (require 'graphene-smartparens-config)
      (setq sp-highlight-pair-overlay nil)))
 
-;; Use web-mode for editing code embedded in HTML.
 (require 'web-mode)
 (push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
 (dolist (engine-regexp web-mode-engine-file-regexps)
   (when (cdr engine-regexp)
     (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
 
-;; Autocomplete defaults
-;; ESC to get out of autocomplete menu
 (eval-after-load 'auto-complete
   '(progn
      (require 'auto-complete-config)
@@ -92,8 +91,14 @@
                                 ac-source-dictionary
                                 ac-source-filename))))
 
-;; Linum format to avoid graphics glitches in fringe
-(setq linum-format " %4d ")
+(eval-after-load 'flycheck
+  '(progn
+     (defun graphene--flycheck-display-errors-function (errors)
+       (mapc (lambda (err)
+               (message "FlyC: %s" (flycheck-error-message err)) (sit-for 1))
+             errors))
+     (setq flycheck-highlighting-mode nil
+           flycheck-display-errors-function 'graphene--flycheck-display-errors-function)))
 
 ;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
 ;; autocomplete, plus setting binding newline key to newline-and-indent
@@ -129,16 +134,6 @@
 (defun graphene-errors ()
   (require 'flycheck)
   (flycheck-mode))
-
-(eval-after-load 'flycheck
-  '(progn
-     (defun gp/flycheck-display-errors-function (errors)
-       (mapc (lambda (err)
-               (message "FlyC: %s" (flycheck-error-message err)) (sit-for 1))
-             errors))
-     (setq flycheck-highlighting-mode nil
-           flycheck-display-errors-function 'gp/flycheck-display-errors-function)))
-
 
 ;; Fix newline-and-indent in ruby-mode
 (add-hook 'ruby-mode-hook
