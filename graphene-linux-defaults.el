@@ -31,11 +31,10 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'exec-path-from-shell)
 
-;; Set default path from shell
 (when (window-system)
   (exec-path-from-shell-initialize))
 

@@ -51,18 +51,16 @@
          '(:add ((lambda (id action context)
                    (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
 
-;; Markdown
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-;; Don't need quotes to pair following words
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
-;; Except in HTML
+
 (sp-with-modes '(html-mode web-mode)
   (sp-local-pair "\"" nil :unless '(:rem sp-point-after-word-p)))
-;; CoffeeScript PyStrings
+
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
 
 (provide 'graphene-smartparens-config)

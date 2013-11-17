@@ -32,7 +32,6 @@
 
 ;;; Code:
 
-;; Set up the system-based defaults
 (let ((graphene-sys
   (cond ((eq system-type 'darwin) "osx")
         ((eq system-type 'gnu/linux) "linux")
@@ -42,7 +41,6 @@
     "Symbol for the specific system-based defaults file."))
 
 
-;; Define custom settings
 (defgroup graphene nil
   "Graphene custom settings."
   :group 'environment)
@@ -64,16 +62,6 @@
 
 (defcustom graphene-autopair-auto t
   "Whether graphene should enable pair matching with prog-modes."
-  :type 'boolean
-  :group 'graphene)
-
-(defcustom graphene-autopair-ruby t
-  "Whether graphene should enable special Ruby pairs."
-  :type 'boolean
-  :group 'graphene)
-
-(defcustom graphene-autopair-web t
-  "Whether graphene should enable special HTML pairs in web-mode."
   :type 'boolean
   :group 'graphene)
 
@@ -126,7 +114,6 @@
 (defvar graphene-prog-mode-hook nil
   "A hook to be run on entering a de facto prog mode.")
 
-;; Require necessary files
 (require 'graphene-helper-functions)
 (require 'graphene-editing)
 (require 'graphene-env)

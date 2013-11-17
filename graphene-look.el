@@ -35,23 +35,20 @@
 
 (require 'graphene-speedbar)
 
-;; Zero line-spacing for minibuffer; fixes Emacs frame sizing bug when line-spacing
+;; Work around Emacs frame sizing bug when line-spacing
 ;; is non-zero, which impacts e.g. grizzl.
 (add-hook 'minibuffer-setup-hook
           (lambda ()
             (set (make-local-variable 'line-spacing) 0)))
 
-;; Less flickery display
 (setq redisplay-dont-pause t)
 
-;; Scroll bars off
 (scroll-bar-mode -1)
 
-;; Toolbar off
 (tool-bar-mode -1)
 
 (defvar graphene-geometry-file
-  (concat user-emacs-directory ".graphene-geometry")
+  (expand-file-name ".graphene-geometry" user-emacs-directory)
   "The file where frame geometry settings are saved.")
 
 (defun graphene-load-frame-geometry ()
@@ -68,7 +65,7 @@
     (print (graphene-get-geometry) (current-buffer))))
 
 (defun graphene-get-geometry ()
-  "Get the current geometry of the active frame, subtracting the width of the Speedbar if necessary."
+  "Get the current geometry of the active frame."
   (list (frame-width) (frame-height) (frame-parameter nil 'top) (frame-parameter nil 'left)))
 
 (defun graphene-set-geometry ()
@@ -78,10 +75,12 @@
           (f-height (cadr geom))
           (f-top (caddr geom))
           (f-left (cadddr geom)))
-      (add-to-list 'default-frame-alist (cons 'width f-width))
-      (add-to-list 'default-frame-alist (cons 'height f-height))
-      (add-to-list 'default-frame-alist (cons 'top f-top))
-      (add-to-list 'default-frame-alist (cons 'left f-left)))))
+      (setq default-frame-alist
+            (append default-frame-alist
+                    `((width . ,f-width)
+                      (height . ,f-height)
+                      (top . ,f-top)
+                      (cons . ,f-left)))))))
 
 (defun graphene-set-fonts ()
   "Set up default fonts."

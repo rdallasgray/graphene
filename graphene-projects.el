@@ -64,32 +64,27 @@
   (when graphene-speedbar-auto
     (ignore-errors (graphene-unpin-speedbar))))
 
- ;; Kill all file-based buffers and unpin the speedbar before opening a project.
 (add-hook 'project-persist-before-load-hook
           (lambda ()
             (graphene-maybe-unpin-speedbar)
             (kill-all-buffers)))
 
- ;; Kill all file-based buffers and unpin the speedbar after closing a project.
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
             (graphene-maybe-unpin-speedbar)))
 
-;; Set the project root directory, load the project desktop and update speedbar.
 (add-hook 'project-persist-after-load-hook
           (lambda ()
             (graphene-load-project-desktop)
             (graphene-set-project-root project-persist-current-project-root-dir)))
 
-;; Save the project desktop.
 (add-hook 'project-persist-after-save-hook
           (lambda ()
             (message (format "Saving project desktop in %s" project-persist-current-project-settings-dir))
             (desktop-save project-persist-current-project-settings-dir)))
 
 ;; http://www.emacswiki.org/DeskTop#toc4: Overriding stale desktop locks
-;;; desktop-override-stale-locks.el begins here
 (defun emacs-process-p (pid)
   "If pid is the process ID of an emacs process, return t, else nil.
 Also returns nil if pid is nil."
@@ -104,6 +99,5 @@ Also returns nil if pid is nil."
   "Don't allow dead emacsen to own the desktop file."
   (when (not (emacs-process-p ad-return-value))
     (setq ad-return-value nil)))
-;;; desktop-override-stale-locks.el ends here
 
 (provide 'graphene-projects)
