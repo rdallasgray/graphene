@@ -1,6 +1,6 @@
 (source melpa)
 
-(package "Graphene" "@VERSION" "A set of defaults targeted at GUI text editor diaspora.")
+(package "Graphene" "@VERSION" "Friendly Emacs defaults.")
 
 (depends-on "auto-complete" "20130330")
 (depends-on "smartparens" "20130329")
