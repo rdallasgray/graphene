@@ -80,7 +80,7 @@
                     `((width . ,f-width)
                       (height . ,f-height)
                       (top . ,f-top)
-                      (cons . ,f-left)))))))
+                      (left . ,f-left)))))))
 
 (defun graphene-set-fonts ()
   "Set up default fonts."
