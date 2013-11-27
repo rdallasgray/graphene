@@ -85,7 +85,8 @@
            ac-ignore-case nil
            ac-candidate-menu-min 2
            ac-use-quick-help t
-           ac-limit 10)
+           ac-limit 10
+           ac-disable-faces nil)
 
      (setq-default ac-sources '(ac-source-imenu
                                 ac-source-words-in-buffer
@@ -137,7 +138,29 @@
   (require 'flycheck)
   (flycheck-mode))
 
-;; Fix newline-and-indent in ruby-mode
+;; auto markdown(gfm)-mode
+(push '("\\.md\\'" . gfm-mode) auto-mode-alist)
+(push '("\\.markdown\\'" . gfm-mode) auto-mode-alist)
+(add-hook 'gfm-mode-hook (lambda () (auto-fill-mode t)))
+
+;; auto json-mode
+(push '("\\.json\\'" . json-mode) auto-mode-alist)
+
+;; auto feature-mode
+(push '("\\.feature\\'" . feature-mode) auto-mode-alist)
+
+;; don't compile sass/scss on saving
+(setq scss-compile-at-save nil)
+
+;; 2-space indent for CSS
+(setq css-indent-offset 2)
+
+;; Default Ruby filetypes
+(dolist (regex
+         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$"))
+  (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
+
+;; Remap newline to newline-and-indent in ruby-mode
 (add-hook 'ruby-mode-hook
           (lambda ()
             (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))

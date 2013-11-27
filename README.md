@@ -69,6 +69,12 @@ decided on as best-in-class packages.
 - [Flycheck](https://github.com/flycheck/flycheck)
   For error checking
 
+And some modes which should probably be built-in:
+
+- [markdown-mode](https://github.com/defunkt/markdown-mode)
+- [feature-mode](https://github.com/michaelklishin/cucumber.el)
+- [scss-mode](https://github.com/antonj/scss-mode)
+
 ##Installation
 Graphene is available on [Melpa](http://melpa.milkbox.net).
 
