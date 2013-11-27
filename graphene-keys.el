@@ -31,12 +31,10 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'graphene-helper-functions)
 
-(global-set-key (kbd "C-M-<backspace>")
-                'backward-kill-sexp)
 (global-set-key (kbd "C-x k")
                 'kill-default-buffer)
 (global-set-key (kbd "C-x C-k")
