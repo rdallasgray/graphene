@@ -42,6 +42,10 @@
 ;; Linum format to avoid graphics glitches in fringe
 (setq linum-format " %4d ")
 
+;; Don't use tabs for indent; replace tabs with two spaces.
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+
 ;; Nicer scrolling with mouse wheel/trackpad.
 (unless (and (boundp 'mac-mouse-wheel-smooth-scroll) mac-mouse-wheel-smooth-scroll)
   (global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))

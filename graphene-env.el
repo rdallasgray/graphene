@@ -51,6 +51,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 (global-auto-revert-mode t)
 
 (ido-mode 1)

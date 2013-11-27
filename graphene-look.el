@@ -47,6 +47,8 @@
 
 (tool-bar-mode -1)
 
+(blink-cursor-mode -1)
+
 (defvar graphene-geometry-file
   (expand-file-name ".graphene-geometry" user-emacs-directory)
   "The file where frame geometry settings are saved.")
