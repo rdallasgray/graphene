@@ -76,10 +76,11 @@ If you don't already have your Emacs set up to use the package
 installation system, let me gently point you to
 [Pallet](https://github.com/rdallasgray/pallet).
 
-Anyway -- your default initialisation file is in (old-school) `~/.emacs` or
-(new-school) `~/.emacs.d/init.el`. First, you need to set up the Emacs package
-system and tell it about Melpa, so create one of those files if it doesn't
-already exist, and add these lines to the file:
+Anyway -- your default initialisation file is in (old-school)
+`~/.emacs` or (new-school, and where it *should* be)
+`~/.emacs.d/init.el`. First, you need to set up the Emacs package
+system and tell it about Melpa, so create one of those files if it
+doesn't already exist, and add these lines to the file:
 
 ```
 ;; Require Emacs' package functionality
@@ -98,7 +99,7 @@ Emacs. After that, do `M-x list-packages`, search for
 by pressing 'i', and install it by pressing 'x'.
 
 It will take a while to install itself and its various dependencies, and will
-probably raise a few compilation issues. You can most probably safely ignore
+probably raise a few compilation issues. You can probably safely ignore
 these. Once it's done, add this to your initialisation file:
 
 ```
@@ -108,6 +109,51 @@ Restart Emacs, and away you go.
 
 ##How do I ... ?
 All of the packages Graphene includes are well-documented, and I'll
-refer you to them rather than retread that documentation here. If
-there's something you don't understand, please raise an issue here and
-I'll consider adding more documentation.
+refer you to them rather than retread that documentation here. That
+said, there are some Graphene-specific things you need to know.
+
+###Keybindings
+Graphene creates some new keybindings, and alters some existing ones:
+
+- `C-k` always kills the active buffer, rather than asking you which
+  one you want to kill
+- `C-x C-k` kills the default buffer and closes its window
+- `C-c n` creates a new buffer
+- `C-c N` creates a new instance of Emacs
+- `C-;` adds a semicolon at the end of the line
+- `M-RET` creates a newline below the current line and moves to it
+- `C-M-;` comments or uncomments the current line
+- `C->` increases the height of the current window
+- `C-<` decreases it
+- `C-.` increases the width of the current window
+- `C-,` decreases it
+- `C-c s` selects the Speedbar window
+
+Graphene used to bind the standard Mac keys for various purposes
+(Command-n for new buffer, for instance), but no longer does.
+
+###Projects
+[project-persist](https://github.com/rdallasgray/project-persist) uses
+the following keybindings:
+
+- `C-c P n` to create a new project
+- `C-c P f` to find an existing project
+- `C-c P k` to close the current project
+- `C-c P d` to delete an existing project
+
+###Customising
+Try `M-x customize-group` and type 'graphene', for an idea of what can
+be customised; you may wish to set these programmatically in your init
+file, instead.
+
+##Contributions and feedback
+Contributions to Graphene are very welcome, as are feedback and bug
+reports. The latter can be raised via the Issues section.
+
+To contribute code, fork and clone the repo. If you want to be able to
+build the package, run `git submodule update --init`,
+which will install [el.mk](http://github.com/rdallasgray/el.mk), then
+[install Cask](https://github.com/rejeep/cask.el)and run `cask install`.
+
+When you've created your feature, make a pull request against master
+in this repo.
