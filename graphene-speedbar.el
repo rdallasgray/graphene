@@ -34,6 +34,8 @@
 
 ;;; Code:
 
+(autoload 'sr-speedbar-open "sr-speedbar" "Open the in-frame speedbar" t)
+
 (eval-after-load 'sr-speedbar
   '(progn
      (setq speedbar-hide-button-brackets-flag t
