@@ -134,7 +134,7 @@
 ;; ###Keybindings
 ;; Graphene creates some new keybindings, and alters some existing ones:
 ;; 
-;; - `C-k` always kills the active buffer, rather than asking you which
+;; - `C-x k` always kills the active buffer, rather than asking you which
 ;;   one you want to kill
 ;; - `C-x C-k` kills the default buffer and closes its window
 ;; - `C-c n` creates a new buffer
@@ -172,7 +172,7 @@
 ;; To contribute code, fork and clone the repo. If you want to be able to
 ;; build the package, run `git submodule update --init`,
 ;; which will install [el.mk](http://github.com/rdallasgray/el.mk), then
-;; [install Cask](https://github.com/rejeep/cask.el)and run `cask install`.
+;; [install Cask](https://github.com/rejeep/cask.el) and run `cask install`.
 ;; 
 ;; When you've created your feature, make a pull request against master
 ;; in this repo.
