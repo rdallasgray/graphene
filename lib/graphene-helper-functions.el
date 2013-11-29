@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.1
+;; Version: 0.5.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -31,7 +31,7 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (defun kill-default-buffer ()
   "Kill the currently active buffer -- set to C-x k so that users are not asked which buffer they want to kill."
@@ -97,12 +97,12 @@
   (enlarge-window (- 0 arg)))
 
 (defun decrease-window-width (&optional arg)
-  "Make the window narrower by one line. Useful when bound to a repeatable key combination."
+  "Make the window narrower by one column. Useful when bound to a repeatable key combination."
   (interactive "p")
   (enlarge-window (- 0 arg) t))
 
 (defun increase-window-width (&optional arg)
-  "Make the window shorter by one line. Useful when bound to a repeatable key combination."
+  "Make the window wider by one column. Useful when bound to a repeatable key combination."
   (interactive "p")
   (enlarge-window arg t))
 

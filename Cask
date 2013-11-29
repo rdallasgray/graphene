@@ -11,4 +11,4 @@
 (depends-on "exec-path-from-shell" "20131002")
 (depends-on "scss-mode" "20121203")
 (depends-on "markdown-mode" "20131005")
-(depends-on "feature-mode" "20130714)
+(depends-on "feature-mode" "20130714")

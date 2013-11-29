@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.1
+;; Version: 0.5.0
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -33,43 +33,34 @@
 
 ;;; Code:
 
-(defun gp/sp/pair-on-newline (id action context)
+(defun graphene--sp-pair-on-newline (id action context)
   "Put trailing pair on newline and return to point."
   (save-excursion
     (newline)
     (indent-according-to-mode)))
 
-(defun gp/sp/pair-on-newline-and-indent (id action context)
+(defun graphene--sp-pair-on-newline-and-indent (id action context)
   "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (gp/sp/pair-on-newline id action context)
+  (graphene--sp-pair-on-newline id action context)
   (indent-according-to-mode))
 
 (sp-pair "{" nil :post-handlers
          '(:add ((lambda (id action context)
-                   (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
+                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
 (sp-pair "[" nil :post-handlers
          '(:add ((lambda (id action context)
-                   (gp/sp/pair-on-newline-and-indent id action context)) "RET")))
+                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
 
-;; Ruby-specific pairs and handlers
-(when graphene-autopair-ruby
-  (require 'smartparens-ruby))
-
-;; HTML-specific pairs in web-mode
-(when graphene-autopair-web
-  (require 'smartparens-html))
-
-;; Markdown
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-;; Don't need quotes to pair following words
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
-;; Except in HTML
+
 (sp-with-modes '(html-mode web-mode)
   (sp-local-pair "\"" nil :unless '(:rem sp-point-after-word-p)))
-;; CoffeeScript PyStrings
+
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
+
 (provide 'graphene-smartparens-config)

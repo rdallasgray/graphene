@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.1
+;; Version: 0.5.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -35,17 +35,22 @@
 
 (require 'graphene-speedbar)
 
-;; Less flickery display
+;; Work around Emacs frame sizing bug when line-spacing
+;; is non-zero, which impacts e.g. grizzl.
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (set (make-local-variable 'line-spacing) 0)))
+
 (setq redisplay-dont-pause t)
 
-;; Scroll bars off
 (scroll-bar-mode -1)
 
-;; Toolbar off
 (tool-bar-mode -1)
 
+(blink-cursor-mode -1)
+
 (defvar graphene-geometry-file
-  (concat user-emacs-directory ".graphene-geometry")
+  (expand-file-name ".graphene-geometry" user-emacs-directory)
   "The file where frame geometry settings are saved.")
 
 (defun graphene-load-frame-geometry ()
@@ -62,7 +67,7 @@
     (print (graphene-get-geometry) (current-buffer))))
 
 (defun graphene-get-geometry ()
-  "Get the current geometry of the active frame, subtracting the width of the Speedbar if necessary."
+  "Get the current geometry of the active frame."
   (list (frame-width) (frame-height) (frame-parameter nil 'top) (frame-parameter nil 'left)))
 
 (defun graphene-set-geometry ()
@@ -72,10 +77,12 @@
           (f-height (cadr geom))
           (f-top (caddr geom))
           (f-left (cadddr geom)))
-      (add-to-list 'default-frame-alist (cons 'width f-width))
-      (add-to-list 'default-frame-alist (cons 'height f-height))
-      (add-to-list 'default-frame-alist (cons 'top f-top))
-      (add-to-list 'default-frame-alist (cons 'left f-left)))))
+      (setq default-frame-alist
+            (append default-frame-alist
+                    `((width . ,f-width)
+                      (height . ,f-height)
+                      (top . ,f-top)
+                      (left . ,f-left)))))))
 
 (defun graphene-set-fonts ()
   "Set up default fonts."
@@ -92,20 +99,14 @@
       (progn
         (graphene-set-geometry)
         (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry)
-        ;; Nicer line spacing
-        (add-to-list 'default-frame-alist '(line-spacing . 2))
+        (setq-default line-spacing 2)
         (graphene-set-fonts)
-        ;; Set default frame font
         (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
-        ;; Set default, variable and fixed pitch faces
         (set-face-font 'default graphene-default-font)
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
-        ;; No border
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
-        ;; Seems to fix some of the graphical glitches with linum
         (set-fringe-mode '(8 . 0))
-        ;; Load theme extensions -- has to be required here in order to pick up relative font sizes
         (require 'graphene-theme)
         (load-theme 'graphene t)
         (defadvice load-theme

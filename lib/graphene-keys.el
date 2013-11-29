@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.1
+;; Version: 0.5.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -31,12 +31,10 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'graphene-helper-functions)
 
-(global-set-key (kbd "C-M-<backspace>")
-                'backward-kill-sexp)
 (global-set-key (kbd "C-x k")
                 'kill-default-buffer)
 (global-set-key (kbd "C-x C-k")

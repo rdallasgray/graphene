@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.4.1
+;; Version: 0.5.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -13,7 +13,7 @@
 
 ;; Graphene is a set of default settings and functionality to make Emacs a little friendlier.
 ;; The environment defaults target the general Emacs environment, simplifying interactions
-;; and enabling discoverability. 
+;; and enabling discoverability.
 
 ;;; License:
 
@@ -32,46 +32,32 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (require 'smex)
-
-;; Use Smex for recent M-x commands a la ido.
 (smex-initialize)
 
-;; No startup splash screen.
-(setq inhibit-startup-message t)
-
-;; Color theme everywhere.
-(setq color-theme-is-global t)
-
-;; Add directory info to distinguish buffers.
-(setq uniquify-buffer-name-style 'forward)
-
-;; Don't make me type out 'yes' and 'no'
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; Autorevert all buffers.
-(global-auto-revert-mode t)
-
-;; Don't resize the minibuffer
-(setq resize-mini-windows nil)
-
-;; Put backups and autosaves in temp dir.
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; Defaults for Ido.
-(setq ido-enable-flex-matching t
+(setq inhibit-startup-message t
+      color-theme-is-global t
+      resize-mini-windows nil
+      uniquify-buffer-name-style 'forward
+      backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+      ido-enable-flex-matching t
       ido-auto-merge-work-directories-length nil
       ido-create-new-buffer 'always
       ido-use-filename-at-point 'guess
       ido-everywhere t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+(global-auto-revert-mode t)
+
 (ido-mode 1)
 
-;; Allow commands which would be disabled by default.
 (put 'ido-complete 'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
