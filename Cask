@@ -3,6 +3,7 @@
 (package "Graphene" "@VERSION" "Friendly Emacs defaults.")
 
 (depends-on "auto-complete" "20131121")
+(depends-on "flycheck" "20131129")
 (depends-on "smartparens" "20131123")
 (depends-on "web-mode" "20131125")
 (depends-on "smex" "20130707")
