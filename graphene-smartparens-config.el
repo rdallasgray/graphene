@@ -55,8 +55,29 @@
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-(sp-pair "\"" nil :unless '(sp-point-after-word-p))
-(sp-pair "'" nil :unless '(sp-point-after-word-p))
+(sp-local-pair 'web-mode "<% " " %>"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
+
+(sp-local-pair 'web-mode "<%= " " %>"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
+
+(sp-local-pair 'web-mode "<%# " " %>"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
+
+(sp-local-pair 'web-mode "<? " " ?>"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
+
+(sp-local-pair 'web-mode "<?php " " ?>"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
+
+(sp-local-pair 'web-mode "{{ " " }}"
+               :unless '(sp-in-string-p)
+               :actions '(insert wrap))
 
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
 
