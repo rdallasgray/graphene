@@ -58,9 +58,6 @@
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
 
-;; (sp-with-modes '(html-mode web-mode)
-;;   (sp-local-pair "\"" nil :unless '(:rem sp-point-after-word-p)))
-
 (push 'coffee-mode sp-autoescape-string-quote-if-empty)
 
 (provide 'graphene-smartparens-config)
