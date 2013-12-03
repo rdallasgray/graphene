@@ -76,6 +76,9 @@
 (dolist (engine-regexp web-mode-engine-file-regexps)
   (when (cdr engine-regexp)
     (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (setq web-mode-disable-auto-pairing t)))
 
 (eval-after-load 'auto-complete
   '(progn
