@@ -141,6 +141,8 @@
   (smartparens-mode t))
 
 (defun graphene-parens ()
+  (show-paren-mode nil)
+  (setq blink-matching-paren nil)
   (show-smartparens-mode t)
   (setq sp-show-pair-delay 0))
 
