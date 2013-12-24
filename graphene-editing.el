@@ -98,7 +98,8 @@
            ac-limit 10
            ac-disable-faces nil)
 
-     (setq-default ac-sources '(ac-source-words-in-buffer
+     (setq-default ac-sources '(ac-source-abbrev
+                                ac-source-words-in-buffer
                                 ac-source-filename
                                 ac-source-imenu
                                 ac-source-dictionary
