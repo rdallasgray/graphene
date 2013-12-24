@@ -98,11 +98,12 @@
            ac-limit 10
            ac-disable-faces nil)
 
-     (setq-default ac-sources '(ac-source-imenu
-                                ac-source-words-in-buffer
-                                ac-source-words-in-same-mode-buffers
+     (setq-default ac-sources '(ac-source-words-in-buffer
+                                ac-source-filename
+                                ac-source-imenu
                                 ac-source-dictionary
-                                ac-source-filename))))
+                                ;; ac-source-words-in-same-mode-buffers
+                                ))))
 
 (eval-after-load 'flycheck
   '(progn
