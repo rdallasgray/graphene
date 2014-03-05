@@ -171,7 +171,7 @@
 
 ;; Default Ruby filetypes
 (dolist (regex
-         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$"))
+         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
 ;; Remap newline to newline-and-indent in ruby-mode

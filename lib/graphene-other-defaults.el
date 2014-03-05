@@ -1,10 +1,10 @@
 ;;; graphene-other-defaults.el --- Graphene defaults for other systems
 ;;
-;; Copyright (c) 2013 Robert Dallas Gray
+;; Copyright (c) 2014 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.5.0
+;; Version: 0.5.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
