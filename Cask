@@ -1,6 +1,6 @@
 (source melpa)
 
-(package "Graphene" "@VERSION" "Friendly Emacs defaults.")
+(package "Graphene" "0.6.0" "Friendly Emacs defaults")
 
 (depends-on "auto-complete" "20140309")
 (depends-on "flycheck" "20140413")
