@@ -103,8 +103,7 @@
                                 ac-source-filename
                                 ac-source-imenu
                                 ac-source-dictionary
-                                ;; ac-source-words-in-same-mode-buffers
-                                ))))
+                                ac-source-words-in-same-mode-buffers))))
 
 (eval-after-load 'flycheck
   '(progn
@@ -171,7 +170,7 @@
 
 ;; Default Ruby filetypes
 (dolist (regex
-         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$"))
+         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
 ;; Remap newline to newline-and-indent in ruby-mode
