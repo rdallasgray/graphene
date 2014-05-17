@@ -85,7 +85,8 @@
 
 (eval-after-load 'company
   '(progn
-     (setq company-idle-delay 0.125)))
+     (setq company-idle-delay 0.125
+           company-minimum-prefix-length 2)))
 
 (eval-after-load 'flycheck
   '(progn
@@ -102,12 +103,6 @@
           (lambda ()
             (when graphene-linum-auto
               (graphene-linum))
-            (when graphene-autocomplete-auto
-              (graphene-autocomplete))
-            (when graphene-autopair-auto
-              (graphene-autopair))
-            (when 'graphene-parens-auto
-                (graphene-parens))
             (when 'graphene-errors-auto
               (graphene-errors))
             (define-key (current-local-map) [remap newline] 'newline-and-indent)))
@@ -166,7 +161,12 @@
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
-;; Global autocomplete
-(global-company-mode t)
+;; Global autocomplete, pairing, parens
+(when graphene-autocomplete-auto
+  (graphene-autocomplete))
+(when graphene-autopair-auto
+  (graphene-autopair))
+(when 'graphene-parens-auto
+  (graphene-parens))
 
 (provide 'graphene-editing)
