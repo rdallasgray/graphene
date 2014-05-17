@@ -2,7 +2,7 @@
 
 (package "graphene" "@VERSION" "Friendly Emacs defaults")
 
-(depends-on "auto-complete" "20140414")
+(depends-on "company" "20140517")
 (depends-on "flycheck" "20140422")
 (depends-on "smartparens" "20140427")
 (depends-on "web-mode" "20140505")
