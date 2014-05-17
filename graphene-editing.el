@@ -86,7 +86,11 @@
 (eval-after-load 'company
   '(progn
      (setq company-idle-delay 0.125
-           company-minimum-prefix-length 2)))
+           company-minimum-prefix-length 2
+           company-transformers '(company-sort-by-occurrence)
+           company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
+                               company-preview-frontend
+                               company-echo-metadata-frontend))))
 
 (eval-after-load 'flycheck
   '(progn
