@@ -112,7 +112,6 @@
  `(popup-scroll-bar-background-face
    ((t (:background unspecified
                     :inherit popup-face))))
-
  `(ac-completion-face
    ((t (:background unspecified
                     :foreground unspecified
