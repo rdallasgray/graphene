@@ -112,7 +112,6 @@
  `(popup-scroll-bar-background-face
    ((t (:background unspecified
                     :inherit popup-face))))
-
  `(ac-completion-face
    ((t (:background unspecified
                     :foreground unspecified
@@ -139,6 +138,19 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit ac-selection-face))))
+ `(company-preview
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit file-name-shadow))))
+ `(company-preview-common
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-preview))))
+ `(company-preview-search
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-preview
+                    :weight bold))))
  `(company-tooltip
    ((t (:background unspecified
                     :foreground unspecified
@@ -165,6 +177,15 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit region))))
+ `(company-tooltip-annotation
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit font-lock-function-name-face))))
+ `(company-echo-common
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-echo
+                    :weight bold))))
  `(company-scrollbar-fg
    ((t (:background unspecified
                     :inherit popup-scroll-bar-foreground-face))))
