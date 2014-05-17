@@ -83,27 +83,9 @@
           (lambda ()
             (setq web-mode-disable-auto-pairing t)))
 
-(eval-after-load 'auto-complete
+(eval-after-load 'company
   '(progn
-     (require 'auto-complete-config)
-     (ac-config-default)
-     (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-     (setq ac-delay 0.125
-           ac-auto-show-menu 0.25
-           ac-auto-start 3
-           ac-quick-help-delay 2.0
-           ac-ignore-case nil
-           ac-candidate-menu-min 2
-           ac-use-quick-help t
-           ac-limit 10
-           ac-disable-faces nil)
-
-     (setq-default ac-sources '(ac-source-abbrev
-                                ac-source-words-in-buffer
-                                ac-source-filename
-                                ac-source-imenu
-                                ac-source-dictionary
-                                ac-source-words-in-same-mode-buffers))))
+     (setq company-idle-delay 0.125)))
 
 (eval-after-load 'flycheck
   '(progn
@@ -134,8 +116,8 @@
   (linum-mode t))
 
 (defun graphene-autocomplete ()
-  (require 'auto-complete)
-  (auto-complete-mode t))
+  (require 'company)
+  (company-mode t))
 
 (defun graphene-autopair ()
   (require 'smartparens)
@@ -183,5 +165,8 @@
           (lambda ()
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
+
+;; Global autocomplete
+(global-company-mode t)
 
 (provide 'graphene-editing)
