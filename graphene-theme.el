@@ -112,7 +112,6 @@
  `(popup-scroll-bar-background-face
    ((t (:background unspecified
                     :inherit popup-face))))
-
  `(ac-completion-face
    ((t (:background unspecified
                     :foreground unspecified
@@ -139,7 +138,6 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit ac-selection-face))))
-<<<<<<< HEAD
  `(company-preview
    ((t (:background unspecified
                     :foreground unspecified
@@ -153,8 +151,6 @@
                     :foreground unspecified
                     :inherit company-preview
                     :weight bold))))
-=======
->>>>>>> Use company instead of autocomplete
  `(company-tooltip
    ((t (:background unspecified
                     :foreground unspecified
@@ -181,7 +177,6 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit region))))
-<<<<<<< HEAD
  `(company-tooltip-annotation
    ((t (:background unspecified
                     :foreground unspecified
@@ -191,8 +186,6 @@
                     :foreground unspecified
                     :inherit company-echo
                     :weight bold))))
-=======
->>>>>>> Use company instead of autocomplete
  `(company-scrollbar-fg
    ((t (:background unspecified
                     :inherit popup-scroll-bar-foreground-face))))
