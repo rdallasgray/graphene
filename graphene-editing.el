@@ -86,7 +86,7 @@
 (eval-after-load 'company
   '(progn
      (setq company-idle-delay 0.125
-           company-minimum-prefix-length 2
+           company-minimum-prefix-length 1
            company-transformers '(company-sort-by-occurrence)
            company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
                                company-preview-frontend
@@ -116,16 +116,17 @@
 
 (defun graphene-autocomplete ()
   (require 'company)
-  (company-mode t))
+  (global-company-mode t))
 
 (defun graphene-autopair ()
   (require 'smartparens)
-  (smartparens-mode t))
+  (smartparens-global-mode t))
 
 (defun graphene-parens ()
   (show-paren-mode nil)
   (setq blink-matching-paren nil)
-  (show-smartparens-mode t)
+  (require 'smartparens)
+  (show-smartparens-global-mode t)
   (setq sp-show-pair-delay 0))
 
 (defun graphene-errors ()
