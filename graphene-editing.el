@@ -101,15 +101,15 @@
      (setq flycheck-highlighting-mode nil
            flycheck-display-errors-function 'graphene--flycheck-display-errors-function)))
 
-;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
-;; autocomplete, plus setting binding newline key to newline-and-indent
+;; Main hook to be run on entering de facto prog modes, enabling linum, flycheck,
+;; and electric-indent
 (add-hook 'graphene-prog-mode-hook
           (lambda ()
             (when graphene-linum-auto
               (graphene-linum))
             (when 'graphene-errors-auto
               (graphene-errors))
-            (define-key (current-local-map) [remap newline] 'newline-and-indent)))
+            (electric-indent-mode 1)))
 
 (defun graphene-linum ()
   (linum-mode t))
