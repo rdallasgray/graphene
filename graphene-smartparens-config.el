@@ -44,17 +44,23 @@
   (graphene--sp-pair-on-newline id action context)
   (indent-according-to-mode))
 
-(sp-pair "{" nil :post-handlers
-         '(:add ((lambda (id action context)
-                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
-(sp-pair "[" nil :post-handlers
-         '(:add ((lambda (id action context)
-                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
+(defun graphene--sp-add-newline-and-indent-post-handlers ()
+  (sp-pair "{" nil :post-handlers
+           '(:add ((lambda (id action context)
+                     (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
+  (sp-pair "[" nil :post-handlers
+           '(:add ((lambda (id action context)
+                     (graphene--sp-pair-on-newline-and-indent id action context)) "RET"))))
+
+(graphene--sp-add-newline-and-indent-post-handlers)
+;; Smartparens overrides these with smartparens-ruby. Readd them.
+(eval-after-load 'smartparens-ruby '(graphene--sp-add-newline-and-indent-post-handlers))
 
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-(push 'coffee-mode sp-autoescape-string-quote-if-empty)
+(dolist (mode '(coffee-mode shell-mode))
+  (add-to-list 'sp-autoescape-string-quote-if-empty mode))
 
 (provide 'graphene-smartparens-config)
