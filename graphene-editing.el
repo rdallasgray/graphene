@@ -152,13 +152,14 @@
 
 ;; Default Ruby filetypes
 (dolist (regex
-         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"))
+         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$"
+           "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$" "\\.builder$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
 ;; Remap newline to newline-and-indent in ruby-mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))
+;; (add-hook 'ruby-mode-hook
+;;           (lambda ()
+;;             (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook
