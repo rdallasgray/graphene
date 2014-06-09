@@ -85,8 +85,11 @@
 
 (eval-after-load 'company
   '(progn
+     (define-key company-active-map (kbd "RET") nil)
+     (define-key company-active-map (kbd "ESC") 'company-abort)
      (setq company-idle-delay 0.125
            company-minimum-prefix-length 1
+           company-require-match nil
            company-transformers '(company-sort-by-occurrence)
            company-dabbrev-ignore-case nil
            company-dabbrev-downcase nil
@@ -155,7 +158,8 @@
 ;; Default Ruby filetypes
 (dolist (regex
          '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$"
-           "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$" "\\.builder$"))
+           "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"
+           "Berksfile$" "\\.builder$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
 ;; Remap newline to newline-and-indent in ruby-mode
