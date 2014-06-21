@@ -41,7 +41,6 @@
 
 (defun graphene--sp-pair-on-newline-and-indent (id action context)
   "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (message "OK THEN")
   (graphene--sp-pair-on-newline id action context)
   (indent-according-to-mode))
 
