@@ -4,3 +4,4 @@ TAGS
 .emacs*
 /.#*
 /flycheck-*
+dist/
