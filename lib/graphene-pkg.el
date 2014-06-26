@@ -1,3 +1,12 @@
-(define-package "Graphene" "0.7.0"
-  "Friendly Emacs defaults."
-  '((auto-complete "20131121") (flycheck "20131129") (smartparens "20131123") (web-mode "20131125") (smex "20130707") (sr-speedbar "20130309") (project-persist "20131030") (exec-path-from-shell "20131002") (scss-mode "20121203") (markdown-mode "20131005") (feature-mode "20130714")))
+(define-package "graphene" "0.7.1" "Friendly Emacs defaults"
+  '((feature-mode "20140416")
+    (markdown-mode "20131210")
+    (scss-mode "20130105")
+    (exec-path-from-shell "20140219")
+    (project-persist "20131030")
+    (sr-speedbar "20140505")
+    (smex "20140425")
+    (web-mode "20140505")
+    (smartparens "20140427")
+    (flycheck "20140422")
+    (auto-complete "20140414")))

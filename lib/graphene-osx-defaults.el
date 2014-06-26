@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.0
+;; Version: 0.7.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -33,13 +33,11 @@
 
 ;;; Code:
 
-(require 'graphene-helper-functions)
-
 (unless graphene-default-font
   (setq graphene-default-font "Menlo-12"))
-(unless graphene-fixed-pitch-font
-  (setq graphene-variable-pitch-font "Lucida Grande-12"))
 (unless graphene-variable-pitch-font
+  (setq graphene-variable-pitch-font "Lucida Grande-12"))
+(unless graphene-fixed-pitch-font
   (setq graphene-fixed-pitch-font "Menlo-12"))
 
 (setq delete-by-moving-to-trash t)

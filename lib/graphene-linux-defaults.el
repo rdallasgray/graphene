@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.0
+;; Version: 0.7.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -33,16 +33,15 @@
 
 ;;; Code:
 
-(require 'exec-path-from-shell)
-
 (when (window-system)
+  (require 'exec-path-from-shell)
   (exec-path-from-shell-initialize))
 
 (unless graphene-default-font
   (setq graphene-default-font "DejaVu Sans Mono-10"))
 (unless graphene-variable-pitch-font
   (setq graphene-variable-pitch-font "Liberation Sans-10"))
-(unless graphene-fixed-pitch-font
+(unless graphene-fixed-pitched-font
   (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10"))
 
 (provide 'graphene-linux-defaults)

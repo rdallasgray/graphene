@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.0
+;; Version: 0.7.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -31,12 +31,12 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 (unless graphene-default-font
   (setq graphene-default-font "Consolas-10"))
 (unless graphene-variable-pitch-font
   (setq graphene-variable-pitch-font "Segoe UI-10"))
-(unless graphene-fixed-pitch-font
+(unless graphene-fixed-pitched-font
   (setq graphene-fixed-pitch-font "Consolas-10"))
 
 (provide 'graphene-windows-defaults)
