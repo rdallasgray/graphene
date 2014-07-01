@@ -39,7 +39,8 @@
 ;; is non-zero, which impacts e.g. grizzl.
 (add-hook 'minibuffer-setup-hook
           (lambda ()
-            (set (make-local-variable 'line-spacing) 0)))
+            (set (make-local-variable 'line-spacing) 0)
+            (setq resize-mini-windows (featurep 'ido-vertical-mode))))
 
 (setq redisplay-dont-pause t)
 

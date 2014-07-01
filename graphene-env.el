@@ -39,7 +39,6 @@
 
 (setq inhibit-startup-message t
       color-theme-is-global t
-      resize-mini-windows nil
       uniquify-buffer-name-style 'forward
       backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))

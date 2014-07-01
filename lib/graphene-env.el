@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.1
+;; Version: 0.7.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -39,7 +39,6 @@
 
 (setq inhibit-startup-message t
       color-theme-is-global t
-      resize-mini-windows nil
       uniquify-buffer-name-style 'forward
       backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t))

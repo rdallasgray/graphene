@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.1
+;; Version: 0.7.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -39,7 +39,8 @@
 ;; is non-zero, which impacts e.g. grizzl.
 (add-hook 'minibuffer-setup-hook
           (lambda ()
-            (set (make-local-variable 'line-spacing) 0)))
+            (set (make-local-variable 'line-spacing) 0)
+            (setq resize-mini-windows (featurep 'ido-vertical-mode))))
 
 (setq redisplay-dont-pause t)
 
