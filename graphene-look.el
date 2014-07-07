@@ -60,7 +60,7 @@
       (with-temp-buffer
         (insert-file-contents graphene-geometry-file)
         (read (buffer-string)))
-    '(160 70 0 0)))
+    '(140 60 0 0)))
 
 (defun graphene-save-frame-geometry ()
   "Save current frame geometry settings."

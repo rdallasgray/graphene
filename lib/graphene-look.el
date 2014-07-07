@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.2
+;; Version: 0.7.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -60,7 +60,7 @@
       (with-temp-buffer
         (insert-file-contents graphene-geometry-file)
         (read (buffer-string)))
-    '(160 70 0 0)))
+    '(140 60 0 0)))
 
 (defun graphene-save-frame-geometry ()
   "Save current frame geometry settings."

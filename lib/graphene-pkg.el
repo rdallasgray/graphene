@@ -1,4 +1,4 @@
-(define-package "graphene" "0.7.2" "Friendly Emacs defaults"
+(define-package "graphene" "0.7.3" "Friendly Emacs defaults"
   '((feature-mode "20140416")
     (markdown-mode "20131210")
     (scss-mode "20130105")
