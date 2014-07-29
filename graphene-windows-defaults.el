@@ -36,7 +36,7 @@
   (setq graphene-default-font "Consolas-10"))
 (unless graphene-variable-pitch-font
   (setq graphene-variable-pitch-font "Segoe UI-10"))
-(unless graphene-fixed-pitched-font
+(unless graphene-fixed-pitch-font
   (setq graphene-fixed-pitch-font "Consolas-10"))
 
 (provide 'graphene-windows-defaults)
