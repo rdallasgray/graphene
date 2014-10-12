@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.3
+;; Version: 0.8.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -60,7 +60,6 @@
 (put 'ido-complete 'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
-(put 'autopair-newline 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)

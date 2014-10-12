@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.3
+;; Version: 0.8.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -83,27 +83,19 @@
           (lambda ()
             (setq web-mode-disable-auto-pairing t)))
 
-(eval-after-load 'auto-complete
+(eval-after-load 'company
   '(progn
-     (require 'auto-complete-config)
-     (ac-config-default)
-     (define-key ac-completing-map (kbd "ESC") 'ac-stop)
-     (setq ac-delay 0.125
-           ac-auto-show-menu 0.25
-           ac-auto-start 3
-           ac-quick-help-delay 2.0
-           ac-ignore-case nil
-           ac-candidate-menu-min 2
-           ac-use-quick-help t
-           ac-limit 10
-           ac-disable-faces nil)
-
-     (setq-default ac-sources '(ac-source-abbrev
-                                ac-source-words-in-buffer
-                                ac-source-filename
-                                ac-source-imenu
-                                ac-source-dictionary
-                                ac-source-words-in-same-mode-buffers))))
+     (define-key company-active-map (kbd "RET") nil)
+     (define-key company-active-map (kbd "ESC") 'company-abort)
+     (setq company-idle-delay 0.125
+           company-minimum-prefix-length 1
+           company-require-match nil
+           company-transformers '(company-sort-by-occurrence)
+           company-dabbrev-ignore-case nil
+           company-dabbrev-downcase nil
+           company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
+                               company-preview-frontend
+                               company-echo-metadata-frontend))))
 
 (eval-after-load 'flycheck
   '(progn
@@ -114,74 +106,64 @@
      (setq flycheck-highlighting-mode nil
            flycheck-display-errors-function 'graphene--flycheck-display-errors-function)))
 
-;; Main hook to be run on entering de facto prog modes, enabling linum, autopair,
-;; autocomplete, plus setting binding newline key to newline-and-indent
+;; Main hook to be run on entering de facto prog modes, enabling linum, flycheck,
+;; and electric-indent
 (add-hook 'graphene-prog-mode-hook
           (lambda ()
             (when graphene-linum-auto
               (graphene-linum))
-            (when graphene-autocomplete-auto
-              (graphene-autocomplete))
-            (when graphene-autopair-auto
-              (graphene-autopair))
-            (when 'graphene-parens-auto
-                (graphene-parens))
-            (when 'graphene-errors-auto
+            (when graphene-errors-auto
               (graphene-errors))
-            (define-key (current-local-map) [remap newline] 'newline-and-indent)))
+            (electric-indent-mode 1)))
 
 (defun graphene-linum ()
   (linum-mode t))
 
 (defun graphene-autocomplete ()
-  (require 'auto-complete)
-  (auto-complete-mode t))
+  (require 'company)
+  (global-company-mode t))
 
 (defun graphene-autopair ()
   (require 'smartparens)
-  (smartparens-mode t))
+  (smartparens-global-mode t))
 
 (defun graphene-parens ()
   (show-paren-mode nil)
   (setq blink-matching-paren nil)
-  (show-smartparens-mode t)
+  (require 'smartparens)
+  (show-smartparens-global-mode t)
   (setq sp-show-pair-delay 0))
 
 (defun graphene-errors ()
   (require 'flycheck)
   (flycheck-mode))
 
-;; auto markdown(gfm)-mode
-(push '("\\.md\\'" . gfm-mode) auto-mode-alist)
-(push '("\\.markdown\\'" . gfm-mode) auto-mode-alist)
-(add-hook 'gfm-mode-hook (lambda () (auto-fill-mode t)))
-
 ;; auto json-mode
 (push '("\\.json\\'" . json-mode) auto-mode-alist)
-
-;; auto feature-mode
-(push '("\\.feature\\'" . feature-mode) auto-mode-alist)
-
-;; don't compile sass/scss on saving
-(setq scss-compile-at-save nil)
 
 ;; 2-space indent for CSS
 (setq css-indent-offset 2)
 
 ;; Default Ruby filetypes
 (dolist (regex
-         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$" "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"))
+         '("\\.watchr$" "\\.arb$" "\\.rake$" "\\.gemspec$" "\\.ru$" "Rakefile$"
+           "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"
+           "Berksfile$" "\\.builder$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
-;; Remap newline to newline-and-indent in ruby-mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (define-key (current-local-map) [remap newline] 'reindent-then-newline-and-indent)))
 
 ;; Attach de facto prog mode hooks after loading init file
 (add-hook 'after-init-hook
           (lambda ()
             (dolist (hook graphene-prog-mode-hooks)
               (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
+
+;; Global autocomplete, pairing, parens
+(when graphene-autocomplete-auto
+  (graphene-autocomplete))
+(when graphene-autopair-auto
+  (graphene-autopair))
+(when graphene-parens-auto
+  (graphene-parens))
 
 (provide 'graphene-editing)
