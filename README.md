@@ -18,6 +18,10 @@ Textmate or Sublime Text find their feet quickly, it is not an attempt
 to turn Emacs into a sparkly GUI editor or IDE. It is minimal,
 lightweight, and respectful of the history and character of Emacs.
 
+#News
+Graphene 0.8 replaces
+[Auto Complete](http://emacswiki.org/emacs/AutoComplete) with [Company](http://company-mode.github.io).
+
 ##Sensible defaults
 Among many other things, Graphene turns off the ugly Emacs startup
 screen, turns on line wrapping, turns off the scroll bars and tool
@@ -42,7 +46,7 @@ maximum, by using
 [Ido](http://emacswiki.org/emacs/InteractivelyDoThings) everywhere,
 the Ido-like [Smex](http://www.emacswiki.org/Smex) for running
 extended commands, and
-[Auto Complete](http://emacswiki.org/emacs/AutoComplete) for in-editor
+[Company](http://company-mode.github.io) for in-editor
 completion. These allow gradual discovery of Emacs' functionality, and
 gradual building of speed and fluidity.
 
@@ -58,7 +62,7 @@ decided on as best-in-class packages.
   [Sr-Speedbar](https://github.com/emacsmirror/sr-speedbar)
 - [Smartparens](https://github.com/Fuco1/smartparens)
   For auto-pairing
-- [Auto Complete](http://emacswiki.org/emacs/AutoComplete)
+- [Company](http://company-mode.github.io)
   For code completion
 - [Web-mode](https://github.com/fxbois/web-mode)
   For mixed-mode editing
@@ -159,7 +163,7 @@ reports. The latter can be raised via the Issues section.
 To contribute code, fork and clone the repo. If you want to be able to
 build the package, run `git submodule update --init`,
 which will install [el.mk](http://github.com/rdallasgray/el.mk), then
-[install Cask](https://github.com/rejeep/cask.el) and run `cask install`.
+[install Cask](https://github.com/cask/cask) and run `cask install`.
 
 When you've created your feature, make a pull request against master
 in this repo.
