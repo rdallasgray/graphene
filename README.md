@@ -20,14 +20,18 @@ lightweight, and respectful of the history and character of Emacs.
 
 #News
 Graphene 0.8 replaces
-[Auto Complete](http://emacswiki.org/emacs/AutoComplete) with [Company](http://company-mode.github.io).
+[Auto Complete](http://emacswiki.org/emacs/AutoComplete) with
+[Company](http://company-mode.github.io). It also removes the
+markdown-mode, scss-mode and feature-mode packages.
 
 ##Sensible defaults
-Among many other things, Graphene turns off the ugly Emacs startup
-screen, turns on line wrapping, turns off the scroll bars and tool
-bar (and menu bar on non-OS X systems), moves automatic backups into
-the temp directory -- generally clears the way of small annoyances and
-makes things look and work the way you'd expect.
+Among many other things, Graphene turns off the Emacs startup screen,
+turns on
+[line wrapping](http://www.emacswiki.org/emacs/VisualLineMode), turns
+off the scroll bars and tool bar (and menu bar on non-OS X systems),
+moves automatic backups into the temp directory -- generally clears
+the way of small annoyances and makes things look and work the way
+you'd expect.
 
 ##A clean look
 Graphene includes its own 'meta-theme' which works hard to unify the
@@ -44,9 +48,8 @@ At first Emacs can appear a little opaque; it is in fact a very
 discoverable environment, and Graphene tries to turn this up to
 maximum, by using
 [Ido](http://emacswiki.org/emacs/InteractivelyDoThings) everywhere,
-the Ido-like [Smex](http://www.emacswiki.org/Smex) for running
-extended commands, and
-[Company](http://company-mode.github.io) for in-editor
+[Smex](http://www.emacswiki.org/Smex) for running extended commands,
+and [Company](http://company-mode.github.io) for in-editor
 completion. These allow gradual discovery of Emacs' functionality, and
 gradual building of speed and fluidity.
 
@@ -72,12 +75,6 @@ decided on as best-in-class packages.
   For general completion
 - [Flycheck](https://github.com/flycheck/flycheck)
   For error checking
-
-And some modes which should probably be built-in:
-
-- [markdown-mode](https://github.com/defunkt/markdown-mode)
-- [feature-mode](https://github.com/michaelklishin/cucumber.el)
-- [scss-mode](https://github.com/antonj/scss-mode)
 
 ##Installation
 Graphene is available on [Melpa](http://melpa.milkbox.net).

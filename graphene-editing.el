@@ -138,19 +138,8 @@
   (require 'flycheck)
   (flycheck-mode))
 
-;; auto markdown(gfm)-mode
-(push '("\\.md\\'" . gfm-mode) auto-mode-alist)
-(push '("\\.markdown\\'" . gfm-mode) auto-mode-alist)
-(add-hook 'gfm-mode-hook (lambda () (auto-fill-mode t)))
-
 ;; auto json-mode
 (push '("\\.json\\'" . json-mode) auto-mode-alist)
-
-;; auto feature-mode
-(push '("\\.feature\\'" . feature-mode) auto-mode-alist)
-
-;; don't compile sass/scss on saving
-(setq scss-compile-at-save nil)
 
 ;; 2-space indent for CSS
 (setq css-indent-offset 2)
