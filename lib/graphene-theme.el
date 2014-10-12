@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.3
+;; Version: 0.8.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -138,6 +138,60 @@
    ((t (:background unspecified
                     :foreground unspecified
                     :inherit ac-selection-face))))
+ `(company-preview
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit file-name-shadow))))
+ `(company-preview-common
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-preview))))
+ `(company-preview-search
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-preview
+                    :weight bold))))
+ `(company-tooltip
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit linum
+                    :height ,graphene-font-height))))
+ `(company-tooltip-common
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit linum
+                    :weight bold
+                    :height ,graphene-font-height))))
+ `(company-tooltip-selection
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit font-lock-variable-name-face
+                    :inverse-video t))))
+ `(company-tooltip-common-selection
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit font-lock-variable-name-face
+                    :weight bold
+                    :inverse-video t))))
+ `(company-tooltip-mouse
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit region))))
+ `(company-tooltip-annotation
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit font-lock-function-name-face))))
+ `(company-echo-common
+   ((t (:background unspecified
+                    :foreground unspecified
+                    :inherit company-echo
+                    :weight bold))))
+ `(company-scrollbar-fg
+   ((t (:background unspecified
+                    :inherit popup-scroll-bar-foreground-face))))
+ `(company-scrollbar-bg
+   ((t (:background unspecified
+                    :inherit popup-scroll-bar-background-face))))
  `(flymake-warnline
    ((t (:background unspecified
                     :foreground unspecified

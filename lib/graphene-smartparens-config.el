@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.3
+;; Version: 0.8.0
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -55,6 +55,7 @@
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-(push 'coffee-mode sp-autoescape-string-quote-if-empty)
+(dolist (mode '(coffee-mode shell-mode))
+  (add-to-list 'sp-autoescape-string-quote-if-empty mode))
 
 (provide 'graphene-smartparens-config)

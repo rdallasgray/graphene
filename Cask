@@ -2,7 +2,7 @@
 
 (package "graphene" "@VERSION" "Friendly Emacs defaults")
 
-(depends-on "auto-complete" "20140414")
+(depends-on "company" "20140517")
 (depends-on "flycheck" "20140422")
 (depends-on "smartparens" "20140427")
 (depends-on "web-mode" "20140505")
@@ -10,6 +10,3 @@
 (depends-on "sr-speedbar" "20140505")
 (depends-on "project-persist" "20131030")
 (depends-on "exec-path-from-shell" "20140219")
-(depends-on "scss-mode" "20130105")
-(depends-on "markdown-mode" "20131210")
-(depends-on "feature-mode" "20140416")

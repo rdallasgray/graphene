@@ -74,7 +74,6 @@
 (defun graphene-set-geometry ()
   "Set the default frame geometry using the values loaded from graphene-geometry-file."
   (let ((geom (graphene-load-frame-geometry)))
-    (message "geometry: %s" geom)
     (let ((f-width (nth 0 geom))
           (f-height (nth 1 geom))
           (f-top (nth 2 geom))

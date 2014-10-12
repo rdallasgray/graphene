@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.7.3
+;; Version: 0.8.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -74,7 +74,6 @@
 (defun graphene-set-geometry ()
   "Set the default frame geometry using the values loaded from graphene-geometry-file."
   (let ((geom (graphene-load-frame-geometry)))
-    (message "geometry: %s" geom)
     (let ((f-width (nth 0 geom))
           (f-height (nth 1 geom))
           (f-top (nth 2 geom))

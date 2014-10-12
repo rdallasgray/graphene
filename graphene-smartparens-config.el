@@ -55,6 +55,7 @@
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
 
-(push 'coffee-mode sp-autoescape-string-quote-if-empty)
+(dolist (mode '(coffee-mode shell-mode))
+  (add-to-list 'sp-autoescape-string-quote-if-empty mode))
 
 (provide 'graphene-smartparens-config)
