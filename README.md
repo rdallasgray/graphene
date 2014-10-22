@@ -1,5 +1,4 @@
 [![Melpa Status](http://melpa.milkbox.net/packages/graphene-badge.svg)](http://melpa.milkbox.net/#/graphene)
-[![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/graphene-badge.svg)](http://melpa-stable.milkbox.net/#/graphene)
 
 
 #Graphene
