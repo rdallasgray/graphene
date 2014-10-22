@@ -1,3 +1,7 @@
+[![Melpa Status](http://melpa.milkbox.net/packages/graphene-badge.svg)](http://melpa.milkbox.net/#/graphene)
+[![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/graphene-badge.svg)](http://melpa-stable.milkbox.net/#/graphene)
+
+
 #Graphene
 Graphene is a 'starter kit' for Emacs, in the vein of
 [Prelude](https://github.com/bbatsov/prelude) or
