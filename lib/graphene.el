@@ -4,13 +4,16 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.8.0
+;; Version: 0.8.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
+;; [![Melpa Status](http://melpa.milkbox.net/packages/graphene-badge.svg)](http://melpa.milkbox.net/#/graphene)
+;; 
+;; 
 ;; #Graphene
 ;; Graphene is a 'starter kit' for Emacs, in the vein of
 ;; [Prelude](https://github.com/bbatsov/prelude) or
