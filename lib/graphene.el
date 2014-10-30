@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-;; [![Melpa Status](http://melpa.milkbox.net/packages/graphene-badge.svg)](http://melpa.milkbox.net/#/graphene)
+;; [![Melpa Status](http://melpa.org/packages/graphene-badge.svg)](http://melpa.org/#/graphene)
 ;; 
 ;; 
 ;; #Graphene
@@ -93,7 +93,7 @@
 ;;   For error checking
 ;; 
 ;; ##Installation
-;; Graphene is available on [Melpa](http://melpa.milkbox.net).
+;; Graphene is available on [Melpa](http://melpa.org).
 ;; 
 ;; If you don't already have your Emacs set up to use the package
 ;; installation system, let me gently point you to
@@ -110,7 +110,7 @@
 ;; (require 'package)
 ;; 
 ;; ;; Add the Melpa repository to the list of package sources
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 ;; 
 ;; ;; Initialise the package system.
 ;; (package-initialize)
