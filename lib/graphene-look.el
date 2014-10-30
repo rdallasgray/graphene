@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.8.0
+;; Version: 0.8.1
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -44,11 +44,9 @@
 
 (setq redisplay-dont-pause t)
 
-(scroll-bar-mode -1)
-
-(tool-bar-mode -1)
-
-(blink-cursor-mode -1)
+(mapc (lambda (mode)
+        (when (fboundp mode) (funcall mode -1)))
+      '(scroll-bar-mode tool-bar-mode blink-cursor-mode))
 
 (defvar graphene-geometry-file
   (expand-file-name ".graphene-geometry" user-emacs-directory)
