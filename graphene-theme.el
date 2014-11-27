@@ -43,6 +43,16 @@
 
 (custom-theme-set-faces
  'graphene
+ `(pe/directory-face
+   ((t (:foreground unspecified
+                    :background unspecified
+                    :inherit variable-pitch
+                    :weight bold
+                    :height ,graphene-small-font-height))))
+ `(pe/file-face
+   ((t (:foreground unspecified
+                    :inherit pe/directory-face
+                    :weight normal))))
  `(speedbar-directory-face
    ((t (:foreground unspecified
                     :background unspecified

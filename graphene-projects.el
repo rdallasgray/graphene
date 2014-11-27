@@ -37,7 +37,7 @@
 ;;; Code:
 
 (require 'graphene-helper-functions)
-(require 'graphene-speedbar)
+;; (require 'graphene-speedbar)
 (require 'project-persist)
 
 (project-persist-mode t)
@@ -46,11 +46,9 @@
   "Change the default directory and update speedbar if used."
   (setq default-directory dir)
   (when graphene-speedbar-auto
-    (require 'sr-speedbar)
-    (sr-speedbar-open)
-    (speedbar-update-contents)
-    (when graphene-project-pin-speedbar
-      (graphene-pin-speedbar dir))))
+    (require 'project-explorer)
+    (project-explorer-open)
+    ))
 
 (defun graphene-load-project-desktop ()
   "Load the project's desktop if available."
@@ -59,20 +57,14 @@
     (message (format "Loading project desktop from %s" default-directory))
     (desktop-read project-persist-current-project-settings-dir)))
 
-(defun graphene-maybe-unpin-speedbar ()
-  "Try to unpin the speedbar if using it."
-  (when graphene-speedbar-auto
-    (ignore-errors (graphene-unpin-speedbar))))
-
 (add-hook 'project-persist-before-load-hook
           (lambda ()
-            (graphene-maybe-unpin-speedbar)
             (kill-all-buffers)))
 
 (add-hook 'project-persist-after-close-hook
           (lambda ()
             (kill-all-buffers)
-            (graphene-maybe-unpin-speedbar)))
+            ))
 
 (add-hook 'project-persist-after-load-hook
           (lambda ()

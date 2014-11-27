@@ -90,7 +90,9 @@
   (unless graphene-variable-pitch-font
     (setq graphene-variable-pitch-font (face-font 'variable-pitch)))
   (unless graphene-fixed-pitch-font
-    (setq graphene-fixed-pitch-font (face-font 'fixed-pitch))))
+    (setq graphene-fixed-pitch-font (face-font 'fixed-pitch)))
+  (unless graphene-line-spacing
+    (setq graphene-line-spacing 2)))
 
 (defun graphene-look-startup-after-init ()
   "Load defaults for the overall Graphene look -- to be called after loading the init file so as to pick up custom settings."
@@ -98,7 +100,7 @@
       (progn
         (graphene-set-geometry)
         (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry)
-        (setq-default line-spacing 2)
+        (setq-default line-spacing graphene-line-spacing)
         (graphene-set-fonts)
         (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
         (set-face-font 'default graphene-default-font)
