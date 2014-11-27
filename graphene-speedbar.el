@@ -38,12 +38,12 @@
   '(progn
      (setq pe/omit-regex "^\\(\\.\\)\\|\\(flycheck_\\)\\|\\(#\\)")
 
-     ;; Refresh the speedbar when relevant hooks are run.
+     ;; Refresh the drawer when relevant hooks are run.
      (defvar graphene-drawer-refresh-hooks)
      (defvar graphene-drawer-refresh-hooks-added nil
        "Whether hooks have been added to refresh the drawer.")
 
-     (add-hook 'project-explorer-mode-hook
+     (add-hook 'pe/before-tree-lookup-hook
                '(lambda ()
                   (hl-line-mode 1)
                   (visual-line-mode -1)
@@ -54,11 +54,10 @@
                   (when (not graphene-drawer-refresh-hooks-added)
                     (lambda ()
                       (mapc (lambda (hook)
-                              (add-hook hook 'speedbar-refresh))
+                              (add-hook hook 'pe/revert-buffer))
                             graphene-drawer-refresh-hooks)
                       (setq graphene-drawer-refresh-hooks-added t)))
                   (define-key project-explorer-mode-map [right] 'pe/tab)
-                  (define-key project-explorer-mode-map [left] 'pe/backtab)
-                  ))))
+                  (define-key project-explorer-mode-map [left] 'pe/backtab)))))
 
 (provide 'graphene-speedbar)
