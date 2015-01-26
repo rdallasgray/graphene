@@ -1,10 +1,10 @@
 ;;; graphene-theme.el --- The Graphene theme -- some simple additions to any theme to improve the look of speedbar, linum, etc.
 ;;
-;; Copyright (c) 2014 Robert Dallas Gray
+;; Copyright (c) 2015 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.8.1
+;; Version: 0.8.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -64,6 +64,7 @@
  `(speedbar-button-face
    ((t (:foreground unspecified
                     :background unspecified
+                    :box nil
                     :inherit file-name-shadow))))
  `(speedbar-tag-face
    ((t (:background unspecified

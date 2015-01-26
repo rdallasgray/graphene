@@ -1,4 +1,4 @@
-(define-package "graphene" "0.8.1" "Friendly Emacs defaults"
+(define-package "graphene" "0.8.2" "Friendly Emacs defaults"
   '((exec-path-from-shell "20140219")
     (project-persist "20131030")
     (sr-speedbar "20140505")

@@ -64,6 +64,7 @@
  `(speedbar-button-face
    ((t (:foreground unspecified
                     :background unspecified
+                    :box nil
                     :inherit file-name-shadow))))
  `(speedbar-tag-face
    ((t (:background unspecified
