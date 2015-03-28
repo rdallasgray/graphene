@@ -33,14 +33,35 @@
 
 ;;; Code:
 
-(require 'graphene-speedbar)
+(defcustom graphene-default-font nil
+  "The universal default font."
+  :type 'string
+  :group 'graphene)
+
+(defcustom graphene-variable-pitch-font nil
+  "The font to use in the variable-pitch face."
+  :type 'string
+  :group 'graphene)
+
+(defcustom graphene-fixed-pitch-font nil
+  "The font to use in the fixed-pitch face."
+  :type 'string
+  :group 'graphene)
+
+(let ((sys
+       (cond ((eq system-type 'darwin) "osx")
+             ((eq system-type 'gnu/linux) "linux")
+             ((eq system-type 'windows-nt) "windows")
+             (t "other"))))
+  (require (intern (format "graphene-%s-defaults" sys))))
+
 
 ;; Work around Emacs frame sizing bug when line-spacing
 ;; is non-zero, which impacts e.g. grizzl.
 (add-hook 'minibuffer-setup-hook
           (lambda ()
             (set (make-local-variable 'line-spacing) 0)
-            (setq resize-mini-windows (featurep 'ido-vertical-mode))))
+            (setq resize-mini-windows (-any? 'featurep '(ido-vertical-mode ivy)))))
 
 (setq redisplay-dont-pause t)
 

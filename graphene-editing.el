@@ -33,20 +33,182 @@
 
 ;;; Code:
 
+
+(defvar graphene-prog-mode-hook nil
+  "A hook to be run on entering a de facto prog mode.")
+
+(defcustom graphene-prog-mode-hooks
+  '(prog-mode-hook
+    csharp-mode-hook
+    coffee-mode-hook
+    css-mode-hook
+    sgml-mode-hook
+    html-mode-hook)
+  "List of hooks to be treated as prog-mode."
+  :type 'sexp
+  :group 'graphene)
+
+
+;;; indenting
+
+(defcustom graphene-indent-auto t
+  "Whether graphene should auto-indent code in prog modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defun graphene-indent ()
+  (electric-indent-mode t))
+
+
+;;; line numbering
+
+(defcustom graphene-linum-auto t
+  "Whether graphene should enable line numbers with prog-modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defun graphene-linum ()
+  (linum-mode t))
+
+(setq linum-format " %4d ")
+
+
+;;; auto-pairing
+
+(defcustom graphene-pairs-auto 'global
+  "Whether graphene should enable pair matching with prog-modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defcustom graphene-show-pairs-auto t
+  "Whether graphene should show matching pairs with prog-modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defun graphene-pairs ()
+  (require 'smartparens)
+  (smartparens-mode t))
+
+(if (eq graphene-pairs-auto 'global)
+    (require 'smartparens)
+    (smartparens-global-mode t))
+
+(defun graphene-show-pairs (mode)
+  (show-paren-mode nil)
+  (setq blink-matching-paren nil)
+  (require 'smartparens)
+  (show-smartparens-mode)
+  (setq sp-show-pair-delay 0))
+
+(eval-after-load 'smartparens
+  '(progn
+     (require 'smartparens-config)
+     (require 'graphene-smartparens-config)
+     (setq sp-highlight-pair-overlay nil)))
+
+
+;;; completion
+
+(defcustom graphene-completion-auto 'global
+  "Whether graphene should enable autocomplete with prog-modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defun graphene-completion ()
+  (require 'company)
+  (company-mode t))
+
+(if (eq graphene-completion-auto 'global)
+    (require 'company)
+    (global-company-mode t))
+
+(eval-after-load 'company
+  '(progn
+     (define-key company-active-map (kbd "RET") nil)
+     (define-key company-active-map (kbd "ESC") 'company-abort)
+     (setq company-idle-delay 0.125
+           company-minimum-prefix-length 1
+           company-require-match nil
+           company-transformers '(company-sort-by-occurrence)
+           company-dabbrev-ignore-case nil
+           company-dabbrev-downcase nil
+           company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
+                               company-preview-frontend
+                               company-echo-metadata-frontend))))
+
+
+;;; error checking
+
+(defcustom graphene-errors-auto t
+  "Whether graphene should highlight errors with prog-modes."
+  :type 'sexp
+  :group 'graphene)
+
+(defun graphene-errors ()
+  (require 'flycheck)
+  (flycheck-mode))
+
+(eval-after-load 'flycheck
+  '(progn
+     (defun graphene--flycheck-display-errors-function (errors)
+       (mapc (lambda (err)
+               (message "FlyC: %s" (flycheck-error-message err)) (sit-for 1))
+             errors))
+     (setq flycheck-highlighting-mode nil
+           flycheck-display-errors-function 'graphene--flycheck-display-errors-function)))
+
+
+;;; template editing
+
+(require 'web-mode)
+
+(push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
+
+(dolist (engine-regexp web-mode-engine-file-regexps)
+  (when (cdr engine-regexp)
+    (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (setq web-mode-disable-auto-pairing t)))
+
+
+;; Main hook to be run on entering de facto prog modes, enabling linum, flycheck,
+;; and electric-indent
+(add-hook 'graphene-prog-mode-hook
+          (lambda ()
+            (when graphene-indent-auto
+              (graphene-indent))
+            (when graphene-linum-auto
+              (graphene-linum))
+            (when graphene-pairs-auto
+              (graphene-pairs))
+            (when graphene-show-pairs-auto
+              (graphene-pairs))
+            (when graphene-completion-auto
+              (graphene-completion))
+            (when graphene-errors-auto
+              (graphene-errors))))
+
+
+;; Attach de facto prog mode hooks after loading init file
+(add-hook 'after-init-hook
+          (lambda ()
+            (dolist (hook graphene-prog-mode-hooks)
+              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
+
+
 ;; Delete marked text on typing
 (delete-selection-mode t)
 
 ;; Soft-wrap lines
 (global-visual-line-mode t)
 
-;; Linum format to avoid graphics glitches in fringe
-(setq linum-format " %4d ")
-
 ;; Don't use tabs for indent; replace tabs with two spaces.
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; Nicer scrolling with mouse wheel/trackpad.
+;; Better scrolling with mouse wheel/trackpad.
 (unless (and (boundp 'mac-mouse-wheel-smooth-scroll) mac-mouse-wheel-smooth-scroll)
   (global-set-key [wheel-down] (lambda () (interactive) (scroll-up-command 1)))
   (global-set-key [wheel-up] (lambda () (interactive) (scroll-down-command 1)))
@@ -65,79 +227,6 @@
 ;; apply syntax highlighting to all buffers
 (global-font-lock-mode t)
 
-(eval-after-load 'smartparens
-  '(progn
-     (require 'smartparens-config)
-     (require 'graphene-smartparens-config)
-     (setq sp-highlight-pair-overlay nil)))
-
-(require 'web-mode)
-
-(push '("php" . "\\.phtml\\'") web-mode-engine-file-regexps)
-
-(dolist (engine-regexp web-mode-engine-file-regexps)
-  (when (cdr engine-regexp)
-    (add-to-list 'auto-mode-alist `(,(cdr engine-regexp) . web-mode))))
-
-(add-hook 'web-mode-hook
-          (lambda ()
-            (setq web-mode-disable-auto-pairing t)))
-
-(eval-after-load 'company
-  '(progn
-     (define-key company-active-map (kbd "RET") nil)
-     (define-key company-active-map (kbd "ESC") 'company-abort)
-     (setq company-idle-delay 0.125
-           company-minimum-prefix-length 1
-           company-require-match nil
-           company-transformers '(company-sort-by-occurrence)
-           company-dabbrev-ignore-case nil
-           company-dabbrev-downcase nil
-           company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
-                               company-preview-frontend
-                               company-echo-metadata-frontend))))
-
-(eval-after-load 'flycheck
-  '(progn
-     (defun graphene--flycheck-display-errors-function (errors)
-       (mapc (lambda (err)
-               (message "FlyC: %s" (flycheck-error-message err)) (sit-for 1))
-             errors))
-     (setq flycheck-highlighting-mode nil
-           flycheck-display-errors-function 'graphene--flycheck-display-errors-function)))
-
-;; Main hook to be run on entering de facto prog modes, enabling linum, flycheck,
-;; and electric-indent
-(add-hook 'graphene-prog-mode-hook
-          (lambda ()
-            (when graphene-linum-auto
-              (graphene-linum))
-            (when graphene-errors-auto
-              (graphene-errors))
-            (electric-indent-mode 1)))
-
-(defun graphene-linum ()
-  (linum-mode t))
-
-(defun graphene-autocomplete ()
-  (require 'company)
-  (global-company-mode t))
-
-(defun graphene-autopair ()
-  (require 'smartparens)
-  (smartparens-global-mode t))
-
-(defun graphene-parens ()
-  (show-paren-mode nil)
-  (setq blink-matching-paren nil)
-  (require 'smartparens)
-  (show-smartparens-global-mode t)
-  (setq sp-show-pair-delay 0))
-
-(defun graphene-errors ()
-  (require 'flycheck)
-  (flycheck-mode))
-
 ;; auto json-mode
 (push '("\\.json\\'" . json-mode) auto-mode-alist)
 
@@ -150,20 +239,5 @@
            "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"
            "Berksfile$" "\\.builder$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
-
-
-;; Attach de facto prog mode hooks after loading init file
-(add-hook 'after-init-hook
-          (lambda ()
-            (dolist (hook graphene-prog-mode-hooks)
-              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
-
-;; Global autocomplete, pairing, parens
-(when graphene-autocomplete-auto
-  (graphene-autocomplete))
-(when graphene-autopair-auto
-  (graphene-autopair))
-(when graphene-parens-auto
-  (graphene-parens))
 
 (provide 'graphene-editing)
