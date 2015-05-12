@@ -48,6 +48,28 @@
   :type 'sexp
   :group 'graphene)
 
+;; Main hook to be run on entering de facto prog modes
+(add-hook 'graphene-prog-mode-hook
+          (lambda ()
+            (when graphene-indent-auto
+              (graphene-indent))
+            (when graphene-linum-auto
+              (graphene-linum))
+            (when graphene-pairs-auto
+              (graphene-pairs))
+            (when graphene-show-pairs-auto
+              (graphene-pairs))
+            (when graphene-completion-auto
+              (graphene-completion))
+            (when graphene-errors-auto
+              (graphene-errors))))
+
+;; Attach de facto prog mode hooks after loading init file
+(add-hook 'after-init-hook
+          (lambda ()
+            (dolist (hook graphene-prog-mode-hooks)
+              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
+
 
 ;;; indenting
 
@@ -171,31 +193,6 @@
 (add-hook 'web-mode-hook
           (lambda ()
             (setq web-mode-disable-auto-pairing t)))
-
-
-;; Main hook to be run on entering de facto prog modes, enabling linum, flycheck,
-;; and electric-indent
-(add-hook 'graphene-prog-mode-hook
-          (lambda ()
-            (when graphene-indent-auto
-              (graphene-indent))
-            (when graphene-linum-auto
-              (graphene-linum))
-            (when graphene-pairs-auto
-              (graphene-pairs))
-            (when graphene-show-pairs-auto
-              (graphene-pairs))
-            (when graphene-completion-auto
-              (graphene-completion))
-            (when graphene-errors-auto
-              (graphene-errors))))
-
-
-;; Attach de facto prog mode hooks after loading init file
-(add-hook 'after-init-hook
-          (lambda ()
-            (dolist (hook graphene-prog-mode-hooks)
-              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
 
 ;; Delete marked text on typing

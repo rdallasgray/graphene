@@ -40,7 +40,6 @@
 (require 'graphene-editing)
 (require 'graphene-env)
 (require 'graphene-projects)
-(require 'graphene-keys)
 (require 'graphene-look)
 
 (provide 'graphene)
