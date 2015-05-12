@@ -34,31 +34,48 @@
 
 ;;; Code:
 
+
+;; Use smex to complete interactive commands
 (require 'smex)
 (smex-initialize)
 
-(setq inhibit-startup-message t
-      color-theme-is-global t
-      uniquify-buffer-name-style 'forward
-      backup-directory-alist `((".*" . ,temporary-file-directory))
-      auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
-      ido-enable-flex-matching t
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+;; Use ido for general completion
+(ido-mode 1)
+(put 'ido-complete 'disabled nil)
+(put 'ido-exit-minibuffer 'disabled nil)
+(setq ido-enable-flex-matching t
       ido-auto-merge-work-directories-length nil
       ido-create-new-buffer 'always
       ido-use-filename-at-point 'guess
       ido-everywhere t)
 
-(fset 'yes-or-no-p 'y-or-n-p)
 
+;; Make buffer names unique
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+
+;; Don't show the startup message
+(setq inhibit-startup-message t)
+
+
+;; Save backup files in the temporary directory
+(setq backup-directory-alist `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+
+;; Shorten yes/no answers to y/n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+
+;; Automatically update buffers when files change
 (global-auto-revert-mode t)
 
-(ido-mode 1)
 
-(put 'ido-complete 'disabled nil)
-(put 'ido-exit-minibuffer 'disabled nil)
+;; Enable 'power user' features
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

@@ -57,6 +57,7 @@
 
 (project-persist-mode t)
 (project-persist-drawer-mode graphene-project-drawer-auto)
+(global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
 
 (defun graphene-load-project-desktop ()
   "Load the project's desktop if available."
