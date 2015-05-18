@@ -58,7 +58,7 @@
             (when graphene-pairs-auto
               (graphene-pairs))
             (when graphene-show-pairs-auto
-              (graphene-pairs))
+              (graphene-show-pairs))
             (when graphene-completion-auto
               (graphene-completion))
             (when graphene-errors-auto
@@ -115,7 +115,7 @@
     (require 'smartparens)
     (smartparens-global-mode t))
 
-(defun graphene-show-pairs (mode)
+(defun graphene-show-pairs ()
   (show-paren-mode nil)
   (setq blink-matching-paren nil)
   (require 'smartparens)
