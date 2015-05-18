@@ -49,13 +49,14 @@
 (require 'graphene-helper-functions)
 (require 'project-persist)
 
+(project-persist-mode t)
+
 ;; See graphene-project-drawer-auto/drawer-adaptor
-(add-to-list 'load-path "~/Documents/Code/project-persist-drawer-adaptor-sr-speedbar/")
+(add-to-list 'load-path "~/Documents/Code/ppd-sr-speedbar/")
 (add-to-list 'load-path "~/Documents/Code/project-persist-drawer/")
-(require 'project-persist-drawer-adaptor-sr-speedbar)
+(require 'ppd-sr-speedbar)
 (require 'project-persist-drawer)
 
-(project-persist-mode t)
 (project-persist-drawer-mode graphene-project-drawer-auto)
 (global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
 
