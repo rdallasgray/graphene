@@ -41,7 +41,7 @@
   :type 'boolean
   :group 'graphene)
 
-(defcustom graphene-project-drawer-adaptor 'sr-speedbar
+(defcustom graphene-project-drawer-adaptor 'ppd-sr-speedbar
   "The adaptor graphene should use to show the project persist drawer."
   :type 'symbol
   :group 'graphene)
@@ -51,11 +51,7 @@
 
 (project-persist-mode t)
 
-;; See graphene-project-drawer-auto/drawer-adaptor
-(add-to-list 'load-path "~/Documents/Code/ppd-sr-speedbar/")
-(add-to-list 'load-path "~/Documents/Code/project-persist-drawer/")
-(require 'ppd-sr-speedbar)
-(require 'project-persist-drawer)
+(require graphene-project-drawer-adaptor)
 
 (project-persist-drawer-mode graphene-project-drawer-auto)
 (global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
