@@ -33,10 +33,6 @@
 
 ;;; Code:
 
-(when (window-system)
-  (require 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
-
 (unless graphene-default-font
   (setq graphene-default-font "DejaVu Sans Mono-10"))
 (unless graphene-variable-pitch-font
