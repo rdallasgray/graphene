@@ -8,5 +8,5 @@
 (depends-on "web-mode" "20140505")
 (depends-on "smex" "20140425")
 (depends-on "sr-speedbar" "20140505")
-(depends-on "project-persist" "20131030")
+(depends-on "ppd-sr-speedbar")
 (depends-on "exec-path-from-shell" "20140219")
