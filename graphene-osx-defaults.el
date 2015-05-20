@@ -42,8 +42,8 @@
 
 (setq delete-by-moving-to-trash t)
 
-;; (when (memq window-system '(mac ns))
-;;   (require 'exec-path-from-shell)
-;;   (exec-path-from-shell-initialize))
+(when (memq window-system '(mac ns))
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 (provide 'graphene-osx-defaults)
