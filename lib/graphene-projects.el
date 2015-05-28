@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.8.2
+;; Version: 0.9.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -36,21 +36,25 @@
 
 ;;; Code:
 
+(defcustom graphene-project-drawer-auto t
+  "Whether graphene should open a project drawer when a project is loaded."
+  :type 'boolean
+  :group 'graphene)
+
+(defcustom graphene-project-drawer-adaptor 'ppd-sr-speedbar
+  "The adaptor graphene should use to show the project persist drawer."
+  :type 'symbol
+  :group 'graphene)
+
 (require 'graphene-helper-functions)
-(require 'graphene-speedbar)
 (require 'project-persist)
 
 (project-persist-mode t)
 
-(defun graphene-set-project-root (dir)
-  "Change the default directory and update speedbar if used."
-  (setq default-directory dir)
-  (when graphene-speedbar-auto
-    (require 'sr-speedbar)
-    (sr-speedbar-open)
-    (speedbar-update-contents)
-    (when graphene-project-pin-speedbar
-      (graphene-pin-speedbar dir))))
+(require graphene-project-drawer-adaptor)
+
+(project-persist-drawer-mode graphene-project-drawer-auto)
+(global-set-key (kbd "C-c s") 'sr-speedbar-select-window)
 
 (defun graphene-load-project-desktop ()
   "Load the project's desktop if available."
@@ -59,25 +63,9 @@
     (message (format "Loading project desktop from %s" default-directory))
     (desktop-read project-persist-current-project-settings-dir)))
 
-(defun graphene-maybe-unpin-speedbar ()
-  "Try to unpin the speedbar if using it."
-  (when graphene-speedbar-auto
-    (ignore-errors (graphene-unpin-speedbar))))
-
-(add-hook 'project-persist-before-load-hook
-          (lambda ()
-            (graphene-maybe-unpin-speedbar)
-            (kill-all-buffers)))
-
-(add-hook 'project-persist-after-close-hook
-          (lambda ()
-            (kill-all-buffers)
-            (graphene-maybe-unpin-speedbar)))
-
-(add-hook 'project-persist-after-load-hook
-          (lambda ()
-            (graphene-load-project-desktop)
-            (graphene-set-project-root project-persist-current-project-root-dir)))
+(add-hook 'project-persist-before-load-hook 'kill-all-buffers)
+(add-hook 'project-persist-after-close-hook 'kill-all-buffers)
+(add-hook 'project-persist-after-load-hook 'graphene-load-project-desktop)
 
 (add-hook 'project-persist-after-save-hook
           (lambda ()

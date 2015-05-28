@@ -1,9 +1,10 @@
-(define-package "graphene" "0.8.2" "Friendly Emacs defaults"
-  '((exec-path-from-shell "20140219")
-    (project-persist "20131030")
+(define-package "graphene" "0.9.0" "Friendly Emacs defaults"
+  '((dash "2.10.0")
+    (exec-path-from-shell "1.9")
+    (ppd-sr-speedbar "0.0.4")
     (sr-speedbar "20140505")
-    (smex "20140425")
-    (web-mode "20140505")
-    (smartparens "20140427")
-    (flycheck "20140422")
-    (company "20140517")))
+    (smex "3.0")
+    (web-mode "11.2")
+    (smartparens "1.6.3")
+    (flycheck "0.23")
+    (company "0.8.12")))

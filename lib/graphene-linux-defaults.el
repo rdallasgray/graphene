@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.8.2
+;; Version: 0.9.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -32,10 +32,6 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
-
-(when (window-system)
-  (require 'exec-path-from-shell)
-  (exec-path-from-shell-initialize))
 
 (unless graphene-default-font
   (setq graphene-default-font "DejaVu Sans Mono-10"))
