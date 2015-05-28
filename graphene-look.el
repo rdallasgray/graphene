@@ -57,11 +57,19 @@
 
 
 ;; Work around Emacs frame sizing bug when line-spacing
-;; is non-zero, which impacts e.g. grizzl.
+;; is non-zero, which impacts e.g. grizzl, and allow resizing when
+;; vertical modes are enabled or user has customized graphene-resize-minibuffer
+(defcustom graphene-resize-minibuffer nil
+  "Whether the minibuffer should be resizable."
+  :type 'bool
+  :group 'graphene)
+
 (add-hook 'minibuffer-setup-hook
           (lambda ()
             (set (make-local-variable 'line-spacing) 0)
-            (setq resize-mini-windows (-any? 'featurep '(ido-vertical-mode ivy)))))
+            (setq resize-mini-windows (or (-any? 'featurep
+                                                 '(ido-vertical-mode ivy grizzl))
+                                          graphene-resize-minibuffer))))
 
 (setq redisplay-dont-pause t)
 
