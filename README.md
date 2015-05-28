@@ -22,10 +22,9 @@ to turn Emacs into a sparkly GUI editor or IDE. It is minimal,
 lightweight, and respectful of the history and character of Emacs.
 
 #News
-Graphene 0.8 replaces
-[Auto Complete](http://emacswiki.org/emacs/AutoComplete) with
-[Company](http://company-mode.github.io). It also removes the
-markdown-mode, scss-mode and feature-mode packages.
+Graphene 0.9 depends on [project-persist-drawer](https://github.com/rdallasgray/project-persist-drawer) and [ppd-sr-speedbar](https://github.com/rdallasgray/ppd-sr-speedbar) to hook a drawer into project activity.
+
+Custom variables are extended and refined -- see the relevant info documentation in the `graphene` group.
 
 ##Sensible defaults
 Among many other things, Graphene turns off the Emacs startup screen,
