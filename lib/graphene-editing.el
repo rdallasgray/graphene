@@ -122,7 +122,7 @@
   (show-smartparens-mode)
   (setq sp-show-pair-delay 0))
 
-(eval-after-load 'smartparens
+(with-eval-after-load 'smartparens
   '(progn
      (require 'smartparens-config)
      (require 'graphene-smartparens-config)
@@ -144,7 +144,7 @@
     (require 'company)
     (global-company-mode t))
 
-(eval-after-load 'company
+(with-eval-after-load 'company
   '(progn
      (define-key company-active-map (kbd "RET") nil)
      (define-key company-active-map (kbd "ESC") 'company-abort)
@@ -170,7 +170,7 @@
   (require 'flycheck)
   (flycheck-mode))
 
-(eval-after-load 'flycheck
+(with-eval-after-load 'flycheck
   '(progn
      (defun graphene--flycheck-display-errors-function (errors)
        (mapc (lambda (err)
