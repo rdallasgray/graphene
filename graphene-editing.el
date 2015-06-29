@@ -111,9 +111,9 @@
   (require 'smartparens)
   (smartparens-mode t))
 
-(if (eq graphene-pairs-auto 'global)
-    (require 'smartparens)
-    (smartparens-global-mode t))
+(when (eq graphene-pairs-auto 'global)
+  (require 'smartparens)
+  (smartparens-global-mode t))
 
 (defun graphene-show-pairs ()
   (show-paren-mode nil)
@@ -140,14 +140,13 @@
   (require 'company)
   (company-mode t))
 
-(if (eq graphene-completion-auto 'global)
-    (require 'company)
-    (global-company-mode t))
+(when (eq graphene-completion-auto 'global)
+  (require 'company)
+  (global-company-mode t))
 
 (eval-after-load 'company
   '(progn
      (define-key company-active-map (kbd "RET") nil)
-     (define-key company-active-map (kbd "ESC") 'company-abort)
      (setq company-idle-delay 0.125
            company-minimum-prefix-length 1
            company-require-match nil
