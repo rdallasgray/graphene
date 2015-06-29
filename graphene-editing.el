@@ -112,8 +112,8 @@
   (smartparens-mode t))
 
 (when (eq graphene-pairs-auto 'global)
-    (require 'smartparens)
-    (smartparens-global-mode t))
+  (require 'smartparens)
+  (smartparens-global-mode t))
 
 (defun graphene-show-pairs ()
   (show-paren-mode nil)
