@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.1
+;; Version: 0.9.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -66,10 +66,17 @@
 
 (add-hook 'minibuffer-setup-hook
           (lambda ()
-            (set (make-local-variable 'line-spacing) 0)
-            (setq resize-mini-windows (or (-any? 'featurep
-                                                 '(ido-vertical-mode ivy grizzl))
-                                          graphene-resize-minibuffer))))
+            (setq resize-mini-windows (or (-any? 'featurep '(ivy grizzl))
+                                          graphene-resize-minibuffer))
+            (when resize-mini-windows
+              (set (make-local-variable 'line-spacing) 0))))
+
+(add-hook 'ido-minibuffer-setup-hook
+          (lambda ()
+            (setq resize-mini-windows (or (featurep 'ido-vertical-mode)
+                                          graphene-resize-minibuffer))
+            (when resize-mini-windows
+              (set (make-local-variable 'line-spacing) 0))))
 
 (setq redisplay-dont-pause t)
 

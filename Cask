@@ -7,6 +7,7 @@
 (depends-on "smartparens" "1.6.3")
 (depends-on "web-mode" "11.2")
 (depends-on "smex" "3.0")
+(depends-on "ido-ubiquitous" "3.6")
 (depends-on "sr-speedbar" "20140505")
 (depends-on "ppd-sr-speedbar" "0.0.4")
 (depends-on "exec-path-from-shell" "1.9")

@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.1
+;; Version: 0.9.2
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -44,13 +44,15 @@
 
 ;; Use ido for general completion
 (ido-mode 1)
+(ido-everywhere 1)
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode t)
 (put 'ido-complete 'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)
 (setq ido-enable-flex-matching t
       ido-auto-merge-work-directories-length nil
       ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess
-      ido-everywhere t)
+      ido-use-filename-at-point 'guess)
 
 
 ;; Make buffer names unique
