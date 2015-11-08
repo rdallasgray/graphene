@@ -4,7 +4,7 @@
 
 (depends-on "company" "0.8.12")
 (depends-on "flycheck" "0.23")
-(depends-on "graphene-meta-theme" "0.23")
+(depends-on "graphene-meta-theme" "0.0.1")
 (depends-on "smartparens" "1.6.3")
 (depends-on "web-mode" "11.2")
 (depends-on "smex" "3.0")
