@@ -84,3 +84,5 @@
 (put 'narrow-to-region 'disabled nil)
 
 (provide 'graphene-env)
+
+;;; graphene-env.el ends here

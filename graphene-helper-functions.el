@@ -151,3 +151,5 @@
 
 
 (provide 'graphene-helper-functions)
+
+;;; graphene-helper-functions.el ends here

@@ -47,3 +47,5 @@
   (exec-path-from-shell-initialize))
 
 (provide 'graphene-osx-defaults)
+
+;;; graphene-osx-defaults.el ends here

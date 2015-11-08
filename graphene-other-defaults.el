@@ -31,6 +31,8 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (provide 'graphene-other-defaults)
+
+;;; graphene-other-defults.el ends here

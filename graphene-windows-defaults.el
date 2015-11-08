@@ -40,3 +40,5 @@
   (setq graphene-fixed-pitch-font "Consolas-10"))
 
 (provide 'graphene-windows-defaults)
+
+;;; graphene-windows-defaults.el ends here

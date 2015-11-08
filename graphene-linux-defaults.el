@@ -41,3 +41,5 @@
   (setq graphene-fixed-pitch-font "DejaVu Sans Mono-10"))
 
 (provide 'graphene-linux-defaults)
+
+;;; graphene-linux-defaults.el ends here

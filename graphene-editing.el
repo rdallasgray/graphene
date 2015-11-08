@@ -237,3 +237,5 @@
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
 
 (provide 'graphene-editing)
+
+;;; graphene-editing.el ends here
