@@ -7,6 +7,6 @@
     (smex "3.0")
     (web-mode "11.2")
     (smartparens "1.6.3")
-    (graphene-meta-theme "0.0.1")
+    (graphene-meta-theme "0.0.2")
     (flycheck "0.23")
     (company "0.8.12")))
