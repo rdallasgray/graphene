@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.2
+;; Version: 0.9.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -151,3 +151,5 @@
 
 
 (provide 'graphene-helper-functions)
+
+;;; graphene-helper-functions.el ends here

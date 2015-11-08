@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.2
+;; Version: 0.9.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -89,3 +89,5 @@ Also returns nil if pid is nil."
     (setq ad-return-value nil)))
 
 (provide 'graphene-projects)
+
+;;; graphene-projects.el ends here

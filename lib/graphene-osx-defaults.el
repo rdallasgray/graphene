@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.2
+;; Version: 0.9.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -47,3 +47,5 @@
   (exec-path-from-shell-initialize))
 
 (provide 'graphene-osx-defaults)
+
+;;; graphene-osx-defaults.el ends here

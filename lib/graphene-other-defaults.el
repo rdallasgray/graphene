@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.2
+;; Version: 0.9.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -31,6 +31,8 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; Code: 
+;;; Code:
 
 (provide 'graphene-other-defaults)
+
+;;; graphene-other-defults.el ends here

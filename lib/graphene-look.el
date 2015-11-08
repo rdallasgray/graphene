@@ -4,7 +4,7 @@
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.2
+;; Version: 0.9.3
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -94,7 +94,7 @@
       (with-temp-buffer
         (insert-file-contents graphene-geometry-file)
         (read (buffer-string)))
-    '(140 60 0 0)))
+    '(100 40 0 0)))
 
 (defun graphene-save-frame-geometry ()
   "Save current frame geometry settings."
@@ -142,13 +142,12 @@
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
         (set-fringe-mode '(8 . 0))
-        (require 'graphene-theme)
-        (load-theme 'graphene t)
+        (load-theme 'graphene-meta t)
         (defadvice load-theme
-          (after load-graphene-theme (theme &optional no-confirm no-enable) activate)
+          (after load-graphene-meta-theme (theme &optional no-confirm no-enable) activate)
           "Load the graphene theme extensions after loading a theme."
-          (when (not (equal theme 'graphene))
-            (load-theme 'graphene t))))
+          (when (not (equal theme 'graphene-meta))
+            (load-theme 'graphene-meta t))))
     (when (not (eq system-type 'darwin))
       (menu-bar-mode -1))
     ;; Menu bar always off in text mode
@@ -157,3 +156,5 @@
 (add-hook 'after-init-hook 'graphene-look-startup-after-init)
 
 (provide 'graphene-look)
+
+;;; graphene-look.el ends here
