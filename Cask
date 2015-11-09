@@ -1,3 +1,4 @@
+(source gnu)
 (source melpa)
 
 (package "graphene" "@VERSION" "Friendly Emacs defaults")
