@@ -1,10 +1,10 @@
 ;;; graphene-smartparens-config.el --- Graphene configuration for smartparens
 ;;
-;; Copyright (c) 2015 Robert Dallas Gray
+;; Copyright (c) 2016 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.5
+;; Version: 0.9.6
 ;; Keywords: defaults
 ;;
 ;; This file is not part of GNU Emacs.
@@ -54,8 +54,5 @@
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)
                :actions '(insert wrap))
-
-(dolist (mode '(coffee-mode shell-mode))
-  (add-to-list 'sp-autoescape-string-quote-if-empty mode))
 
 (provide 'graphene-smartparens-config)
