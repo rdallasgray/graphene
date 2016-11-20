@@ -64,19 +64,20 @@
   :type 'bool
   :group 'graphene)
 
+(defun graphene-resize-minibuffer-p ()
+  (or (-any? 'featurep '(ivy grizzl ido-vertical-mode))
+      graphene-resize-minibuffer))
+
+(defun graphene-minibuffer-setup-hook ()
+  (if (graphene-resize-minibuffer-p)
+      (set (make-local-variable 'line-spacing) 0)
+    (setq resize-mini-windows nil)))
+
 (add-hook 'minibuffer-setup-hook
-          (lambda ()
-            (setq resize-mini-windows (or (-any? 'featurep '(ivy grizzl))
-                                          graphene-resize-minibuffer))
-            (when resize-mini-windows
-              (set (make-local-variable 'line-spacing) 0))))
+          'graphene-minibuffer-setup-hook)
 
 (add-hook 'ido-minibuffer-setup-hook
-          (lambda ()
-            (setq resize-mini-windows (or (featurep 'ido-vertical-mode)
-                                          graphene-resize-minibuffer))
-            (when resize-mini-windows
-              (set (make-local-variable 'line-spacing) 0))))
+          'graphene-minibuffer-setup-hook)
 
 (setq redisplay-dont-pause t)
 
