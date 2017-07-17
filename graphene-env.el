@@ -45,7 +45,7 @@
 ;; Use ido for general completion
 (ido-mode 1)
 (ido-everywhere 1)
-(require 'ido-ubiquitous)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode t)
 (put 'ido-complete 'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)

@@ -3,7 +3,7 @@
     (exec-path-from-shell "1.9")
     (ppd-sr-speedbar "0.0.6")
     (sr-speedbar "20140505")
-    (ido-ubiquitous "3.6")
+    (ido-ubiquitous "4.0")
     (smex "3.0")
     (web-mode "11.2")
     (smartparens "1.8.0")
