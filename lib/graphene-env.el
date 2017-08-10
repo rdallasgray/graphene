@@ -1,10 +1,10 @@
 ;;; graphene-env.el --- Graphene environment defaults
 ;;
-;; Copyright (c) 2016 Robert Dallas Gray
+;; Copyright (c) 2017 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.7
+;; Version: 0.9.8
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -45,7 +45,7 @@
 ;; Use ido for general completion
 (ido-mode 1)
 (ido-everywhere 1)
-(require 'ido-ubiquitous)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode t)
 (put 'ido-complete 'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)

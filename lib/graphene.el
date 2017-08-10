@@ -1,10 +1,10 @@
 ;;; graphene.el --- Newbie-friendly defaults
 ;;
-;; Copyright (c) 2016 Robert Dallas Gray
+;; Copyright (c) 2017 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.7
+;; Version: 0.9.8
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -14,7 +14,7 @@
 ;; [![Melpa Status](http://melpa.org/packages/graphene-badge.svg)](http://melpa.org/#/graphene)
 ;; 
 ;; 
-;; #Graphene
+;; # Graphene
 ;; Graphene is a 'starter kit' for Emacs, in the vein of
 ;; [Prelude](https://github.com/bbatsov/prelude) or
 ;; [emacs-starter-kit](https://github.com/technomancy/emacs-starter-kit).
@@ -34,12 +34,12 @@
 ;; to turn Emacs into a sparkly GUI editor or IDE. It is minimal,
 ;; lightweight, and respectful of the history and character of Emacs.
 ;; 
-;; #News
+;; # News
 ;; Graphene 0.9 depends on [project-persist-drawer](https://github.com/rdallasgray/project-persist-drawer) and [ppd-sr-speedbar](https://github.com/rdallasgray/ppd-sr-speedbar) to hook a drawer into project activity.
 ;; 
 ;; Custom variables are extended and refined -- see the relevant info documentation in the `graphene` group.
 ;; 
-;; ##Sensible defaults
+;; ## Sensible defaults
 ;; Among many other things, Graphene turns off the Emacs startup screen,
 ;; turns on
 ;; [line wrapping](http://www.emacswiki.org/emacs/VisualLineMode), turns
@@ -48,7 +48,7 @@
 ;; the way of small annoyances and makes things look and work the way
 ;; you'd expect.
 ;; 
-;; ##A clean look
+;; ## A clean look
 ;; Graphene includes its own 'meta-theme' which works hard to unify the
 ;; look of the editor across a range of packages. This theme loads on top
 ;; of any 'normal' theme you want to load, so you can still choose
@@ -58,7 +58,7 @@
 ;; host platform (which can be overridden), and maintains window size and
 ;; position across sessions.
 ;; 
-;; ##Discoverability
+;; ## Discoverability
 ;; At first Emacs can appear a little opaque; it is in fact a very
 ;; discoverable environment, and Graphene tries to turn this up to
 ;; maximum, by using
@@ -68,7 +68,7 @@
 ;; completion. These allow gradual discovery of Emacs' functionality, and
 ;; gradual building of speed and fluidity.
 ;; 
-;; ##Essential packages
+;; ## Essential packages
 ;; The collection of packages Graphene includes prevents you having to
 ;; research and discover on your own what the Emacs community has largely
 ;; decided on as best-in-class packages.
@@ -91,7 +91,7 @@
 ;; - [Flycheck](https://github.com/flycheck/flycheck)
 ;;   For error checking
 ;; 
-;; ##Installation
+;; ## Installation
 ;; Graphene is available on [Melpa](http://melpa.org).
 ;; 
 ;; If you don't already have your Emacs set up to use the package
@@ -129,12 +129,12 @@
 ;; ```
 ;; Restart Emacs, and away you go.
 ;; 
-;; ##How do I ... ?
+;; ## How do I ... ?
 ;; All of the packages Graphene includes are well-documented, and I'll
 ;; refer you to them rather than retread that documentation here. That
 ;; said, there are some Graphene-specific things you need to know.
 ;; 
-;; ###Keybindings
+;; ### Keybindings
 ;; Graphene creates some new keybindings, and alters some existing ones:
 ;; 
 ;; - `C-x k` always kills the active buffer, rather than asking you which
@@ -154,7 +154,7 @@
 ;; Graphene used to bind the standard Mac keys for various purposes
 ;; (Command-n for new buffer, for instance), but no longer does.
 ;; 
-;; ###Projects
+;; ### Projects
 ;; [project-persist](https://github.com/rdallasgray/project-persist) uses
 ;; the following keybindings:
 ;; 
@@ -163,12 +163,12 @@
 ;; - `C-c P k` to close the current project
 ;; - `C-c P d` to delete an existing project
 ;; 
-;; ###Customising
+;; ### Customising
 ;; Try `M-x customize-group` and type 'graphene', for an idea of what can
 ;; be customised; you may wish to set these programmatically in your init
 ;; file, instead.
 ;; 
-;; ##Contributions and feedback
+;; ## Contributions and feedback
 ;; Contributions to Graphene are very welcome, as are feedback and bug
 ;; reports. The latter can be raised via the Issues section.
 ;; 

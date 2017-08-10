@@ -1,9 +1,9 @@
-(define-package "graphene" "0.9.7" "Friendly Emacs defaults"
+(define-package "graphene" "0.9.8" "Friendly Emacs defaults"
   '((dash "2.10.0")
     (exec-path-from-shell "1.9")
     (ppd-sr-speedbar "0.0.6")
     (sr-speedbar "20140505")
-    (ido-ubiquitous "3.6")
+    (ido-completing-read+ "4.3")
     (smex "3.0")
     (web-mode "11.2")
     (smartparens "1.8.0")

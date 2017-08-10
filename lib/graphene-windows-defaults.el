@@ -1,10 +1,10 @@
 ;;; graphene-windows-defaults.el --- Graphene defaults for Windows systems
 ;;
-;; Copyright (c) 2016 Robert Dallas Gray
+;; Copyright (c) 2017 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.7
+;; Version: 0.9.8
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
