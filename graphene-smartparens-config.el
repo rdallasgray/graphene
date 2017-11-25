@@ -33,23 +33,14 @@
 
 ;;; Code:
 
-(defun graphene--sp-pair-on-newline (id action context)
-  "Put trailing pair on newline and return to point."
-  (save-excursion
-    (newline)
-    (indent-according-to-mode)))
+(sp-pair "{" nil :post-handlers '(:add ("||\n" "RET")))
+(sp-pair "[" nil :post-handlers '(:add ("||\n" "RET")))
 
-(defun graphene--sp-pair-on-newline-and-indent (id action context)
-  "Open a new brace or bracket expression, with relevant newlines and indent. "
-  (graphene--sp-pair-on-newline id action context)
-  (indent-according-to-mode))
-
-(sp-pair "{" nil :post-handlers
-         '(:add ((lambda (id action context)
-                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
-(sp-pair "[" nil :post-handlers
-         '(:add ((lambda (id action context)
-                   (graphene--sp-pair-on-newline-and-indent id action context)) "RET")))
+;; Fix for ruby-mode, which appears to override handlers
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (sp-local-pair
+             'ruby-mode "{" nil :post-handlers '(:add ("||\n" "RET")))))
 
 (sp-local-pair '(markdown-mode gfm-mode) "*" "*"
                :unless '(sp-in-string-p)

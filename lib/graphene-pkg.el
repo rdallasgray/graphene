@@ -1,4 +1,4 @@
-(define-package "graphene" "0.9.8" "Friendly Emacs defaults"
+(define-package "graphene" "0.9.9" "Friendly Emacs defaults"
   '((dash "2.10.0")
     (exec-path-from-shell "1.9")
     (ppd-sr-speedbar "0.0.6")
