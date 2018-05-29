@@ -72,21 +72,22 @@
             (message (format "Saving project desktop in %s" project-persist-current-project-settings-dir))
             (desktop-save project-persist-current-project-settings-dir)))
 
-;; http://www.emacswiki.org/DeskTop#toc4: Overriding stale desktop locks
-(defun emacs-process-p (pid)
-  "If pid is the process ID of an emacs process, return t, else nil.
-Also returns nil if pid is nil."
-  (when pid
-    (let ((attributes (process-attributes pid)) (cmd))
-      (dolist (attr attributes)
-        (if (string= "comm" (car attr))
-            (setq cmd (cdr attr))))
-      (if (and cmd (or (string= "emacs" cmd) (string= "emacs.exe" cmd))) t))))
+(require 'dash)
 
-(defadvice desktop-owner (after pry-from-cold-dead-hands activate)
-  "Don't allow dead emacsen to own the desktop file."
-  (when (not (emacs-process-p ad-return-value))
-    (setq ad-return-value nil)))
+(defun emacs-process-p (pid)
+  "If PID is the process ID of an EMACS process, return t, else nil.
+Also returns nil if pid is nil."
+  (when (and pid (memq pid (list-system-processes)))
+    (let* ((attributes (process-attributes pid))
+           (cmd-cell (-first (lambda (cell) (string= "comm" (car cell))) attributes)))
+      (and cmd-cell (string-match-p "emacs" (cdr cmd-cell))))))
+
+(defun pid-if-active-emacs-process (orig &optional dirname)
+  (let ((pid (apply orig '(dirname))))
+    (when (emacs-process-p pid) pid)
+    pid))
+
+(advice-add 'desktop-owner :around #'pid-if-active-emacs-process)
 
 (provide 'graphene-projects)
 

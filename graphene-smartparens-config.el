@@ -33,17 +33,25 @@
 
 ;;; Code:
 
-(sp-pair "{" nil :post-handlers '(:add ("||\n" "RET")))
-(sp-pair "[" nil :post-handlers '(:add ("||\n" "RET")))
+(let ((pairs '(("{" nil) ("[" nil))))
+  (mapc
+   (lambda (pair)
+     (sp-pair (-first-item pair)
+              (-last-item pair)
+              :post-handlers
+              '(:add ("||\n[i]" "RET"))))
+   pairs))
 
 ;; Fix for ruby-mode, which appears to override handlers
 (add-hook 'ruby-mode-hook
           (lambda ()
-            (sp-local-pair
-             'ruby-mode "{" nil :post-handlers '(:add ("||\n" "RET")))))
+            (sp-local-pair 'ruby-mode
+                           "{"
+                           nil
+                           :post-handlers
+                           '(:add ("||\n[i]" "RET")))))
 
-(sp-local-pair '(markdown-mode gfm-mode) "*" "*"
-               :unless '(sp-in-string-p)
-               :actions '(insert wrap))
+(sp-local-pair
+ '(markdown-mode gfm-mode) "*" "*" :unless '(sp-in-string-p) :actions '(insert wrap))
 
 (provide 'graphene-smartparens-config)
