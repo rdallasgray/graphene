@@ -1,10 +1,10 @@
 ;;; graphene-editing.el --- Graphene editing defaults
 ;;
-;; Copyright (c) 2017 Robert Dallas Gray
+;; Copyright (c) 2018 Robert Dallas Gray
 ;;
 ;; Author: Robert Dallas Gray <mail@robertdallasgray.com>
 ;; URL: https://github.com/rdallasgray/graphene
-;; Version: 0.9.9
+;; Version: 1.0.0
 ;; Keywords: defaults
 
 ;; This file is not part of GNU Emacs.
@@ -90,10 +90,8 @@
   :group 'graphene)
 
 (defun graphene-linum ()
+  (setq linum-format " %4d ")
   (linum-mode t))
-
-(setq linum-format " %4d ")
-
 
 ;;; auto-pairing
 
