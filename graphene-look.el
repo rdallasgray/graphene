@@ -135,14 +135,14 @@
       (progn
         (graphene-set-geometry)
         (add-hook 'kill-emacs-hook 'graphene-save-frame-geometry)
-        (setq-default line-spacing 2)
+        (setq-default line-spacing 2
+                      left-margin-width 1)
         (graphene-set-fonts)
         (add-to-list 'default-frame-alist `(font . ,graphene-default-font))
         (set-face-font 'default graphene-default-font)
         (set-face-font 'variable-pitch graphene-variable-pitch-font)
         (set-face-font 'fixed-pitch graphene-fixed-pitch-font)
         (add-to-list 'default-frame-alist '(internal-border-width . 0))
-        (set-fringe-mode '(8 . 0))
         (load-theme 'graphene-meta t)
         (defadvice load-theme
           (after load-graphene-meta-theme (theme &optional no-confirm no-enable) activate)

@@ -79,6 +79,7 @@
   :group 'graphene)
 
 (defun graphene-indent ()
+  "Turn on auto-indent."
   (electric-indent-mode t))
 
 
@@ -90,8 +91,16 @@
   :group 'graphene)
 
 (defun graphene-linum ()
-  (setq linum-format " %4d ")
-  (linum-mode t))
+  "Turn on line numbering."
+  (if (boundp 'display-line-numbers)
+      (progn
+        (when (fboundp 'linum-delete-overlays)
+          (linum-delete-overlays)
+          (linum-mode -1)
+          (set-window-buffer nil (current-buffer)))
+        (setq display-line-numbers t))
+    (setq linum-format " %4d ")
+    (linum-mode t)))
 
 ;;; auto-pairing
 
@@ -106,6 +115,7 @@
   :group 'graphene)
 
 (defun graphene-pairs ()
+  "Turn on auto-pairing."
   (require 'smartparens)
   (smartparens-mode t))
 
@@ -114,6 +124,7 @@
   (smartparens-global-mode t))
 
 (defun graphene-show-pairs ()
+  "Turn on visible pairs."
   (show-paren-mode nil)
   (setq blink-matching-paren nil)
   (require 'smartparens)
@@ -135,6 +146,7 @@
   :group 'graphene)
 
 (defun graphene-completion ()
+  "Turn on completion."
   (require 'company)
   (company-mode t))
 
@@ -164,6 +176,7 @@
   :group 'graphene)
 
 (defun graphene-errors ()
+  "Turn on error-checking."
   (require 'flycheck)
   (flycheck-mode))
 
