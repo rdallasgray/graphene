@@ -90,14 +90,18 @@
   :type 'sexp
   :group 'graphene)
 
+(defun graphene--fixup-line-numbers ()
+  "Fix legacy linum view when switching to native line numbers."
+  (when (fboundp 'linum-delete-overlays)
+    (linum-delete-overlays)
+    (linum-mode -1)
+    (set-window-buffer nil (current-buffer))))
+
 (defun graphene-linum ()
   "Turn on line numbering."
   (if (boundp 'display-line-numbers)
       (progn
-        (when (fboundp 'linum-delete-overlays)
-          (linum-delete-overlays)
-          (linum-mode -1)
-          (set-window-buffer nil (current-buffer)))
+        (run-at-time "2 sec" nil 'graphene--fixup-line-numbers)
         (setq display-line-numbers t))
     (setq linum-format " %4d ")
     (linum-mode t)))
