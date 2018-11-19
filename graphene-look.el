@@ -76,8 +76,8 @@
 (add-hook 'minibuffer-setup-hook
           'graphene-minibuffer-setup-hook)
 
-(add-hook 'ido-minibuffer-setup-hook
-          'graphene-minibuffer-setup-hook)
+;; (add-hook 'ido-minibuffer-setup-hook
+;;           'graphene-minibuffer-setup-hook)
 
 (setq redisplay-dont-pause t)
 

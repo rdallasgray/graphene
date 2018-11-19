@@ -44,32 +44,16 @@
     css-mode-hook
     sgml-mode-hook
     html-mode-hook)
-  "List of hooks to be treated as prog-mode."
+  "List of hooks to be treated as `prog-mode'."
   :type 'sexp
   :group 'graphene)
 
-;; Main hook to be run on entering de facto prog modes
-(add-hook 'graphene-prog-mode-hook
-          (lambda ()
-            (when graphene-indent-auto
-              (graphene-indent))
-            (when graphene-linum-auto
-              (graphene-linum))
-            (when graphene-pairs-auto
-              (graphene-pairs))
-            (when graphene-show-pairs-auto
-              (graphene-show-pairs))
-            (when graphene-completion-auto
-              (graphene-completion))
-            (when graphene-errors-auto
-              (graphene-errors))))
 
-;; Attach de facto prog mode hooks after loading init file
-(add-hook 'after-init-hook
-          (lambda ()
-            (dolist (hook graphene-prog-mode-hooks)
-              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
+(defvar graphene-large-file-size (* 1024 1024))
 
+(defun graphene-large-file-p ()
+  "Return whether buffer is > graphene-large-file-size."
+  (> (buffer-size) graphene-large-file-size))
 
 ;;; indenting
 
@@ -92,8 +76,7 @@
 
 (defun graphene--fixup-line-numbers ()
   "Fix legacy linum view when switching to native line numbers."
-  (when (fboundp 'linum-delete-overlays)
-    (linum-delete-overlays)
+  (when (fboundp 'linum-mode)
     (linum-mode -1)
     (set-window-buffer nil (current-buffer))))
 
@@ -101,7 +84,7 @@
   "Turn on line numbering."
   (if (boundp 'display-line-numbers)
       (progn
-        (run-at-time "2 sec" nil 'graphene--fixup-line-numbers)
+        (graphene--fixup-line-numbers)
         (setq display-line-numbers t))
     (setq linum-format " %4d ")
     (linum-mode t)))
@@ -129,17 +112,17 @@
 
 (defun graphene-show-pairs ()
   "Turn on visible pairs."
-  (show-paren-mode nil)
+  (show-paren-mode -1)
   (setq blink-matching-paren nil)
   (require 'smartparens)
   (show-smartparens-mode)
-  (setq sp-show-pair-delay 0))
+  (setq sp-show-pair-delay 0.25))
 
 (eval-after-load 'smartparens
   '(progn
      (require 'smartparens-config)
      (require 'graphene-smartparens-config)
-     (setq sp-highlight-pair-overlay nil)))
+     (setq sp-highlight-pair-overlay t)))
 
 
 ;;; completion
@@ -250,6 +233,28 @@
            "Gemfile$" "Capfile$" "Guardfile$" "Rakefile$" "Cheffile$" "Vagrantfile$"
            "Berksfile$" "\\.builder$"))
   (add-to-list 'auto-mode-alist `(,regex . ruby-mode)))
+
+;; Main hook to be run on entering de facto prog modes
+(add-hook 'graphene-prog-mode-hook
+          (lambda ()
+            (when graphene-indent-auto
+              (graphene-indent))
+            (when graphene-linum-auto
+              (graphene-linum))
+            (when graphene-pairs-auto
+              (graphene-pairs))
+            (when (and graphene-show-pairs-auto (not (graphene-large-file-p)))
+              (graphene-show-pairs))
+            (when graphene-completion-auto
+              (graphene-completion))
+            (when (and graphene-errors-auto (not (graphene-large-file-p)))
+              (graphene-errors))))
+
+;; Attach de facto prog mode hooks after loading init file
+(add-hook 'after-init-hook
+          (lambda ()
+            (dolist (hook graphene-prog-mode-hooks)
+              (add-hook hook (lambda () (run-hooks 'graphene-prog-mode-hook))))))
 
 (provide 'graphene-editing)
 

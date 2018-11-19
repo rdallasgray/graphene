@@ -34,25 +34,22 @@
 
 ;;; Code:
 
-
-;; Use smex to complete interactive commands
-(require 'smex)
-(smex-initialize)
-
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-;; Use ido for general completion
-(ido-mode 1)
-(ido-everywhere 1)
-(require 'ido-completing-read+)
-(ido-ubiquitous-mode t)
-(put 'ido-complete 'disabled nil)
-(put 'ido-exit-minibuffer 'disabled nil)
-(setq ido-enable-flex-matching t
-      ido-auto-merge-work-directories-length nil
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point 'guess)
+;; Use swiper/ivy for common command completion and search
+(require 'swiper)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t
+      ivy-use-selectable-prompt t)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-h a") 'counsel-apropos)
+(global-set-key (kbd "C-h f") 'counsel-describe-function)
+(global-set-key (kbd "C-h v") 'counsel-describe-variable)
+(global-set-key (kbd "C-h i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "C-x b") 'counsel-ibuffer)
+(global-set-key (kbd "C-x r b") 'counsel-bookmark)
+(global-set-key (kbd "M-.") 'counsel-imenu)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
 
 ;; Make buffer names unique

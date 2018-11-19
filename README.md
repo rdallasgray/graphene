@@ -49,8 +49,7 @@ position across sessions.
 At first Emacs can appear a little opaque; it is in fact a very
 discoverable environment, and Graphene tries to turn this up to
 maximum, by using
-[Ido](http://emacswiki.org/emacs/InteractivelyDoThings) everywhere,
-[Smex](http://www.emacswiki.org/Smex) for running extended commands,
+[Swiper, Counsel and Ivy](https://github.com/abo-abo/swiper) everywhere,
 and [Company](http://company-mode.github.io) for in-editor
 completion. These allow gradual discovery of Emacs' functionality, and
 gradual building of speed and fluidity.
@@ -71,10 +70,8 @@ decided on as best-in-class packages.
   For code completion
 - [Web-mode](https://github.com/fxbois/web-mode)
   For mixed-mode editing
-- [Smex](http://www.emacswiki.org/Smex)
-  For command completion
-- [Ido](http://emacswiki.org/emacs/InteractivelyDoThings)
-  For general completion
+- [Swiper, Counsel and Ivy](https://github.com/abo-abo/swiper)
+  For command completion and search
 - [Flycheck](https://github.com/flycheck/flycheck)
   For error checking
 
