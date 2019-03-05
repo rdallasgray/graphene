@@ -77,6 +77,7 @@
 (defun graphene--fixup-line-numbers ()
   "Fix legacy linum view when switching to native line numbers."
   (when (fboundp 'linum-mode)
+    (global-linum-mode -1)
     (linum-mode -1)
     (set-window-buffer nil (current-buffer))))
 
