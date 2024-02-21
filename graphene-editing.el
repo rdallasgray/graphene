@@ -90,8 +90,7 @@
   :group 'graphene)
 
 (defun graphene-linum ()
-  (setq linum-format " %4d ")
-  (linum-mode t))
+  (display-line-numbers-mode t))
 
 ;;; auto-pairing
 
